@@ -7,7 +7,9 @@
 </head>
 <body>
   <h1 class="text-3xl font-bold underline text-red-500">
-    Hello world!
+    Hello world! 
   </h1>
+
+<a href={{ route('family.index') }}>family</a>
 </body>
 </html>
