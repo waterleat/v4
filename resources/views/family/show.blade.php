@@ -9,11 +9,14 @@
         </a>
     </div>
 
-    <h4 class="text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ml-10">
+    <h2 class="text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ml-10">
         {{ $family->name }}
-    </h4>
+    </h2>
+    <h3>{{ $family->latin }}</h3>
+    <p>{{ $family->description }}</p>
 
-    <div class="block lg:flex flex-row">
+
+    {{-- <div class="block lg:flex flex-row">
         <div class="basis-9/12 text-center sm:block sm:text-left">
             <span class="text-left sm:text-center sm:inline block text-gray-900 pb-10 pt-0 sm:pt-10 pl-0 sm:pl-4 -mt-8 sm:-mt-0">
                 Made by:
@@ -25,5 +28,5 @@
                 On 17-07-2022
             </span>
         </div>
-    </div>
+    </div> --}}
 </div>

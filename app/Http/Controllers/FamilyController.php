@@ -41,24 +41,27 @@ class FamilyController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $request->validate([
-            'name' => 'required|unique:families
-            |max:255',
+        // $request->validate([
+        //     'name' => 'required|unique:families
+        //     |max:255',
+        // ]);
+        $data = $request->validate([
+            'name' => ['required'],
+            'latin' => ['required'],
+            'description' => ['required'],
         ]);
-        Family::create([
-            'name' => $request->name,
-        ]);
+        Family::create($data);
         return Redirect(route('family.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    // public function show(Family $family)
-    public function show($id)
+    public function show(Family $family)
+    // public function show($id)
     {
         // return $id;
-        $family = Family::find($id);
+        // $family = Family::find($id);
         // dd($family);
         return view('family.show', ['family' => $family]);
     }
@@ -66,37 +69,46 @@ class FamilyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    // public function edit(Family $family)
-    public function edit($id)
+    public function edit(Family $family)
+    // public function edit($id)
     {
         return view('family.edit', [
-            'family' => Family::where('id', $id)->first()
+            // 'family' => Family::where('id', $id)->first()
+            'family' => $family
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    // public function update(Request $request, Family $family)
-    public function update(Request $request, $id)
+    public function update(Request $request, Family $family)
+    // public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|max:255|unique:families,name',
+        // $request->validate([
+        //     'name' => 'required|max:255|unique:families,name',
+        // ]);
+        // $family->update($request->except([
+        //     '_token', '_method'
+        // ]));
+        // Family::where('id', $id)->update($request->except([
+        $data = $request->validate([
+            'name' => ['required'],
+            'latin' => ['required'],
+            'description' => ['required'],
         ]);
-
-        Family::where('id', $id)->update($request->except([
-            '_token', '_method'
-        ]));
+        // dd($data);
+        $family->update($data);
         return Redirect(route('family.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    // public function destroy(Family $family)
-    public function destroy($id)
+    public function destroy(Family $family)
+    // public function destroy($id)
     {
-        Family::destroy($id);
+        $family->delete() ;
+        // Family::destroy($id);
         return redirect(route('family.index'))->with('message', 'Family has been deleted');
     }
 }

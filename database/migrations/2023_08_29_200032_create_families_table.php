@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('families', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->string('latin');
+            $table->text('description');
             $table->timestamps();
         });
     }

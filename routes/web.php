@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 // Route::get('/blog',  [FamilyController::class, 'index']); // doesn't give named routes   ---vid 7
 
-// Route::resource('family', FamilyController::class);
+Route::resource('family', FamilyController::class);
 
 
 
@@ -48,12 +48,12 @@ Route::get('/', function () {
 
 
 // grouped - prefix
-Route::prefix('/family')->group(function () {
-    Route::get('/create', [FamilyController::class, 'create'])->name('family.create');
-    Route::get('/', [FamilyController::class, 'index'])->name('family.index');
-    Route::get('/{id}', [FamilyController::class, 'show'])->name('family.show');
-    Route::post('/', [FamilyController::class, 'store'])->name('family.store');
-    Route::get('/edit/{id}', [FamilyController::class, 'edit'])->name('family.edit');
-    Route::patch('/{id}', [FamilyController::class, 'update'])->name('family.update');
-    Route::delete('/{id}', [FamilyController::class, 'destroy'])->name('family.destroy');
-});
+// Route::prefix('/family')->group(function () {
+//     Route::get('/create', [FamilyController::class, 'create'])->name('family.create');
+//     Route::get('/', [FamilyController::class, 'index'])->name('family.index');
+//     Route::get('/{family}', [FamilyController::class, 'show'])->name('family.show');
+//     Route::post('/', [FamilyController::class, 'store'])->name('family.store');
+//     Route::get('/edit/{family}', [FamilyController::class, 'edit'])->name('family.edit');
+//     Route::patch('/{family}', [FamilyController::class, 'update'])->name('family.update');
+//     Route::delete('/{family}', [FamilyController::class, 'destroy'])->name('family.destroy');
+// });
