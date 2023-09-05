@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:title>
-        Create Family page
+        Create Variety page
     </x-slot:title>
 
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
@@ -24,22 +24,55 @@
                 enctype="multipart/form-data">
                 @csrf
 
-                <input
-                type="text"
-                name="name"
-                placeholder="Family..."
-                class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+                <div>
+                <x-input-label for="name" :value="__('Variety name')" class=""/>
+                <x-text-input id="name" class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none"
+                            type="text"
+                            name="name"
+                            placeholder="Variety name..." />
+                </div>
 
-                <input
-                type="text"
-                name="latin"
-                placeholder="Latin name..."
-                class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+                <div>
+                    <x-input-label for="family" :value="__('Family')" />
+                    <x-select-input name="family" :options="$options" class="bg-red-500"/>
+                </div>
 
-                <textarea
-                name="description"
-                placeholder="Description..."
-                class="py-10 bg-transparent block border-b-2 w-full h-60 text-xl outline-none"></textarea>
+                <x-input-label for="latin" :value="__('Latin name')" class=""/>
+                <x-text-input id="latin" class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none"
+                            type="text"
+                            name="latin"
+                            placeholder="Latin name..." />
+
+                <x-input-label for="description" :value="__('Description')" class=""/>
+                <x-textarea-input id="description" name="description"
+                    placeholder="Describe the plant..."
+                    class=" bg-transparent block border-b-2 w-full h-40 text-xl outline-none">
+                </x-textarea-input>
+
+                <div class="flex pb-8">
+                    <div>
+                        <x-input-label for="height" :value="__('Height (m)')" />
+                        <x-text-input id="height" name="height"
+                            type="number" min="0" step="0.1" max="10"
+                            placeholder="Height..."
+                            class="focus:bg-green-100 block border-b-2 w-full h-20 text-2xl outline-none" />
+                    </div>
+                    <div>
+                        <x-input-label for="height" :value="__('Spread (m)')" />
+                        <x-text-input id="spread" name="spread"
+                            type="number" min="0" step="0.1" max="10"
+                            placeholder="Spread..."
+                            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" />
+                    </div>
+                    <div>
+                        <x-input-label for="days2maturity" :value="__('Days to Maturity')" />
+                        <x-text-input id="days2maturity" name="days2maturity"
+                            type="number"
+                            placeholder="days..." 
+                            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none" />
+                    </div>
+                </div>
+
 
                 {{-- <label for="is_published" class="text-gray-500 text-2xl">
                     Is Published
@@ -81,7 +114,7 @@
                 <button
                     type="submit"
                     class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-                    Submit Family
+                    Submit Variety
                 </button>
             </form>
         </div>

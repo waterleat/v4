@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\VarietyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/child', function () {return view('child');});
+
 
 
 
@@ -26,6 +29,7 @@ Route::get('/', function () {
 
 Route::resource('family', FamilyController::class);
 
+Route::resource('variety', VarietyController::class);
 
 
 

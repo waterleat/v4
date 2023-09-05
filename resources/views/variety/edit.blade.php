@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:title>
-        Create Family page
+        Edit Variety {{ $variety->name }}
     </x-slot:title>
 
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
@@ -19,27 +19,62 @@
             </div>
             @endif
             <form
-                action="{{ route('family.store') }}"
+                action="{{ route('variety.update', ['variety' => $variety]) }}"
                 method="POST"
                 enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
 
                 <input
                 type="text"
                 name="name"
-                placeholder="Family..."
+                value="{{ $variety->name }}"
                 class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
 
                 <input
                 type="text"
                 name="latin"
-                placeholder="Latin name..."
+                value="{{ $variety->latin }}"
                 class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
 
                 <textarea
                 name="description"
                 placeholder="Description..."
-                class="py-10 bg-transparent block border-b-2 w-full h-60 text-xl outline-none"></textarea>
+                class=" bg-transparent block border-b-2 w-full h-40 text-xl outline-none">{{ $variety->description }}</textarea>
+
+                <div class="flex pb-8">
+                    <div>
+                        <label for="height" class="text-gray-500 text-2xl">
+                            Height (m)
+                        </label>
+                        <input
+                            type="number"
+                            name="height"
+                            value="{{ $variety->height }}"
+                            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+                    </div>
+                    <div>
+                        <label for="spread" class="text-gray-500 text-2xl">
+                            Spread (m)
+                        </label>
+                        <input
+                            type="number"
+                            name="spread"
+                            value="{{ $variety->spread }}"
+                            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+                    </div>
+                    <div>
+                        <label for="days2maturity" class="text-gray-500 text-2xl">
+                            Days to Maturity
+                        </label>
+                        <input
+                            type="number"
+                            name="days2maturity"
+                            value="{{ $variety->days2maturity }}"
+                            class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+                    </div>
+                </div>
+
 
                 {{-- <label for="is_published" class="text-gray-500 text-2xl">
                     Is Published
@@ -81,7 +116,7 @@
                 <button
                     type="submit"
                     class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-                    Submit Family
+                    Submit Variety
                 </button>
             </form>
         </div>

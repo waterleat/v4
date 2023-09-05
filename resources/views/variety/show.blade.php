@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:title>
-        Show Family page
+        Show variety page
     </x-slot:title>
 
     <div class="w-4/5 mx-auto">
@@ -12,10 +12,19 @@
         </div>
 
         <h2 class="text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ml-10">
-            {{ $family->name }}
+            {{ $variety->name }}
         </h2>
-        <h3>{{ $family->latin }}</h3>
-        <p>{{ $family->description }}</p>
+        <div class="flex">
+            <div class="">
+                <h3>{{ $variety->latin }}</h3>
+                <p>{{ $variety->description }}</p>
+            </div>
+            <div class="">
+                <p>height {{ $variety->height }} m</p>
+                <p>spread {{ $variety->spread }} m</p>
+                <p>maturity {{ $variety->days2maturity }} days</p>
+            </div>
+        </div>
 
 
         {{-- <div class="block lg:flex flex-row">
