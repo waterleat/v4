@@ -27,10 +27,6 @@ class VarietyController extends Controller
         // dd($families);
         foreach ($families as $family) {
             $options[$family->id] = $family->name;
-            // [
-            //     'id' => $family->id,
-            //     'family' => $family->name,
-            // ];
         }
         // dd($options);
         return view('variety.create', ['options' => $options]);
@@ -45,6 +41,9 @@ class VarietyController extends Controller
             'name' => ['required'],
             'latin' => ['required'],
             'description' => ['required'],
+            'height' => ['decimal:0,2'],
+            'spread' => ['decimal:0,2'],
+            'days2maturity' => ['integer'],
         ]);
         Variety::create($data);
         return Redirect(route('variety.index'));
@@ -75,6 +74,9 @@ class VarietyController extends Controller
             'name' => ['required'],
             'latin' => ['required'],
             'description' => ['required'],
+            'height' => ['decimal:0,2'],
+            'spread' => ['decimal:0,2'],
+            'days2maturity' => ['integer'],
         ]);
         $variety->update($data);
         return Redirect(route('variety.index'));

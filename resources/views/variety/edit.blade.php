@@ -4,6 +4,7 @@
     </x-slot:title>
 
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+        Edit Variety {{ $variety->name }}
         <div class="m-auto pt-20">
             @if ($errors->any())
             <div class="pb-8">
@@ -18,7 +19,7 @@
                 </ul>
             </div>
             @endif
-            <form
+            <form class="bg-white p-4"
                 action="{{ route('variety.update', ['variety' => $variety]) }}"
                 method="POST"
                 enctype="multipart/form-data">
@@ -44,6 +45,15 @@
 
                 <div class="flex pb-8">
                     <div>
+                        <x-input-label for="height" :value="__('Height (m)')" />
+                        <input id="height" name="height"
+                            type="number" min="0" step=0.1 max="10"
+                            placeholder="Height..."
+                            value="{{ $variety->height }}"
+                            class="focus:bg-green-100 block border-b-2 w-full h-20 text-2xl outline-none" >
+                    </div>
+
+                    {{-- <div>
                         <label for="height" class="text-gray-500 text-2xl">
                             Height (m)
                         </label>
@@ -52,14 +62,13 @@
                             name="height"
                             value="{{ $variety->height }}"
                             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
-                    </div>
+                    </div> --}}
                     <div>
                         <label for="spread" class="text-gray-500 text-2xl">
                             Spread (m)
                         </label>
-                        <input
-                            type="number"
-                            name="spread"
+                        <input id="spread"  name="spread"
+                            type="number" min="0" step=0.05 max="10"
                             value="{{ $variety->spread }}"
                             class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
                     </div>
@@ -115,7 +124,7 @@
 
                 <button
                     type="submit"
-                    class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
+                    class="uppercase mt-15 bg-green-500 text-indigo-700 text-lg font-extrabold py-4 px-8 rounded-3xl">
                     Submit Variety
                 </button>
             </form>

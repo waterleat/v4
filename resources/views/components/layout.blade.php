@@ -17,7 +17,7 @@
     <body>
         <h1>Top Line</h1>
         <hr/>
-        <main>
+        <main class="bg-green-100">
             {{ $slot }}
         </main>
     </body>

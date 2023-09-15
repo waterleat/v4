@@ -19,7 +19,7 @@
             </div>
             @endif
             <form
-                action="{{ route('family.store') }}"
+                action="{{ route('variety.store') }}"
                 method="POST"
                 enctype="multipart/form-data">
                 @csrf
@@ -29,18 +29,21 @@
                 <x-text-input id="name" class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none"
                             type="text"
                             name="name"
+                            autocomplete="off"
                             placeholder="Variety name..." />
                 </div>
 
                 <div>
                     <x-input-label for="family" :value="__('Family')" />
-                    <x-select-input name="family" :options="$options" class="bg-red-500"/>
+                    <x-select-input id="family" name="family" 
+                            :options="$options" class="bg-red-500"/>
                 </div>
 
                 <x-input-label for="latin" :value="__('Latin name')" class=""/>
                 <x-text-input id="latin" class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none"
                             type="text"
                             name="latin"
+                            autocomplete="off"
                             placeholder="Latin name..." />
 
                 <x-input-label for="description" :value="__('Description')" class=""/>
@@ -50,6 +53,13 @@
                 </x-textarea-input>
 
                 <div class="flex pb-8">
+                    {{-- ffffffffff
+                    <div>
+                        <input id="height" name="height" 
+                        type="number" min="0" step="0.1" max="10"
+                        placeholder="Height..."
+                        class="focus:bg-green-100 block border-b-2 w-full h-20 text-2xl outline-none" >
+                    </div> --}}
                     <div>
                         <x-input-label for="height" :value="__('Height (m)')" />
                         <x-text-input id="height" name="height"
@@ -58,7 +68,7 @@
                             class="focus:bg-green-100 block border-b-2 w-full h-20 text-2xl outline-none" />
                     </div>
                     <div>
-                        <x-input-label for="height" :value="__('Spread (m)')" />
+                        <x-input-label for="spread" :value="__('Spread (m)')" />
                         <x-text-input id="spread" name="spread"
                             type="number" min="0" step="0.1" max="10"
                             placeholder="Spread..."

@@ -9,7 +9,16 @@
   <h1 class="text-3xl font-bold underline text-red-500">
     Hello world! 
   </h1>
-
-<a href={{ route('family.index') }}>family</a>
+<div class="flex">
+  <div class="w-20">
+    <a href={{ route('family.index') }}>family</a>
+  </div>
+  <div class="w-20">
+    <a href={{ route('variety.index') }}>variety</a>
+  </div>
+  <div class="w-20">
+    <a href={{ route('family.index') }}>family</a>
+  </div>
+  </div>
 </body>
 </html>
