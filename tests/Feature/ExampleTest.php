@@ -1,22 +1,17 @@
 <?php
 
-// namespace Tests\Feature;
+use App\Models\PlantType;
 
-// // use Illuminate\Foundation\Testing\RefreshDatabase;
-// use Tests\TestCase;
+test('plantType route to index returns statusCode 200', function () {
+    $response = $this->get('/plantType');
 
-// class ExampleTest extends TestCase
-// {
-//     /**
-//      * A basic test example.
-//      */
-//     public function test_the_application_returns_a_successful_response(): void
-//     {
-//         $response = $this->get('/');
+    $response->assertStatus(200);
+});
 
-//         $response->assertStatus(200);
-//     }
-// }
+it('has an empty table to start with', function() {
+    $this->assertFalse(PlantType::exists());
+    $this->assertCount(0, PlantType::all());
+});
 
 
 test('the application returns a successful response', function () {

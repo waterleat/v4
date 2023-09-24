@@ -27,7 +27,7 @@ it('can display variety index page', function () {
 it('can create a new variety', function () {
     $variety = Variety::factory()->create([
         'name' => 'Hello',
-        'latin'=>'Spinacia oleracea',
+        'info'=>'Spinacia oleracea',
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
 
@@ -40,7 +40,7 @@ it('can show a new variety', function () {
      // Prepare
      $variety = Variety::factory()->create([
         'name' => 'Hello',
-        'latin'=>'Spinacia oleracea',
+        'info'=>'Spinacia oleracea',
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
 
@@ -70,7 +70,7 @@ it('can display variety show page', function () {
      // Prepare
      $variety = Variety::factory()->create([
         'name' => 'Hello',
-        'latin'=>'Spinacia oleracea',
+        'info'=>'Spinacia oleracea',
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
     ]);
@@ -84,7 +84,7 @@ it('can display variety edit page', function () {
      // Prepare
      $variety = Variety::factory()->create([
         'name' => 'Hello',
-        'latin'=>'Spinacia oleracea',
+        'info'=>'Spinacia oleracea',
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
     ]);
@@ -99,7 +99,7 @@ it('can edit a variety', function() {
     // Prepare
      $variety = Variety::factory()->create([
         'name' => 'Hello',
-        'latin'=>'Spinacia oleracea',
+        'info'=>'Spinacia oleracea',
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
     ]);
@@ -119,7 +119,7 @@ it('can delete a variety', function () {
      // Prepare
      $variety = Variety::factory()->create([
         'name' => 'Hello',
-        'latin'=>'Spinacia oleracea',
+        'info'=>'Spinacia oleracea',
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
     ]);

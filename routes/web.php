@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PlantTypeController;
+use App\Http\Controllers\SuccessionController;
 use App\Http\Controllers\VarietyController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/child', function () {return view('child');});
 
@@ -29,7 +31,11 @@ Route::get('/child', function () {return view('child');});
 
 Route::resource('family', FamilyController::class);
 
+Route::resource('plantType', PlantTypeController::class);
+
 Route::resource('variety', VarietyController::class);
+
+Route::resource('succession', SuccessionController::class);
 
 
 
@@ -50,14 +56,3 @@ Route::resource('variety', VarietyController::class);
 // Route::delete('family/{id}', [FamilyController::class, 'destroy'])->name('family.destroy');
 
 
-
-// grouped - prefix
-// Route::prefix('/family')->group(function () {
-//     Route::get('/create', [FamilyController::class, 'create'])->name('family.create');
-//     Route::get('/', [FamilyController::class, 'index'])->name('family.index');
-//     Route::get('/{family}', [FamilyController::class, 'show'])->name('family.show');
-//     Route::post('/', [FamilyController::class, 'store'])->name('family.store');
-//     Route::get('/edit/{family}', [FamilyController::class, 'edit'])->name('family.edit');
-//     Route::patch('/{family}', [FamilyController::class, 'update'])->name('family.update');
-//     Route::delete('/{family}', [FamilyController::class, 'destroy'])->name('family.destroy');
-// });

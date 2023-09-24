@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VarietyRequest;
 use App\Models\Family;
+use App\Models\PlantType;
 use App\Models\Variety;
 use Illuminate\Http\Request;
 
@@ -23,29 +25,16 @@ class VarietyController extends Controller
      */
     public function create()
     {
-        $families = Family::all();
-        // dd($families);
-        foreach ($families as $family) {
-            $options[$family->id] = $family->name;
-        }
-        // dd($options);
-        return view('variety.create', ['options' => $options]);
+        $plantTypes = PlantType::all();
+        return view('variety.create', ['plantTypes' => $plantTypes]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VarietyRequest $request)
     {
-        $data = $request->validate([
-            'name' => ['required'],
-            'latin' => ['required'],
-            'description' => ['required'],
-            'height' => ['decimal:0,2'],
-            'spread' => ['decimal:0,2'],
-            'days2maturity' => ['integer'],
-        ]);
-        Variety::create($data);
+        Variety::create($request->validated());
         return Redirect(route('variety.index'));
     }
 
@@ -54,7 +43,11 @@ class VarietyController extends Controller
      */
     public function show(Variety $variety)
     {
-        return view('variety.show', ['variety' => $variety]);
+        $plantTypes = PlantType::all();
+        return view('variety.show', [
+            'variety' => $variety,
+            'plantTypes' => $plantTypes,
+        ]);
     }
 
     /**
@@ -62,23 +55,19 @@ class VarietyController extends Controller
      */
     public function edit(Variety $variety)
     {
-        return view('variety.edit', ['variety' => $variety]);
+        $plantTypes = PlantType::all();
+        return view('variety.edit', [
+            'variety' => $variety,
+            'plantTypes' => $plantTypes,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Variety $variety)
+    public function update(VarietyRequest $request, Variety $variety)
     {
-        $data = $request->validate([
-            'name' => ['required'],
-            'latin' => ['required'],
-            'description' => ['required'],
-            'height' => ['decimal:0,2'],
-            'spread' => ['decimal:0,2'],
-            'days2maturity' => ['integer'],
-        ]);
-        $variety->update($data);
+        $variety->update($request->validated());
         return Redirect(route('variety.index'));
     }
 

@@ -24,20 +24,26 @@
         @endif
 
         @foreach ( $varieties as $variety )
-            <div class="bg-white pt-4 rounded-lg drop-shadow-xl sm:basis-3/4 basis-full sm:mr-8 pb-4 sm:pb-0">
-                <div class="w-11/12 mx-auto pb-4 flex">
-                    <h2 class="text-gray-900 text-2xl font-bold pt-4 pb-0 sm:pt-0 hover:text-gray-700 transition-all">
+            <div class="mb-1 bg-white pt-4 rounded-lg drop-shadow-xl sm:basis-3/4 basis-full sm:mr-8 pb-4 sm:pb-0">
+                <div class="w-11/12 mx-auto pb-4 flex justify-between">
+                    <div class="text-gray-900  p-0 hover:text-gray-700 transition-all">
                         <a href="{{ route('variety.show', ['variety'=>$variety]) }}">
-                            {{ $variety->name }} - {{ $variety->latin }}
+                            <h2 class="text-2xl font-bold">{{ $variety->name }} </h2>
+                            <p> {{ $variety->info }} </p>
                         </a>
-                    </h2>
+                    </div >
 
-                    <a href="{{ route('variety.edit', $variety) }}" class="pl-4 block text-green-500 border-green-400 border-b-1 ">Edit</a>
-                    <form action="{{ route('variety.destroy', $variety) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="pl-4 text-red-500" type="submit">Delete</button>
-                    </form>
+                    <div class="flex items-center">
+                        <a href="{{ route('variety.edit', $variety) }}">
+                            <button class="px-3 text-sm sm:text-base bg-green-400 shadow-xl rounded-full transition-all hover:bg-green-300">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                        <form action="{{ route('variety.destroy', $variety) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="ml-4 px-3 text-red-500 rounded-full border border-red-500" type="submit">Delete</button>
+                        </form>
+                    </div>
                 </div>
 
             </div>

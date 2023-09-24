@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('varieties', function (Blueprint $table) {
+        Schema::create('succession_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('latin');
-            $table->text('description');
-            $table->integer('days2maturity');
-            $table->decimal('height');
-            $table->decimal('spread');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('varieties');
+        Schema::dropIfExists('succession_types');
     }
 };

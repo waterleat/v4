@@ -18,7 +18,7 @@ class VarietyFactory extends Factory
     {
         return [
             'name' => 'Hello',
-            'latin'=>'Spinacia oleracea',
+            'info'=>'Spinacia oleracea',
             'description' => 'desc',
             'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
 

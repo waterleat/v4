@@ -17,6 +17,7 @@
     <body>
         <h1>Top Line</h1>
         <hr/>
+        @include('layouts.navigation')
         <main class="bg-green-100">
             {{ $slot }}
         </main>

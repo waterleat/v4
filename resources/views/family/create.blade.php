@@ -4,6 +4,7 @@
     </x-slot:title>
 
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+
         <div class="m-auto pt-20">
             @if ($errors->any())
             <div class="pb-8">
@@ -24,22 +25,27 @@
                 enctype="multipart/form-data">
                 @csrf
 
-                <input
-                type="text"
-                name="name"
-                placeholder="Family..."
-                class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+                <div class="my-4">
+                    <x-input-label for="name" :value="__('Name')" />
+                    <x-text-input name="name" id="name"
+                        placeholder="Family..."
+                        class="bg-white block border w-full h-10 text-2xl outline-none" />
+                </div>
 
-                <input
-                type="text"
-                name="latin"
-                placeholder="Latin name..."
-                class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none">
+                <div class="my-4">
+                    <x-input-label for="name" :value="__('Latin Name')" />
+                    <x-text-input type="text" name="latin"
+                        placeholder="Latin name..."
+                        class="bg-white block border w-full h-10 text-2xl outline-none" />
+                </div>
 
-                <textarea
-                name="description"
-                placeholder="Description..."
-                class="py-10 bg-transparent block border-b-2 w-full h-60 text-xl outline-none"></textarea>
+                <div class="my-4">
+                    <x-input-label for="description" :value="__('Description')" />
+                    <x-textarea-input name="description"
+                        placeholder="Description..."
+                        class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
+                </div>
+
 
                 {{-- <label for="is_published" class="text-gray-500 text-2xl">
                     Is Published
@@ -49,23 +55,6 @@
                     class="bg-transparent  border-b-2 inline text-2xl outline-none"
                     name="is_published"> --}}
 
-                {{-- <input
-                    type="text"
-                    name="excerpt"
-                    placeholder="Excerpt..."
-                    class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none"> --}}
-
-                {{-- <input
-                    type="number"
-                    name="min_to_read"
-                    placeholder="Minutes to read..."
-                    class="bg-transparent block border-b-2 w-full h-20 text-2xl outline-none"> --}}
-
-                {{-- <textarea
-                    name="body"
-                    placeholder="Body..."
-                    class="py-20 bg-transparent block border-b-2 w-full h-60 text-xl outline-none"></textarea> --}}
-                    
                 {{-- <div class="bg-grey-lighter py-10">
                     <label class="w-44 flex flex-col items-center px-2 py-3 bg-white-rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer">
                             <span class="mt-2 text-base leading-normal">
@@ -80,7 +69,7 @@
 
                 <button
                     type="submit"
-                    class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
+                    class="uppercase mt-15 bg-green-400 text-lg font-extrabold py-4 px-8 rounded-3xl">
                     Submit Family
                 </button>
             </form>

@@ -14,10 +14,13 @@
     <a href={{ route('family.index') }}>family</a>
   </div>
   <div class="w-20">
+    <a href={{ route('plantType.index') }}>plant type</a>
+  </div>
+  <div class="w-20">
     <a href={{ route('variety.index') }}>variety</a>
   </div>
   <div class="w-20">
-    <a href={{ route('family.index') }}>family</a>
+    <a href={{ route('succession.index') }}>succession</a>
   </div>
   </div>
 </body>

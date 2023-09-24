@@ -14,15 +14,7 @@ class FamilyController extends Controller
      */
     public function index()
     {
-        // $families = DB::table('families')->get();
-        // return view('family.index')->with('families', $families);
-
-        // $families = Family::orderby('id', 'desc')->get();
-        // dd($families);
-
         $families = Family::all();
-
-        // return view('family.index')->with('families', $families);
         return view('family.index', ['families' => $families]);
     }
 
@@ -32,7 +24,6 @@ class FamilyController extends Controller
     public function create()
     {
         return view('family.create');
-        // return 'create page';
     }
 
     /**
@@ -40,17 +31,7 @@ class FamilyController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        // $request->validate([
-        //     'name' => 'required|unique:families
-        //     |max:255',
-        // ]);
-        $data = $request->validate([
-            'name' => ['required'],
-            'latin' => ['required'],
-            'description' => ['required'],
-        ]);
-        Family::create($data);
+        Family::create($request->validated());
         return Redirect(route('family.index'));
     }
 
@@ -58,11 +39,7 @@ class FamilyController extends Controller
      * Display the specified resource.
      */
     public function show(Family $family)
-    // public function show($id)
     {
-        // return $id;
-        // $family = Family::find($id);
-        // dd($family);
         return view('family.show', ['family' => $family]);
     }
 
@@ -70,10 +47,8 @@ class FamilyController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Family $family)
-    // public function edit($id)
     {
         return view('family.edit', [
-            // 'family' => Family::where('id', $id)->first()
             'family' => $family
         ]);
     }
@@ -82,22 +57,8 @@ class FamilyController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Family $family)
-    // public function update(Request $request, $id)
     {
-        // $request->validate([
-        //     'name' => 'required|max:255|unique:families,name',
-        // ]);
-        // $family->update($request->except([
-        //     '_token', '_method'
-        // ]));
-        // Family::where('id', $id)->update($request->except([
-        $data = $request->validate([
-            'name' => ['required'],
-            'latin' => ['required'],
-            'description' => ['required'],
-        ]);
-        // dd($data);
-        $family->update($data);
+        $family->update($request->validated());
         return Redirect(route('family.index'));
     }
 
@@ -105,10 +66,9 @@ class FamilyController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Family $family)
-    // public function destroy($id)
     {
         $family->delete() ;
-        // Family::destroy($id);
-        return redirect(route('family.index'))->with('message', 'Family has been deleted');
+        return redirect(route('family.index'))
+            ->with('message', 'Family has been deleted');
     }
 }
