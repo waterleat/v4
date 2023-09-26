@@ -24,10 +24,10 @@
         @endif
 
         @foreach ( $varieties as $variety )
-            <div class="mb-1 bg-white pt-4 rounded-lg drop-shadow-xl sm:basis-3/4 basis-full sm:mr-8 pb-4 sm:pb-0">
-                <div class="w-11/12 mx-auto pb-4 flex justify-between">
-                    <div class="text-gray-900  p-0 hover:text-gray-700 transition-all">
-                        <a href="{{ route('variety.show', ['variety'=>$variety]) }}">
+        <div class="mb-1 bg-white py-3 rounded-lg drop-shadow-xl sm:basis-3/4 basis-full sm:mr-8 ">
+            <div class="w-11/12 mx-auto  flex justify-between">
+                <div class="text-gray-900 py-1 px-2 w-full mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
+                    <a href="{{ route('variety.show', ['variety'=>$variety]) }}">
                             <h2 class="text-2xl font-bold">{{ $variety->name }} </h2>
                             <p> {{ $variety->info }} </p>
                         </a>

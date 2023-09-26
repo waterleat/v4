@@ -25,10 +25,10 @@
         @foreach ( $successions as $succession )
         {{-- {{ dd($successionTypes->find($succession->succession_type_id)->name) }} --}}
         {{-- {{ dd($plantTypes->find($succession->plant_type_id)->name) }} --}}
-            <div class="bg-white pt-4 rounded-lg drop-shadow-xl sm:basis-3/4 basis-full sm:mr-8 pb-4 sm:pb-0">
-                <div class="w-11/12 mx-auto pb-4 flex">
-                    <h2 class="text-gray-900 text-2xl font-bold pt-4 pb-0 sm:pt-0 hover:text-gray-700 transition-all">
-                        <a href="{{ route('succession.show', ['succession'=>$succession]) }}">
+        <div class="mb-1 bg-white py-3 rounded-lg drop-shadow-xl sm:basis-3/4 basis-full sm:mr-8 ">
+            <div class="w-11/12 mx-auto  flex justify-between">
+                <div class="text-gray-900 py-1 px-2 w-full mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
+                    <a href="{{ route('succession.show', ['succession'=>$succession]) }}">
                             {{ $successionTypes->find($succession->succession_type_id)->name }} - {{ $plantTypes->find($succession->plant_type_id)->name }}
                         </a>
                     </h2>
