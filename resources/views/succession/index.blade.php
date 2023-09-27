@@ -31,11 +31,16 @@
             </div>
 
             <div class="flex items-center">
-                <a href="{{ route('succession.edit', $succession) }}" class="pl-4 block text-green-500 border-green-400 border-b-1 ">Edit</a>
+                <a href="{{ route('succession.edit', $succession) }}" >
+                    <button class="px-3 text-sm sm:text-base bg-green-400 shadow-xl rounded-full transition-all hover:bg-green-300">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                    </button>
+                </a>
+                
                 <form action="{{ route('succession.destroy', $succession) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button class="pl-4 text-red-500" type="submit">Delete</button>
+                    <button class="ml-4 px-3 text-red-500 rounded-full border border-red-500" type="submit">Delete</button>
                 </form>
             </div>
         </x-layout.index-cards>
