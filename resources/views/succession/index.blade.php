@@ -23,31 +23,22 @@
         @endif
 
         @foreach ( $successions as $succession )
-        {{-- {{ dd($successionTypes->find($succession->succession_type_id)->name) }} --}}
-        {{-- {{ dd($plantTypes->find($succession->plant_type_id)->name) }} --}}
-        <div class="mb-1 bg-white py-3 rounded-lg drop-shadow-xl sm:basis-3/4 basis-full sm:mr-8 ">
-            <div class="w-11/12 mx-auto  flex justify-between">
-                <div class="text-gray-900 py-1 px-2 w-full mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
-                    <a href="{{ route('succession.show', ['succession'=>$succession]) }}">
-                            {{ $successionTypes->find($succession->succession_type_id)->name }} - {{ $plantTypes->find($succession->plant_type_id)->name }}
-                        </a>
-                    </h2>
-                    {{-- <div class="text-gray-900  p-0 hover:text-gray-700 transition-all">
-                        <a href="{{ route('succession.show', ['succession'=>$succession]) }}">
-                            <h2 class="text-2xl font-bold">{{ $plantTypes->find($succession->plant_type_id)->name }} </h2>
-                            <p> {{ $plantTypes->find($succession->plant_type_id)->name }} </p>
-                        </a>
-                    </div > --}}
-
-                    <a href="{{ route('succession.edit', $succession) }}" class="pl-4 block text-green-500 border-green-400 border-b-1 ">Edit</a>
-                    <form action="{{ route('succession.destroy', $succession) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="pl-4 text-red-500" type="submit">Delete</button>
-                    </form>
-                </div>
-
+        <x-layout.index-cards>
+            <div class="text-gray-900 py-1 px-2 w-full mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
+                <a href="{{ route('succession.show', ['succession'=>$succession]) }}">
+                    <h2 class="text-2xl font-bold">{{  $successionTypes->find($succession->succession_type_id)->name  }} - {{ $plantTypes->find($succession->plant_type_id)->name }}</h2>
+                </a>
             </div>
+
+            <div class="flex items-center">
+                <a href="{{ route('succession.edit', $succession) }}" class="pl-4 block text-green-500 border-green-400 border-b-1 ">Edit</a>
+                <form action="{{ route('succession.destroy', $succession) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="pl-4 text-red-500" type="submit">Delete</button>
+                </form>
+            </div>
+        </x-layout.index-cards>
         @endforeach
     </div>
 </x-layout>
