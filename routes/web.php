@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JournalController;
 use App\Http\Controllers\PlantTypeController;
 use App\Http\Controllers\SuccessionController;
 use App\Http\Controllers\VarietyController;
@@ -37,6 +38,7 @@ Route::resource('variety', VarietyController::class);
 
 Route::resource('succession', SuccessionController::class);
 
+Route::resource('journal', JournalController::class);
 
 
 // // individual routes
