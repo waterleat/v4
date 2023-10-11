@@ -11,7 +11,10 @@ class Variety extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'info', 'description', 
-    'plant_type_id', 'height', 'spread', 'days2maturity'];
+    'plant_type_id', 'height', 'spread', 'days2maturity',
+    'sow_direct', 'multi', 'spacing', 
+    'sowing', 'harvest', 'store', 
+    ];
 
 
     /**

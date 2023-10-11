@@ -67,7 +67,10 @@ class VarietyController extends Controller
      */
     public function update(VarietyRequest $request, Variety $variety)
     {
-        $variety->update($request->validated());
+        // $data = $request->validated();
+        // if (!array_key_exists('sow_direct', $request->validated())) $request->validated()[]=['sow_direct'=>0];
+        // dd($request->validated());
+        $variety->update($request->validated(),);
         return Redirect(route('variety.index'));
     }
 

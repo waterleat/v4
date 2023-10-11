@@ -14,16 +14,16 @@ class SuccessionTypeSeeder extends Seeder
     public function run(): void
     {
         $successionTypes = [
-            ['name' => '1) Super early'],
-            ['name' => '2) First early'],
-            ['name' => '3) Second early'],
-            ['name' => '4) Early main crop'],
-            ['name' => '4) Extra crop'],
-            ['name' => '4) Mid season'],
-            ['name' => '5) Main crop'],
-            ['name' => '6) Late crop'],
-            ['name' => '7) Super late crop'],
-            ['name' => '8) Winter crop'],
+            ['name' => 'Super early'],
+            ['name' => 'First early'],
+            ['name' => 'Second early'],
+            ['name' => 'Early main'],
+            ['name' => 'Extra crop'],
+            ['name' => 'Mid season'],
+            ['name' => 'Main crop'],
+            ['name' => 'Late crop'],
+            ['name' => 'Super late'],
+            ['name' => 'Winter crop'],
         ];
 
         foreach( $successionTypes as $key => $value ) {

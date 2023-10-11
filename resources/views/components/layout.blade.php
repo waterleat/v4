@@ -15,10 +15,10 @@
     </head>
 
     <body>
-        <h1>Top Line</h1>
-        <hr/>
-        @include('layouts.navigation')
-        <main class="bg-green-100">
+        <div class="fixed top-0 w-full bg-white">
+            @include('layouts.navigation')
+        </div>
+        <main class="mt-16 bg-green-100">
             {{ $slot }}
         </main>
     </body>

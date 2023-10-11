@@ -25,6 +25,30 @@ class PlantTypeRequest extends FormRequest
             'name' => ['required'],
             'latin' => ['required'],
             'family_id' => [],
+            'perennial'  => ['boolean'],
+            'dates_best_sow'  => [],
+            'dates_main_harvest'  => [],
+            'feeder_type'  => [],
+            'root_depth'  => [],
+            'mulch'  => [],
+            'fertiliser'  => [],
+            'when_to_fertilise'  => [],
+            'multisow'  => [],
+            'hardiness_young_plants'  => [],
+            'competitor'  => [],
+            'competition_period'  => [],
+            'companions'  => [],
+            'interplant_into'  => [],
+            'interplant_with'  => [],
+            'relay_plant_into'  => [],
+            'relay_plant_with'  => [],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'perennial' => $this->boolean('perennial'),
+        ]);
     }
 }

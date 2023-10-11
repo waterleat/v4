@@ -81,6 +81,53 @@
                 </div>
 
 
+                <div class="flex my-4">
+                    <div class="w-1/2 px-4">
+                        <x-input-label for="sow_direct" :value="__('sow_direct')" />
+                        <x-text-input id="sow_direct" name="sow_direct"
+                            type="checkbox"
+                            class="p-3 bg-white block border w-10 h-10 text-2xl outline-none" />
+                    </div>
+                    
+                    <div class="w-1/2 px-4">
+                        <x-input-label for="multisow" :value="__('multisow')" />
+                        <x-text-input id="multisow" name="multisow"
+                            type="number" placeholder="0"
+                            class="p-3 bg-white block border w-20 h-10 text-2xl outline-none" />
+                    </div>
+                </div>
+                    
+                <div class="">
+                    <div class="my-4">
+                        <x-input-label for="sowing" :value="__('sowing')" />
+                        <x-text-input id="sowing" name="sowing"
+                        class="bg-white block border w-full h-10 text-2xl outline-none"
+                        autocomplete="off"
+                        placeholder="Common name..." />
+                    </div>
+                    
+                    <div class="my-4">
+                        <x-input-label for="harvest" :value="__('harvest')" />
+                        <x-text-input id="harvest" name="harvest"
+                        class="bg-white block border w-full h-10 text-2xl outline-none"
+                        autocomplete="off"
+                        placeholder="Common name..." />
+                    </div>
+
+                    <div class="my-4">
+                        <x-input-label for="store" :value="__('store')" />
+                        <x-text-input id="store" name="store"
+                        class="bg-white block border w-full h-10 text-2xl outline-none"
+                        autocomplete="off"
+                        placeholder="Common name..." />
+                    </div>
+                </div>
+                    
+            </div>
+
+
+
+
                 {{-- <label for="is_published" class="text-gray-500 text-2xl">
                     Is Published
                 </label>

@@ -13,22 +13,27 @@ return new class extends Migration
     {
         Schema::create('successions', function (Blueprint $table) {
             $table->id();
-            // $table->string('name');
-            // $table->string('type');
             $table->foreignId('succession_type_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('plant_type_id')->nullable()->constrained()->onDelete('cascade');
-            $table->string('sow');
-            $table->string('plant');
-            $table->string('firstHarvest');
-            $table->string('lastHarvest');
+            $table->boolean('cd');
             $table->string('varieties_recommended')->nullable();
+            $table->string('sow')->nullable();
+            $table->string('plant')->nullable();
+            $table->string('first_harvest')->nullable();
+            $table->string('last_harvest')->nullable();
+            $table->integer('sow_start')->nullable();
+            $table->integer('sow_end')->nullable();
+            $table->integer('plant_start')->nullable();
+            $table->integer('plant_end')->nullable();
+            $table->integer('harvest_start')->nullable();
+            $table->integer('harvest_end')->nullable();
             $table->string('start_seeds')->nullable();
             $table->string( 'grow_seedlings')->nullable();
             $table->string( 'grow_plants')->nullable();
             $table->text('planting_density')->nullable();
             $table->text('variety_notes')->nullable();
             $table->text( 'growing_notes')->nullable();
-            $table->text( 'yeild_notes')->nullable();
+            $table->text( 'yield_notes')->nullable();
             $table->timestamps();
         });
     }

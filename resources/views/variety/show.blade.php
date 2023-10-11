@@ -30,6 +30,19 @@
                 <p>spread {{ $variety->spread }} m</p>
                 <p>maturity {{ $variety->days2maturity }} days</p>
             </div>
+
+            <div class="my-4">
+                @if ($variety->sow_direct)
+                    <p>Direct sown: Yes</p>
+                @endif
+                <p>Multisow: {{ $variety->multi }}</p>
+                <p>Spacing: {{ $variety->spacing }} "</p>
+            </div>
+            <div class="my-4">
+                <p>Sowing: {{ $variety->sowing }}</p>
+                <p>Harvest: {{ $variety->harvest }}</p>
+                <p>Store: {{ $variety->store }}</p>
+            </div>
         </div>
 
 

@@ -46,7 +46,40 @@
                     </select>
                 </div>
                 
-                
+
+                <div class="my-4">
+                    <label for="cd" class="text-gray-500 text-2xl">
+                        charles dowding
+                    </label>
+                    <div>
+                    <input id="cd" name="cd"
+                    type="checkbox"
+                    class="appeance-none h-8 w-8 bg-white  border text-2xl outline-none
+                    border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                    </div>
+                </div>
+
+                {{-- varieties
+                <div class="my-4">
+                    <x-input-label for="family" :value="__('Family')" />
+                    <select id="family" name="family_id" 
+                        class="bg-white block border w-full h-10 text-xl outline-none
+                        px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                        <option>--Pick plant family--</option>
+                        @foreach ( $families as $family )
+                            <option value="{{ $family->id }}" >{{ $family->name }}</option>
+                        @endforeach
+                    </select>
+                </div> --}}
+                <div class="my-4">
+                    <x-input-label for="varieties_recommended" :value="__('varieties_recommended')" />
+                    <x-text-input id="varieties_recommended" name="varieties_recommended"
+                        class="bg-white block border w-full h-10 text-2xl outline-none"
+                        autocomplete="off"
+                        placeholder="varieties_recommended..." />
+                </div>
+
+
                 <div class="my-4">
                     <x-input-label for="sow" :value="__('Sow')" />
                     <x-text-input id="sow" name="sow"
@@ -78,6 +111,53 @@
                         autocomplete="off"
                         placeholder="Last Harvest..." />
                 </div>
+
+
+                <div class="my-4">
+                    <x-input-label for="start_seeds" :value="__('start_seeds')" />
+                    <x-text-input type="text" name="start_seeds"
+                        placeholder="start_seeds..."
+                        class="bg-white block border w-full h-10 text-2xl outline-none" />
+                </div>
+                <div class="my-4">
+                    <x-input-label for="grow_seedlings" :value="__('grow_seedlings')" />
+                    <x-text-input type="text" name="grow_seedlings"
+                        placeholder="grow_seedlings..."
+                        class="bg-white block border w-full h-10 text-2xl outline-none" />
+                </div>
+                <div class="my-4">
+                    <x-input-label for="grow_plants" :value="__('grow_plants')" />
+                    <x-text-input type="text" name="grow_plants"
+                        placeholder="grow_plants..."
+                        class="bg-white block border w-full h-10 text-2xl outline-none" />
+                </div>
+
+
+                <div class="my-4">
+                    <x-input-label for="planting_density" :value="__('planting_density')" />
+                    <x-textarea-input name="planting_density"
+                        placeholder="planting_density..."
+                        class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
+                </div>
+                <div class="my-4">
+                    <x-input-label for="planting_density" :value="__('planting_density')" />
+                    <x-textarea-input name="planting_density"
+                        placeholder="planting_density..."
+                        class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
+                </div>
+                <div class="my-4">
+                    <x-input-label for="growing_notes" :value="__('growing_notes')" />
+                    <x-textarea-input name="growing_notes"
+                        placeholder="growing_notes..."
+                        class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
+                </div>
+                <div class="my-4">
+                    <x-input-label for="yield_notes" :value="__('yield_notes')" />
+                    <x-textarea-input name="yield_notes"
+                        placeholder="yield_notes..."
+                        class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
+                </div>
+
 
                 <button
                     type="submit"

@@ -63,7 +63,7 @@
                     <x-input-label for="description" :value="__('Description')" />
                     <x-textarea-input name="description" id="description"
                         placeholder=""
-                        :value="$variety->description"
+                        value="{{ $variety->description }}"
                         class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
                 </div>
 
@@ -92,6 +92,68 @@
                             class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
                     </div>
                 </div>
+
+
+
+                <div class="flex my-4">
+                    <div class="w-1/3 px-4">
+                        <div class="w-10 my-4">
+                            <x-input-label for="sow_direct" :value="__('sow_direct')" />
+                            <input id="sow_direct" name="sow_direct"
+                            type="checkbox" value="1"
+                            class="appearance-none bg-white block border w-full h-10 text-2xl outline-none
+                            border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                            {{ $variety->sow_direct ? 'checked' : '' }} 
+                            >
+                        </div>
+                        
+                        <div class="my-4">
+                            <x-input-label for="multi" :value="__('multi')" />
+                            <x-text-input id="multi" name="multi"
+                            type="number"
+                            value="{{ $variety->multi }}"
+                            class="p-3 bg-white block border w-20 h-10 text-2xl outline-none" />
+                        </div>
+
+                        <div class="w-10 my-4">
+                            <x-input-label for="spacing" :value="__('spacing')" />
+                            <x-text-input id="spacing" name="spacing"
+                                type="number"
+                                value="{{ $variety->spacing }}"
+                                class="p-3 bg-white block border w-20 h-10 text-2xl outline-none" />
+                        </div>
+                    </div>
+
+                    <div class="w-2/3 px-4">
+                        <div class="my-4">
+                            <x-input-label for="sowing" :value="__('sowing')" />
+                            <x-text-input id="sowing" name="sowing"
+                            class="bg-white block border w-full h-10 text-2xl outline-none"
+                            value="{{ $variety->sowing }}"
+                            autocomplete="off"
+                            placeholder="Common name..." />
+                        </div>
+
+                        <div class="my-4">
+                            <x-input-label for="harvest" :value="__('harvest')" />
+                            <x-text-input id="harvest" name="harvest"
+                            class="bg-white block border w-full h-10 text-2xl outline-none"
+                            value="{{ $variety->harvest }}"
+                            autocomplete="off"
+                            placeholder="Common name..." />
+                        </div>
+
+                        <div class="my-4">
+                            <x-input-label for="store" :value="__('store')" />
+                            <x-text-input id="store" name="store"
+                            class="bg-white block border w-full h-10 text-2xl outline-none"
+                            value="{{ $variety->store }}"
+                            autocomplete="off"
+                            placeholder="Common name..." />
+                        </div>
+                    </div>
+                </div>
+
 
 
                 {{-- <label for="is_published" class="text-gray-500 text-2xl">

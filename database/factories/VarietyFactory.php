@@ -17,12 +17,12 @@ class VarietyFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'Hello',
-            'info'=>'Spinacia oleracea',
-            'description' => 'desc',
-            'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
-
-            //
+            'name' => fake()->word(),
+            'info'=> fake()->words(2, true),
+            'description' => fake()->sentences(),
+            'days2maturity' => fake()->numberBetween(30, 99), 
+            'height' => fake()->randomFloat(2, 0.2, 1.5), 
+            'spread' => fake()->randomFloat(2, 0.2, 1.5),
         ];
     }
 }
