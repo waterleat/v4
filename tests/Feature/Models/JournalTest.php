@@ -5,10 +5,10 @@ use Carbon\Carbon;
 
 use function Pest\Laravel\patch;
 
-it('a new sowing log can be added ', function () {
+it('a new sowing log can be added', function () {
     $this->withoutExceptionHandling();
     $sowing = [
-        'variety' => 'Boltardy',
+        'variety_id' => 1,
         'sown' => '2023-12-25',   // '25/12/2023',
     ];
 
@@ -26,19 +26,19 @@ it('a new sowing log can be added ', function () {
 it('has to have a variety', function (){
     // $this->withoutExceptionHandling();
     $sowing = [
-        'variety' => '',
+        'variety_id' => '',
         'sown' => '2023-12-25',   // '25/12/2023',
     ];
     $response = $this->post('/journal', $sowing);
 
-    $response->assertSessionHasErrors('variety');
+    $response->assertSessionHasErrors('variety_id');
 
 });
 
 it('has to have a sown date', function (){
     // $this->withoutExceptionHandling();
     $sowing = [
-        'variety' => 'Boltardy',
+        'variety_id' => 1,
         'sown' => '',
     ];
     $response = $this->post('/journal', $sowing);
@@ -50,7 +50,7 @@ it('has to have a sown date', function (){
 it('can update a journal entry', function (){
     $this->withoutExceptionHandling();
     $sowing = [
-        'variety' => 'Boltardy',
+        'variety_id' => 1,
         'sown' => '2023-12-25',   // '25/12/2023',
     ];
     $this->post('/journal', $sowing);
@@ -58,19 +58,19 @@ it('can update a journal entry', function (){
     $entry = Journal::first();
 
     $response = patch('/journal' .'/'. $entry->id, [
-        'variety' => 'sungold',
-        'sown' => '2024-1-1',   // '1/1/2024',
+        'variety_id' => 2,
+        'sown' => '2024-1-11',   // '1/1/2024',
     ]);
 
-    $this->assertEquals('sungold', Journal::first()->variety);
-    $this->assertEquals(Carbon::create(2024,1,1,0,0,0), Journal::first()->sown);
+    $this->assertEquals('2', Journal::first()->variety_id);
+    $this->assertEquals(Carbon::create(2024,1,11,0,0,0), Journal::first()->sown);
     $response->assertRedirect('/journal/' . $entry->id);
 });
 
 it('can delete a journal entry', function (){
     // $this->withoutExceptionHandling();
     $sowing = [
-        'variety' => 'Boltardy',
+        'variety_id' => 1,
         'sown' => '2023-12-25',
     ];
     $this->post('/journal', $sowing);

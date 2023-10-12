@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('journals', function (Blueprint $table) {
             $table->id();
-            $table->string('variety');
+            $table->foreignId('variety_id');
+            $table->string('variety')->nullable();
             $table->timestamp('sown');
             $table->timestamps();
         });

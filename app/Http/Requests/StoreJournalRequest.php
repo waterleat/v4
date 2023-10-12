@@ -22,7 +22,7 @@ class StoreJournalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'variety' => ['required'],
+            'variety_id' => ['required'],
             'sown' => ['required'],
         ];
     }
