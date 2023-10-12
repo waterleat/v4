@@ -29,7 +29,8 @@ class JournalController extends Controller
      */
     public function store(StoreJournalRequest $request)
     {
-        Journal::create($request->validated());
+        $journal = Journal::create($request->validated());
+        return redirect('/journal/'. $journal->id);
     }
 
     /**
@@ -54,6 +55,7 @@ class JournalController extends Controller
     public function update(UpdateJournalRequest $request, Journal $journal)
     {
         $journal->update($request->validated());
+        return redirect('/journal/'. $journal->id);
     }
 
     /**
@@ -61,6 +63,7 @@ class JournalController extends Controller
      */
     public function destroy(Journal $journal)
     {
-        //
+        $journal->delete();
+        return redirect('journal');
     }
 }

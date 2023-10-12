@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('journals', function (Blueprint $table) {
             $table->id();
             $table->string('variety');
-            $table->string('sown');
+            $table->timestamp('sown');
             $table->timestamps();
         });
     }

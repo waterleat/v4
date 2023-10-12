@@ -10,4 +10,6 @@ class Journal extends Model
     use HasFactory;
 
     protected $fillable = ['variety', 'sown'];
+
+    protected $casts = ['sown' => 'date'];  // :Y-m-d'];        // d/m/Y',];
 }
