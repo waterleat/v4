@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Succession>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SuccessionType>
  */
-class SuccessionFactory extends Factory
+class SuccessionTypeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,8 @@ class SuccessionFactory extends Factory
     public function definition(): array
     {
         return [
-            'succession_type_id' => 1,
-            'plant_type_id' => 1,
-            'cd' => true,
+            'name'=> fake()->words(2, true),
+
         ];
     }
 }

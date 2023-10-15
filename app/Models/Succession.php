@@ -14,9 +14,10 @@ class Succession extends Model
         'succession_type_id', 'plant_type_id', 'varieties_recommended', 
         'cd', 'sow', 'plant', 'first_harvest', 'last_harvest', 
         'sow_start', 'sow_end', 'plant_start', 'plant_end', 'harvest_start', 'harvest_end', 
+        'days_nursery', 'days_maturity', 'days_harvest', 
         'start_seeds', 'grow_seedlings', 'grow_plants', 'planting_density', 
-        'variety_notes', 'growing_notes', 'yield_notes'
-];
+        'variety_notes', 'growing_notes', 'yield_notes', 
+    ];
 
     /**
      * Get the plantType that owns the variety.

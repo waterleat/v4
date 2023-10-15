@@ -27,6 +27,9 @@ return new class extends Migration
             $table->integer('plant_end')->nullable();
             $table->integer('harvest_start')->nullable();
             $table->integer('harvest_end')->nullable();
+            $table->integer('days_nursery');
+            $table->integer('days_maturity');
+            $table->integer('days_harvest');
             $table->string('start_seeds')->nullable();
             $table->string( 'grow_seedlings')->nullable();
             $table->string( 'grow_plants')->nullable();

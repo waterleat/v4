@@ -19,7 +19,7 @@ class FamilyFactory extends Factory
         return [
             'name' => fake()->word(),
             'latin'=> fake()->words(2, true),
-            'description' => fake()->sentences(2),
+            'description' => fake()->sentences(2, true),
         ];
     }
 }

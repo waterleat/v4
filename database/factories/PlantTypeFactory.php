@@ -28,7 +28,7 @@ class PlantTypeFactory extends Factory
             'mulch'=> fake()->words(2, true),
             'fertiliser'=> fake()->words(2, true),
             'when_to_fertilise'=> fake()->words(2, true),
-            'multisow ' => fake()->biasedNumberBetween(1, 6, 'sqrt'), 
+            'multisow' => fake()->biasedNumberBetween(1, 6, 'sqrt'), 
             'hardiness_young_plants'=> fake()->words(2, true),
             'competitor'=> fake()->words(2, true),
             'competition_period'=> fake()->words(2, true),
