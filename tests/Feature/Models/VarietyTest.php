@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Family;
+use App\Models\PlantType;
 use App\Models\Variety;
 
 use function PHPUnit\Framework\assertCount;
@@ -25,8 +27,13 @@ it('can display variety index page', function () {
 // });
 
 it('can create a new variety', function () {
+    $family = Family::factory()->create(['name'=>'fam', 'latin'=>'id', 'description'=>'blurb']);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]) ;
+
     $variety = Variety::factory()->create([
         'name' => 'Hello',
+        'plant_type_id' => $plantType->id,
+        'sow_direct' => false,
         'info'=>'Spinacia oleracea',
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
@@ -37,21 +44,25 @@ it('can create a new variety', function () {
 });
 
 it('can show a new variety', function () {
-     // Prepare
-     $variety = Variety::factory()->create([
+    // Prepare
+    $family = Family::factory()->create(['name'=>'fam', 'latin'=>'id', 'description'=>'blurb']);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]) ;
+    $variety = Variety::factory()->create([
         'name' => 'Hello',
         'info'=>'Spinacia oleracea',
+        'plant_type_id' => $plantType->id,
+        'sow_direct' => false,
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
 
-     ]);
+    ]);
     //  dd($variety);
  
-     // Act
-     $response = $this->get(route('variety.index'));
-  
-     // Assert
-     $response->assertOk();
+    // Act
+    $response = $this->get(route('variety.index'));
+
+    // Assert
+    $response->assertOk();
 
     // $variety = Variety::factory()->create();
     // dd($variety);
@@ -67,10 +78,14 @@ it('can show a new variety', function () {
 
 
 it('can display variety show page', function () {
-     // Prepare
-     $variety = Variety::factory()->create([
+    // Prepare
+    $family = Family::factory()->create(['name'=>'fam', 'latin'=>'id', 'description'=>'blurb']);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]) ;
+    $variety = Variety::factory()->create([
         'name' => 'Hello',
         'info'=>'Spinacia oleracea',
+        'plant_type_id' => $plantType->id,
+        'sow_direct' => false,
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
     ]);
@@ -81,10 +96,14 @@ it('can display variety show page', function () {
 });
 
 it('can display variety edit page', function () {
-     // Prepare
-     $variety = Variety::factory()->create([
+    // Prepare
+    $family = Family::factory()->create(['name'=>'fam', 'latin'=>'id', 'description'=>'blurb']);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]) ;
+    $variety = Variety::factory()->create([
         'name' => 'Hello',
         'info'=>'Spinacia oleracea',
+        'plant_type_id' => $plantType->id,
+        'sow_direct' => false,
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
     ]);
@@ -97,9 +116,13 @@ it('can display variety edit page', function () {
 
 it('can edit a variety', function() {
     // Prepare
-     $variety = Variety::factory()->create([
+    $family = Family::factory()->create(['name'=>'fam', 'latin'=>'id', 'description'=>'blurb']);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]) ;
+    $variety = Variety::factory()->create([
         'name' => 'Hello',
         'info'=>'Spinacia oleracea',
+        'plant_type_id' => $plantType->id,
+        'sow_direct' => false,
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
     ]);
@@ -116,15 +139,25 @@ it('can edit a variety', function() {
 });
 
 it('can delete a variety', function () {
-     // Prepare
-     $variety = Variety::factory()->create([
+    // Prepare
+    $family = Family::factory()->create(['name'=>'fam', 'latin'=>'id', 'description'=>'blurb']);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]) ;
+    $variety = Variety::factory()->create([
         'name' => 'Hello',
         'info'=>'Spinacia oleracea',
+        'plant_type_id' => $plantType->id,
+        'sow_direct' => false,
         'description' => 'desc',
         'days2maturity' => 75, 'height' => 0.3, 'spread' => 0.3
     ]);
     // ACT
+    assertCount(1, Variety::all());
+
+    $response = $this->delete('/variety/' . $variety->id);
+
+    // delete route
     // $response = Variety::
+    assertCount(0, Variety::all());
 })
-->skip()
+// ->skip()
 ;
