@@ -16,7 +16,7 @@
 
     <body>
         <div class="fixed top-0 w-full bg-white">
-            @include('layouts.navigation')
+            @include('components.navigation')
         </div>
         <main class="mt-16 bg-green-100">
             {{ $slot }}
