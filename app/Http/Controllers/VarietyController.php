@@ -43,10 +43,10 @@ class VarietyController extends Controller
      */
     public function show(Variety $variety)
     {
-        $plantTypes = PlantType::all();
+        $plantType = PlantType::find($variety->plant_type_id);
         return view('variety.show', [
             'variety' => $variety,
-            'plantTypes' => $plantTypes,
+            'plantType' => $plantType,
         ]);
     }
 
