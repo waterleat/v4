@@ -14,13 +14,19 @@ return new class extends Migration
     {
         Schema::create('varieties', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('plant_type_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('info');
             $table->text('description');
-            $table->foreignId('plant_type_id')->nullable()->constrained()->onDelete('cascade');
             $table->decimal('height');
             $table->decimal('spread');
             $table->integer('days2maturity');
+            $table->boolean('sow_direct');
+            $table->integer('multi')->nullable();
+            $table->integer('spacing')->nullable();
+            $table->string('sowing')->nullable();
+            $table->string('harvest')->nullable();
+            $table->string('store')->nullable();
             $table->timestamps();
         });
     }

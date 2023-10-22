@@ -69,7 +69,7 @@ class PlantTypeSeeder extends Seeder
             'multisow' => null, 'hardiness_young_plants' => 'Warm loving (10c or above best)', 
             'competitor' => 'Fairly strong', 'competition_period' => 'Avoid competition for 4 weeks after transplanting, after that they are fairly strong', 
             'companions' => '', 'interplant_into' => '', 'interplant_with' => 'Lettuce', 'relay_plant_into' => '', 'relay_plant_with' => '', ],
-            ['name' => 'field beans', 'latin' => 'Vicia faba', 'family_id' => 9, 'perennial' => false,
+            ['name' => 'Field beans', 'latin' => 'Vicia faba', 'family_id' => 9, 'perennial' => false,
             'dates_best_sow' => 'Sep, Oct', 'dates_main_harvest' => 'Nov, Dec, Jan, Mar, Apr', 
             'feeder_type' => 'Nitrogen fixer', 'root_depth' => 'Medium Rooting 18″-24″ (45-60 cm)', 
             'mulch' => '', 'fertiliser' => '', 'when_to_fertilise' => '', 

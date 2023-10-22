@@ -136,6 +136,7 @@ class VarietySeeder extends Seeder
             [
                 'name' => 'Field Bean tips', 'plant_type_id' => 9, 'info' => 'info', 
                 'description' => 'An amazing winter and spring green.  Plant every 4-6 inches as a green manure and just keep harvesting the new shoots, try to leave two shoot to grow on.  New shoots will spring up from the base to be harvested a few weeks later.  Grows well at the time when all of the other spinach alternatives are slowing down, stopped or dead.  ', 
+                'days2maturity' => 99, 'height' => 9.9, 'spread' => 9.9,
                 'sow_direct' => true, 'multi' => 1, 'spacing' => 8, 
                 'sowing' => 'Sep-mid, Oct', 'harvest' => 'Nov, Dec, Feb, Mar, Apr', 'store' => '', 
             ],
