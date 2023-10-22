@@ -13,6 +13,19 @@ class StoreJournalRequest extends FormRequest
     {
         return true;
     }
+    
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    public function prepareForValidation( ): void
+    {
+        $this->merge([
+            'sown' => $this->sown[0],
+            'planted' => ($this->sow_direct) ? $this->sown[0] : null,
+        ]);
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -22,8 +35,14 @@ class StoreJournalRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // 'plant_type_id' => ['required'],
+            'succession_id' => ['required'],
             'variety_id' => ['required'],
             'sown' => ['required'],
+            'variety' => [],
+            'planted' => [],
+            'first_harvest' => [],
+            'last_harvest' => [],
         ];
     }
 }

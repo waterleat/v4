@@ -100,6 +100,11 @@
                                     </canvas>
                                 </div>
                             </td>
+                            <td>
+                                <a class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" 
+                                href="{{ route('journal.newSowing', $succession->id) }}">Create journal entry</a>
+        
+                            </td>
                         </tr>
                     @empty
                         No successions found

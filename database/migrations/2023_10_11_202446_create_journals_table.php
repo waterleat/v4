@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('journals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('variety_id');
-            $table->string('variety')->nullable();
+            $table->foreignId('succession_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('variety_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamp('sown');
+            $table->string('variety')->nullable();
+            $table->timestamp('planted')->nullable();
+            $table->timestamp('first_harvest')->nullable();
+            $table->timestamp('last_harvest')->nullable();
             $table->timestamps();
         });
     }

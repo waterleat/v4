@@ -37,8 +37,11 @@ Route::resource('plantType', PlantTypeController::class);
 Route::resource('variety', VarietyController::class);
 
 Route::resource('succession', SuccessionController::class);
+Route::get('sowtoday', [SuccessionController::class, 'sowtoday'])->name('succession.sowtoday');
 
 Route::resource('journal', JournalController::class);
+
+Route::get('journal/newSowing/{sid}', [JournalController::class, 'newSowing'])->name('journal.newSowing');
 
 
 // // individual routes
@@ -52,7 +55,7 @@ Route::resource('journal', JournalController::class);
 
 // // PUT OR PATCH
 // Route::get('family/edit/{id}', [FamilyController::class, 'edit'])->name('family.edit');
-// Route::patch('family/{id}', [FamilyController::class, 'update'])->name('family.update');
+// Route::patch('family/{id}', [FamilyController::class, update''])->name('family.update');
 
 // // DELETE
 // Route::delete('family/{id}', [FamilyController::class, 'destroy'])->name('family.destroy');

@@ -8,6 +8,7 @@ use App\Models\Succession;
 use App\Models\SuccessionType;
 use App\Models\Variety;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SuccessionController extends Controller
 {
@@ -61,9 +62,9 @@ class SuccessionController extends Controller
         $successionTypes = SuccessionType::all();
         $plantTypes = PlantType::all();
         return view('succession.show', [
+            'plantTypes' => $plantTypes,
             'successionTypes' => $successionTypes,
             'succession' => $succession,
-            'plantTypes' => $plantTypes,
         ]);
     }
 
@@ -74,12 +75,11 @@ class SuccessionController extends Controller
     {
         $successionTypes = SuccessionType::all();
         $plantTypes = PlantType::all();
-        // $succession = Succession::find($succession);
         $varieties = Variety::all();
         return view('succession.edit', [
+            'plantTypes' => $plantTypes,
             'successionTypes' => $successionTypes,
             'succession' => $succession,
-            'plantTypes' => $plantTypes,
             'varieties' => $varieties,
         ]);
     }
@@ -89,7 +89,6 @@ class SuccessionController extends Controller
      */
     public function update(SucccessionRequest $request, Succession $succession)
     {
-        // dd($request->validated());
         $succession->update($request->validated());
         return redirect(route('succession.index'));
     }
@@ -102,5 +101,30 @@ class SuccessionController extends Controller
         $succession->delete() ;
         return redirect(route('succession.index'))
             ->with('message', 'Succession has been deleted');
+    }
+    
+    
+    
+    /**
+     * 
+     * 
+     * 
+     * 
+     */
+    public function sowtoday( )
+    {
+        $plantTypes = PlantType::all();
+        $successionTypes = SuccessionType::all();
+        $valid = DB::table('successions')
+        ->where('sow_start', '<=', date_format(today(), 'z'))
+        ->where(function ( $query) {
+            $query->where('sow_end', '>=', date_format(today(), 'z'));
+        })
+        ->get();
+        return view('succession.sowtoday', [
+            'plantTypes' => $plantTypes,
+            'successionTypes' => $successionTypes,
+            'sowings' => $valid,
+        ]);
     }
 }

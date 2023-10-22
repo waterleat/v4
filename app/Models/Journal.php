@@ -9,9 +9,15 @@ class Journal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['variety', 'variety_id', 'sown'];
+    protected $fillable = ['succession_id', 'variety_id', 'variety', 
+    'sown', 'planted', 'first_harvest', 'last_harvest',];
 
-    protected $casts = ['sown' => 'date'];  // :Y-m-d'];        // d/m/Y',];
+    protected $casts = [
+        'sown' => 'date',
+        'planted' => 'date',
+        'first_harvest' => 'date',
+        'last_harvest' => 'date',
+    ];  // :Y-m-d'];        // d/m/Y',];
 
     /**
      * estimated planting date from a given sown date 
@@ -19,8 +25,10 @@ class Journal extends Model
      */
     public function estimatedCropingDate($interval)
     {
-        return date_add($this->sown,
-            date_interval_create_from_date_string("$interval days"));
+        // return date_format(date_add($this->sown,
+        //     date_interval_create_from_date_string("$interval days")),
+        //     "d M Y");
+        return $this->sown->adddays($interval)->format('d M Y');
     }
 
     // public function estimatedFirstHarvestDate($maturity)
@@ -34,4 +42,5 @@ class Journal extends Model
     //     return date_add($this->sown,
     //         date_interval_create_from_date_string("$maturity days"));
     // }
+
 }
