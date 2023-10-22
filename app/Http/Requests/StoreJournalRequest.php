@@ -21,10 +21,12 @@ class StoreJournalRequest extends FormRequest
      */
     public function prepareForValidation( ): void
     {
-        $this->merge([
-            'sown' => $this->sown[0],
-            'planted' => ($this->sow_direct) ? $this->sown[0] : null,
-        ]);
+        if (isset($this->sown)){
+            $this->merge([
+                'sown' => $this->sown[0],
+                'planted' => ($this->sow_direct) ? $this->sown[0] : null,
+            ]);
+        };
     }
 
     /**

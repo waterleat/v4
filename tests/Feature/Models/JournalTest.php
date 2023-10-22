@@ -89,11 +89,21 @@ it('a new sowing log can be added', function () {
     // $response->assertRedirect('/journal/' . $found->id);
 });
 
-it('has to have a plant_type_id', function (){
+it('has to have a succession_id', function (){
     // $this->withoutExceptionHandling();
+    $family = Family::factory()->create();
+    $plantType = PlantType::factory()->create(['family_id'=>$family->id]);
+    $variety = Variety::factory()->create([
+        'plant_type_id' => $plantType->id,
+        'sow_direct' => false,
+    ]);
+    $successionType = SuccessionType::factory()->create();
+    $succession = Succession::factory()->create([
+        'succession_type_id' => $successionType->id, 'plant_type_id' => $plantType->id]);
+
     $sowing = [
-        'plant_type_id' => '',
-        'variety_id' => 1,
+        'succession_id' =>  '',
+        'variety_id' => $variety->id,
         'sown' => '2023-12-25',   // '25/12/2023',
         'planted' => '',
         'first_harvest' => '',
@@ -101,9 +111,9 @@ it('has to have a plant_type_id', function (){
     ];
     $response = $this->post('/journal', $sowing);
 
-    $response->assertSessionHasErrors('plant_type_id');
+    $response->assertSessionHasErrors('succession_id');
 
-})->skip();
+});
 
 it('the journal edit page route has statusCode 200', function () {
     $this->withoutExceptionHandling();
@@ -153,6 +163,7 @@ it('has to have a sown date', function (){
         'last_harvest' => '',
     ];
     $response = $this->post('/journal', $sowing);
+    // dd($response);
 
     $response->assertSessionHasErrors('sown');
 
@@ -163,7 +174,7 @@ it('can update a journal entry', function (){
 
     $family = Family::factory()->create();
     $plantType = PlantType::factory()->create(['family_id'=>$family->id]);
-    $variety = Variety::factory(2)->create([
+    $varieties = Variety::factory(2)->create([
         'plant_type_id' => $plantType->id,
         'sow_direct' => false,
     ]);
@@ -172,7 +183,7 @@ it('can update a journal entry', function (){
         'succession_type_id' => $successionType->id, 'plant_type_id' => $plantType->id]);
     $sowing = [
         'succession_id' => $succession->id,
-        'variety_id' => $variety->id,
+        'variety_id' => $varieties->first()->id,
         'sown' => '2023-12-25',   // '25/12/2023',
         'planted' => '',
         'first_harvest' => '',
@@ -184,7 +195,7 @@ it('can update a journal entry', function (){
 
     $response = $this->patch('/journal' .'/'. $entry->id, [
         'succession_id' => 1,
-        'variety_id' => 2,
+        'variety_id' => $varieties->last()->id,
         'sown' => '2024-1-11',   // '1/1/2024',
         'planted' => '',
         'first_harvest' => '',
@@ -198,10 +209,18 @@ it('can update a journal entry', function (){
 
 it('can delete a journal entry', function (){
     // $this->withoutExceptionHandling();
+    $family = Family::factory()->create();
+    $plantType = PlantType::factory()->create(['family_id'=>$family->id]);
+    $varieties = Variety::factory(2)->create([
+        'plant_type_id' => $plantType->id,
+        'sow_direct' => false,
+    ]);
+    $successionType = SuccessionType::factory()->create();
+    $succession = Succession::factory()->create([
+        'succession_type_id' => $successionType->id, 'plant_type_id' => $plantType->id]);
     $sowing = [
-        'succession_id' => 1,
-        'variety_id' => 1,
-        'succession_id' => 1,
+        'succession_id' => $succession->id,
+        'variety_id' => $varieties->last()->id,
         'sown' => '2023-12-25',
         'planted' => '',
         'first_harvest' => '',
