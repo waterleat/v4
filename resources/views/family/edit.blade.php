@@ -29,22 +29,22 @@
                 @method('PATCH')
 
                 <div class="my-4">
-                    <x-input-label for="name" :value="__('Name')" />
-                    <x-text-input name="name" id="name"
+                    <x-input.label for="name" :value="__('Name')" />
+                    <x-input.text name="name" id="name"
                         value="{{ $family->name }}"
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
                 <div class="my-4">
-                    <x-input-label for="name" :value="__('Latin Name')" />
-                    <x-text-input type="text" name="latin"
+                    <x-input.label for="name" :value="__('Latin Name')" />
+                    <x-input.text type="text" name="latin"
                         value="{{ $family->latin }}"
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
                 <div class="my-4">
-                    <x-input-label for="description" :value="__('Description')" />
-                    <x-textarea-input name="description"
+                    <x-input.label for="description" :value="__('Description')" />
+                    <x-input.textarea name="description"
                         placeholder=""
                         :value="$family->description"
                         class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />

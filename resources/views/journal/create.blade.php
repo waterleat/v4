@@ -32,7 +32,7 @@
                 {{ old('sown', $today->format('d M Y')) }}">
                 sowing
                 <div class="my-4">
-                    <x-input-label for="plant_type_id" :value="__('Plant Type')" />
+                    <x-input.label for="plant_type_id" :value="__('Plant Type')" />
                     <select id="plant_type_id" name="plant_type_id" 
                         class="bg-white block border w-full h-10 text-xl outline-none
                         px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
@@ -50,7 +50,7 @@
                     </select>
                 </div>
                 <div class="my-4">
-                    <x-input-label for="variety_id" :value="__('variety Name')" />
+                    <x-input.label for="variety_id" :value="__('variety Name')" />
                     <select id="variety_id" name="variety_id" 
                         class="bg-white block border w-full h-10 text-xl outline-none
                         px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
@@ -64,15 +64,15 @@
                 </div>
 
                 <div>
-                    <x-input-label for="sow_direct" :value="__('sow direct')" />
-                    <x-text-input id="sow_direct" name="sow_direct"
+                    <x-input.label for="sow_direct" :value="__('sow direct')" />
+                    <x-input.text id="sow_direct" name="sow_direct"
                         type="checkbox"
                         class="p-3 bg-white block border w-10 h-10 text-2xl outline-none" />
                 </div>
                 
                 {{-- <div>
-                    <x-input-label for="variety_id" :value="__('variety Name')" />
-                    <x-text-input id="variety_id" name="variety_id"
+                    <x-input.label for="variety_id" :value="__('variety Name')" />
+                    <x-input.text id="variety_id" name="variety_id"
                     class="bg-white block border w-full h-10 text-2xl outline-none"
                     autocomplete="off"
                     placeholder="variety name..." />

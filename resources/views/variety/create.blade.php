@@ -25,15 +25,15 @@
                 @csrf
 
                 <div>
-                <x-input-label for="name" :value="__('Variety name')" class=""/>
-                <x-text-input id="name" name="name"
+                <x-input.label for="name" :value="__('Variety name')" class=""/>
+                <x-input.text id="name" name="name"
                     autocomplete="off"
                     placeholder="Variety name..." 
                     class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
                 <div>
-                    <x-input-label for="plantType" :value="__('Plant type')" />
+                    <x-input.label for="plantType" :value="__('Plant type')" />
                     <select id="plantType" name="plantType" 
                         class="bg-white block border w-full h-10 text-xl outline-none
                         px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
@@ -45,35 +45,35 @@
 
                 </div>
 
-                <x-input-label for="info" :value="__('Info')" class=""/>
-                <x-text-input id="info"  name="info"
+                <x-input.label for="info" :value="__('Info')" class=""/>
+                <x-input.text id="info"  name="info"
                     autocomplete="off"
                     placeholder="Info..." 
                     class="bg-white block border w-full h-10 text-2xl outline-none" />
 
-                <x-input-label for="description" :value="__('Description')" class=""/>
-                <x-textarea-input id="description" name="description"
+                <x-input.label for="description" :value="__('Description')" class=""/>
+                <x-input.textarea id="description" name="description"
                     placeholder="Describe the plant..."
                     class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
 
                 <div class="flex pb-8 justify-around">
                     <div class="w-40 my-4">
-                        <x-input-label for="height" :value="__('Height (m)')" />
-                        <x-text-input id="height" name="height"
+                        <x-input.label for="height" :value="__('Height (m)')" />
+                        <x-input.text id="height" name="height"
                             type="number" min="0" step="0.1" max="10"
                             placeholder="Height..."
                             class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
                     </div>
                     <div class="w-40 my-4">
-                        <x-input-label for="spread" :value="__('Spread (m)')" />
-                        <x-text-input id="spread" name="spread"
+                        <x-input.label for="spread" :value="__('Spread (m)')" />
+                        <x-input.text id="spread" name="spread"
                             type="number" min="0" step="0.1" max="10"
                             placeholder="Spread..."
                             class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
                     </div>
                     <div class="w-40 my-4">
-                        <x-input-label for="days2maturity" :value="__('Days to Maturity')" />
-                        <x-text-input id="days2maturity" name="days2maturity"
+                        <x-input.label for="days2maturity" :value="__('Days to Maturity')" />
+                        <x-input.text id="days2maturity" name="days2maturity"
                             type="number"
                             placeholder="days..." 
                             class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
@@ -83,15 +83,15 @@
 
                 <div class="flex my-4">
                     <div class="w-1/2 px-4">
-                        <x-input-label for="sow_direct" :value="__('sow_direct')" />
-                        <x-text-input id="sow_direct" name="sow_direct"
+                        <x-input.label for="sow_direct" :value="__('sow_direct')" />
+                        <x-input.text id="sow_direct" name="sow_direct"
                             type="checkbox"
                             class="p-3 bg-white block border w-10 h-10 text-2xl outline-none" />
                     </div>
                     
                     <div class="w-1/2 px-4">
-                        <x-input-label for="multisow" :value="__('multisow')" />
-                        <x-text-input id="multisow" name="multisow"
+                        <x-input.label for="multisow" :value="__('multisow')" />
+                        <x-input.text id="multisow" name="multisow"
                             type="number" placeholder="0"
                             class="p-3 bg-white block border w-20 h-10 text-2xl outline-none" />
                     </div>
@@ -99,24 +99,24 @@
                     
                 <div class="">
                     <div class="my-4">
-                        <x-input-label for="sowing" :value="__('sowing')" />
-                        <x-text-input id="sowing" name="sowing"
+                        <x-input.label for="sowing" :value="__('sowing')" />
+                        <x-input.text id="sowing" name="sowing"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
                         autocomplete="off"
                         placeholder="Common name..." />
                     </div>
                     
                     <div class="my-4">
-                        <x-input-label for="harvest" :value="__('harvest')" />
-                        <x-text-input id="harvest" name="harvest"
+                        <x-input.label for="harvest" :value="__('harvest')" />
+                        <x-input.text id="harvest" name="harvest"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
                         autocomplete="off"
                         placeholder="Common name..." />
                     </div>
 
                     <div class="my-4">
-                        <x-input-label for="store" :value="__('store')" />
-                        <x-text-input id="store" name="store"
+                        <x-input.label for="store" :value="__('store')" />
+                        <x-input.text id="store" name="store"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
                         autocomplete="off"
                         placeholder="Common name..." />

@@ -28,14 +28,14 @@
                 @method('PATCH')
 
                 <div class="my-4">
-                    <x-input-label for="name" :value="__('Variety')" />
-                    <x-text-input type="text" name="name" id="name"
+                    <x-input.label for="name" :value="__('Variety')" />
+                    <x-input.text type="text" name="name" id="name"
                         value="{{ $variety->name }}"
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
                 <div class="my-4">
-                    <x-input-label for="plantType" :value="__('Plant Type')" />
+                    <x-input.label for="plantType" :value="__('Plant Type')" />
                     <select id="plantType" name="plant_type_id" 
                     class="bg-white block border w-full h-10 text-xl outline-none
                     px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
@@ -52,16 +52,16 @@
 
 
                 <div class="my-4">
-                    <x-input-label for="info" :value="__('Info')" />
-                    <x-text-input type="text" name="info" id="info"
+                    <x-input.label for="info" :value="__('Info')" />
+                    <x-input.text type="text" name="info" id="info"
                         value="{{ $variety->info }}"
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
 
                 <div class="my-4">
-                    <x-input-label for="description" :value="__('Description')" />
-                    <x-textarea-input name="description" id="description"
+                    <x-input.label for="description" :value="__('Description')" />
+                    <x-input.textarea name="description" id="description"
                         placeholder=""
                         value="{{ $variety->description }}"
                         class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
@@ -69,8 +69,8 @@
 
                 <div class=" flex pb-8 justify-around">
                     <div class="w-40 my-4">
-                        <x-input-label for="height" :value="__('Height (m)')" />
-                        <x-text-input id="height" name="height"
+                        <x-input.label for="height" :value="__('Height (m)')" />
+                        <x-input.text id="height" name="height"
                             type="number" min="0" step=0.1 max="10"
                             placeholder="Height..."
                             value="{{ $variety->height }}"
@@ -78,15 +78,15 @@
                     </div>
 
                     <div class="w-40 my-4">
-                        <x-input-label for="spread" :value="__('Spread (m)')" />
-                        <x-text-input id="spread"  name="spread"
+                        <x-input.label for="spread" :value="__('Spread (m)')" />
+                        <x-input.text id="spread"  name="spread"
                             type="number" min="0" step=0.05 max="10"
                             value="{{ $variety->spread }}"
                             class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
                     </div>
                     <div class="w-40 my-4">
-                        <x-input-label for="days2maturity" :value="__('Days to Maturity')" />
-                        <x-text-input name="days2maturity" id="days2maturity"
+                        <x-input.label for="days2maturity" :value="__('Days to Maturity')" />
+                        <x-input.text name="days2maturity" id="days2maturity"
                             type="number"
                             value="{{ $variety->days2maturity }}"
                             class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
@@ -98,7 +98,7 @@
                 <div class="flex my-4">
                     <div class="w-1/3 px-4">
                         <div class="w-10 my-4">
-                            <x-input-label for="sow_direct" :value="__('sow_direct')" />
+                            <x-input.label for="sow_direct" :value="__('sow_direct')" />
                             <input id="sow_direct" name="sow_direct"
                             type="checkbox" value="1"
                             class="appearance-none bg-white block border w-full h-10 text-2xl outline-none
@@ -108,16 +108,16 @@
                         </div>
                         
                         <div class="my-4">
-                            <x-input-label for="multi" :value="__('multi')" />
-                            <x-text-input id="multi" name="multi"
+                            <x-input.label for="multi" :value="__('multi')" />
+                            <x-input.text id="multi" name="multi"
                             type="number"
                             value="{{ $variety->multi }}"
                             class="p-3 bg-white block border w-20 h-10 text-2xl outline-none" />
                         </div>
 
                         <div class="w-10 my-4">
-                            <x-input-label for="spacing" :value="__('spacing')" />
-                            <x-text-input id="spacing" name="spacing"
+                            <x-input.label for="spacing" :value="__('spacing')" />
+                            <x-input.text id="spacing" name="spacing"
                                 type="number"
                                 value="{{ $variety->spacing }}"
                                 class="p-3 bg-white block border w-20 h-10 text-2xl outline-none" />
@@ -126,8 +126,8 @@
 
                     <div class="w-2/3 px-4">
                         <div class="my-4">
-                            <x-input-label for="sowing" :value="__('sowing')" />
-                            <x-text-input id="sowing" name="sowing"
+                            <x-input.label for="sowing" :value="__('sowing')" />
+                            <x-input.text id="sowing" name="sowing"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             value="{{ $variety->sowing }}"
                             autocomplete="off"
@@ -135,8 +135,8 @@
                         </div>
 
                         <div class="my-4">
-                            <x-input-label for="harvest" :value="__('harvest')" />
-                            <x-text-input id="harvest" name="harvest"
+                            <x-input.label for="harvest" :value="__('harvest')" />
+                            <x-input.text id="harvest" name="harvest"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             value="{{ $variety->harvest }}"
                             autocomplete="off"
@@ -144,8 +144,8 @@
                         </div>
 
                         <div class="my-4">
-                            <x-input-label for="store" :value="__('store')" />
-                            <x-text-input id="store" name="store"
+                            <x-input.label for="store" :value="__('store')" />
+                            <x-input.text id="store" name="store"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             value="{{ $variety->store }}"
                             autocomplete="off"

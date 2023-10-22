@@ -30,8 +30,8 @@
 
             <div class="flex">
                 <div class="w-1/2">
-                    <x-input-label for="succession_type_id" :value="__('Type')" />
-                    {{-- <x-text-input name="type" id="type"
+                    <x-input.label for="succession_type_id" :value="__('Type')" />
+                    {{-- <x-input.text name="type" id="type"
                         value="{{ $succession->type }}"
                         class="bg-white block border w-full h-10 text-2xl outline-none" /> --}}
                     <select name="succession_type_id" id="succession_type_id" 
@@ -48,7 +48,7 @@
                     </select>       
                 </div>
                 <div class="w-1/2">
-                    <x-input-label for="plant_type_id" :value="__('Plant Type')" />
+                    <x-input.label for="plant_type_id" :value="__('Plant Type')" />
                     <select id="plant_type_id" name="plant_type_id" 
                     class="bg-white block border w-full h-10 text-xl outline-none
                     px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
@@ -66,7 +66,7 @@
 
             
             <div class="flex my-4">
-                <x-input-label for="cd" :value="__('Charles Dowding timing')" class="mr-4"/>
+                <x-input.label for="cd" :value="__('Charles Dowding timing')" class="mr-4"/>
                 <input name="cd" id="cd"
                 type="checkbox" value="1"
                 class="appearance-none bg-white block border  h-10 w-10 text-2xl outline-none
@@ -76,8 +76,8 @@
             </div>
 
             <div class="w-full my-4">
-                <x-input-label for="varieties_recommended" :value="__('varieties_recommended')" />
-                <x-text-input id="varieties_recommended" name="varieties_recommended"
+                <x-input.label for="varieties_recommended" :value="__('varieties_recommended')" />
+                <x-input.text id="varieties_recommended" name="varieties_recommended"
                     placeholder="varieties_recommended..."
                     value="{{ $succession->varieties_recommended }}"
                     class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
@@ -85,15 +85,15 @@
 
             <div class="flex pt-8 justify-around">
                 <div class="w-80 my-4">
-                    <x-input-label for="sow" :value="__('Sow')" />
-                    <x-text-input id="sow" name="sow"
+                    <x-input.label for="sow" :value="__('Sow')" />
+                    <x-input.text id="sow" name="sow"
                         placeholder="Sow..."
                         value="{{ $succession->sow }}"
                         class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
                 <div class="w-80 my-4">
-                    <x-input-label for="plant" :value="__('Plant')" />
-                    <x-text-input id="plant" name="plant"
+                    <x-input.label for="plant" :value="__('Plant')" />
+                    <x-input.text id="plant" name="plant"
                         placeholder="Plant..."
                         value="{{ $succession->plant }}"
                         class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
@@ -101,15 +101,15 @@
             </div>
             <div class="flex pb-8 justify-around">
                 <div class="w-80 my-4">
-                    <x-input-label for="first_harvest" :value="__('First Harvest')" />
-                    <x-text-input id="first_harvest" name="first_harvest"
+                    <x-input.label for="first_harvest" :value="__('First Harvest')" />
+                    <x-input.text id="first_harvest" name="first_harvest"
                         placeholder="First Harvest..." 
                         value="{{ $succession->first_harvest }}"
                         class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
                 <div class="w-80 my-4">
-                    <x-input-label for="last_harvest" :value="__('Last Harvest')" />
-                    <x-text-input id="last_harvest" name="last_harvest"
+                    <x-input.label for="last_harvest" :value="__('Last Harvest')" />
+                    <x-input.text id="last_harvest" name="last_harvest"
                         {{-- placeholder="Last Harvest..."  --}}
                         value="{{ $succession->last_harvest }}"
                         class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
@@ -117,22 +117,22 @@
             </div>
 
             <div class=" my-4">
-                <x-input-label for="start_seeds" :value="__('Start seeds')" />
-                <x-text-input id="start_seeds" name="start_seeds"
+                <x-input.label for="start_seeds" :value="__('Start seeds')" />
+                <x-input.text id="start_seeds" name="start_seeds"
                     {{-- placeholder="Last Harvest..."  --}}
                     value="{{ $succession->start_seeds }}"
                     class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
             </div>
             <div class=" my-4">
-                <x-input-label for="grow_seedlings" :value="__('Grow seedlings')" />
-                <x-text-input id="grow_seedlings" name="grow_seedlings"
+                <x-input.label for="grow_seedlings" :value="__('Grow seedlings')" />
+                <x-input.text id="grow_seedlings" name="grow_seedlings"
                     {{-- placeholder="Last Harvest..."  --}}
                     value="{{ $succession->grow_seedlings }}"
                     class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
             </div>
             <div class=" my-4">
-                <x-input-label for="grow_plants" :value="__('Grow plants')" />
-                <x-text-input id="grow_plants" name="grow_plants"
+                <x-input.label for="grow_plants" :value="__('Grow plants')" />
+                <x-input.text id="grow_plants" name="grow_plants"
                     {{-- placeholder="Last Harvest..."  --}}
                     value="{{ $succession->lastHarvest }}"
                     class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
@@ -140,29 +140,29 @@
 
             
             <div class="my-4">
-                <x-input-label for="planting_density" :value="__('planting_density')" />
-                <x-textarea-input name="planting_density"
+                <x-input.label for="planting_density" :value="__('planting_density')" />
+                <x-input.textarea name="planting_density"
                     placeholder=""
                     :value="$succession->planting_density"
                     class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
             </div>
             <div class="my-4">
-                <x-input-label for="c" :value="__('variety_notes')" />
-                <x-textarea-input name="variety_notes"
+                <x-input.label for="c" :value="__('variety_notes')" />
+                <x-input.textarea name="variety_notes"
                     placeholder=""
                     :value="$succession->variety_notes"
                     class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
             </div>
             <div class="my-4">
-                <x-input-label for="growing_notes" :value="__('growing_notes')" />
-                <x-textarea-input name="growing_notes"
+                <x-input.label for="growing_notes" :value="__('growing_notes')" />
+                <x-input.textarea name="growing_notes"
                     placeholder=""
                     :value="$succession->growing_notes"
                     class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
             </div>
             <div class="my-4">
-                <x-input-label for="yield_notes" :value="__('yield_notes')" />
-                <x-textarea-input name="yield_notes"
+                <x-input.label for="yield_notes" :value="__('yield_notes')" />
+                <x-input.textarea name="yield_notes"
                     placeholder=""
                     :value="$succession->yield_notes"
                     class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
