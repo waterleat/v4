@@ -127,19 +127,19 @@
                     <h3 class="text-2xl ">CD_recommended : YES</h3>
                 @endif  
                 <h3 class="text-2xl">start seeds :</h3>
-                <p class="">{{ $succession->start_seeds }}</p>
+                <p class="pl-6">{{ $succession->start_seeds }}</p>
                 <h3 class="text-2xl">grow seedlings :</h3>
-                <p class="">{{ $succession->grow_seedlings }}</p>
+                <p class="pl-6">{{ $succession->grow_seedlings }}</p>
                 <h3 class="text-2xl">planting density :</h3>
-                <p class="">{{ $succession->planting_density }}</p>
+                <p class="pl-6">{{ $succession->planting_density }}</p>
                 <h3 class="text-2xl">growing notes :</h3>
-                <p class="">{{ $succession->growing_notes }}</p>
+                <p class="pl-6">{{ $succession->growing_notes }}</p>
                 <h3 class="text-2xl">yield_notes :</h3>
-                <p class="">{{ $succession->yield_notes }}</p>
+                <p class="pl-6">{{ $succession->yield_notes }}</p>
                 <h3 class="text-2xl">variety notes :</h3>
-                <p class="">{{ $succession->variety_notes }}</p>
+                <p class="pl-6">{{ $succession->variety_notes }}</p>
                 <h3 class="text-2xl">varieties recommended :</h3>
-                <p class="">{{ $succession->varieties_recommended }}</p>
+                <p class="pl-6">{{ $succession->varieties_recommended }}</p>
             </div>
         </div>
 

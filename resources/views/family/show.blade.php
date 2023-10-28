@@ -18,7 +18,12 @@
         <ul class="ml-8 py-2">
 
             @forelse ( $family->plantTypes as $plantType )
-                <li>{{ $plantType['name'] }}</li>
+            <li class="mb-2">
+                <a href="{{ route('plantType.show', ['plantType'=>$plantType]) }}"
+                    class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" >
+                    {{ $plantType['name'] }}
+                </a>
+            </li>
             @empty
                 no plant types found
             @endforelse

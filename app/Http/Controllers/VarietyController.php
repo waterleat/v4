@@ -47,6 +47,7 @@ class VarietyController extends Controller
         return view('variety.show', [
             'variety' => $variety,
             'plantType' => $plantType,
+            'journals' => $variety->successions,
         ]);
     }
 

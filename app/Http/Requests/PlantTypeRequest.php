@@ -42,6 +42,7 @@ class PlantTypeRequest extends FormRequest
             'interplant_with'  => [],
             'relay_plant_into'  => [],
             'relay_plant_with'  => [],
+            'germ_temp_img' => ['mimes:jpg,png,jpeg', 'max:1024'],
         ];
     }
 
@@ -51,4 +52,12 @@ class PlantTypeRequest extends FormRequest
             'perennial' => $this->boolean('perennial'),
         ]);
     }
+
+    // protected function passedValidation(): void
+    // {
+
+    //     // $this->replace([
+    //     //     'germ_temp_img' => $this->name . $this->germ_temp_img->extension(),
+    //     // ]);
+    // }
 }

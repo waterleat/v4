@@ -39,15 +39,17 @@
                 </div>
             </div>
             <div class="w-1/2">
-                
                 <h2 class="text-3xl font-bold mb-8">Plant type
                     <span class="text-xl pl-4"> 
                         {{-- {{ dd($plantTypes->find($variety->plant_type_id)) }} --}}
-                        @if ($variety->plant_type_id)
-                            {{ $plantType->name }}
-                        @else
-                            not known
-                        @endif
+                            @if ($variety->plant_type_id)
+                            <a href="{{ route('plantType.show', ['plantType'=>$plantType]) }}"
+                                class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" >
+                                {{ $plantType->name }}
+                            </a>
+                            @else
+                                not known
+                            @endif
                     </span>
                 </h2>
                 {{-- <h2 class="text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ml-10">
@@ -99,6 +101,10 @@
                             <td class="border"><p class="">{{ $plantType->relay_plant_with }}</p></td>
                         </tr>
                         <tr>
+                            <td class="border"><h4 class="text-lg w-36">Perennial</h4></td>
+                            <td class="border"><p class="">{{ ($plantType->perennial) ? "Yes" : "No" }}</p></td>
+                        </tr>
+                        <tr>
                             <td class="border"><h4 class="text-lg w-48">Mulch</h4></td>
                             <td class="border"><p class="">{{ $plantType->mulch }}</p></td>
                         </tr>
@@ -129,8 +135,137 @@
                     </tbody>
                 </table>
             </div>
+            
         </div>
 
+        <div class="flex mt-4 bg-white p-8 ">
+            <h3 class="text-2xl w-32">Journal Entries:</h3>
+            <div class="my-auto w-full ">
+                @forelse ( $variety->journals as $journal )
+                <div class="flex">
+                    <div class="w-full">
+                        <div id="yearview"
+                        data-ss="{{ $journal->succession->sow_start }}"
+                        data-se="{{ $journal->succession->sow_end }}"
+                        data-ps="{{ $journal->succession->plant_start }}"
+                        data-pe="{{ $journal->succession->plant_end }}"
+                        data-hs="{{ $journal->succession->harvest_start }}"
+                            data-he="{{ $journal->succession->harvest_end }}"
+                            data-yd="{{ getdate()['yday'] }}">
+                        </div>
+                        
+                        <div id="plan" class=" h-12">
+                            <canvas id="canvas"  style="border:1px solid #d3d3d3;" class="w-full h-full" width="365" height="48">
+                                Your browser does not support the HTML canvas tag.
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex w-full">
+                    <div class="w-1/4">
+                        <h3 class="text-lg md:text-xl lg:text-2xl">Sown</h3>
+                        <div>{{ $journal->sown->format('d M Y') }}</div>
+
+                        <p class="">{{ $journal->succession->sown }}</p>
+                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->sow_start.'D'))->format('dM'); ?></p>
+                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->sow_end.'D'))->format('dM'); ?></p>
+                    </div>
+                    <div class="w-1/4">
+                        <h3 class="text-lg md:text-xl lg:text-2xl">Plant</h3>
+                        <p class="{{ ($journal->planted) ? : "bg-blue-300" }}">
+                            {{ ($journal->planted) ? $journal->planted->format('d M Y') : $journal->estimatedCropingDate($journal->succession->days_nursery) }}
+                        </p>
+                        
+                        <p class="">{{ $journal->succession->plant }}</p>
+                        {{-- <p><?php //$datess = new DateTime('2022-12-31');
+                            // $datess->add(new DateInterval('P'.$journal->succession->plant_start.'D')); 
+                            // echo($datess->format('dM')); ?>
+                        </p> --}}
+                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->plant_start.'D'))->format('dM'); ?></p>
+                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->plant_end.'D'))->format('dM'); ?></p>
+                        
+                    </div>
+                    <div class="w-1/4">
+                        <h3 class="text-lg md:text-xl lg:text-2xl">first Harvest</h3>
+                        <p class="{{ ($journal->first_harvest) ? : "bg-blue-300" }}">
+                            {{ ($journal->first_harvest) ? $journal->first_harvest->format('d M'): $journal->estimatedCropingDate($journal->succession->days_maturity) }}</p>
+                        <p class="">{{ $journal->succession->first_harvest }}</p>
+                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->harvest_start.'D'))->format('dM'); ?></p>
+                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->harvest_end.'D'))->format('dM'); ?></p>
+                    </div>
+                    <div class="w-1/4">
+                        <h3 class="text-lg md:text-xl lg:text-2xl">Last Harvest</h3>
+                        <p class="{{ ($journal->last_harvest) ? : "bg-blue-300" }}">
+                            {{ ($journal->last_harvest) ? $journal->last_harvest->format('d M'): $journal->estimatedCropingDate($journal->succession->days_maturity + $journal->succession->days_harvest) }}</p>
+                        <p class="">{{ $journal->succession->last_harvest }}</p>
+                        <p class="">{{ $journal->succession->first_harvest }}</p>
+                    </div>
+                </div>
+                @empty
+                    No journals found
+                @endforelse
+            </ul>
+        </div>
+
+
+        <script type="text/javascript">
+            const ht = 48
+            const yv = document.querySelector("#yearview")
+            const yd = yv.dataset.yd
+            var ss = yv.dataset.ss
+            var se = yv.dataset.se
+            var ps = yv.dataset.ps
+            var pe = yv.dataset.pe
+            var hs = yv.dataset.hs
+            var he = yv.dataset.he
+
+            window.onload = function() {
+                var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+                
+                context.beginPath()
+                context.rect(ss, 0, se-ss, ht);
+                context.fillStyle = 'green';
+                context.fill();
+                context.closePath()
+
+                context.beginPath()
+                context.rect(ps, 0, pe-ps, ht);
+                context.fillStyle = 'orange';
+                context.fill();
+                context.closePath()
+                
+                if (he-hs<0) {
+                    context.beginPath()
+                    context.rect(hs, 0, 365-hs, ht);
+                    context.fillStyle = 'purple';
+                    context.fill();
+                    context.closePath()
+                    context.beginPath()
+                    context.rect(0, 0, he, ht);
+                    context.fillStyle = 'purple';
+                    context.fill();
+                    context.closePath()
+                }else{
+                    context.beginPath()
+                    context.rect(hs, 0, he-hs, ht);
+                    context.fillStyle = 'purple';
+                    context.fill();
+                    context.closePath()
+                }
+
+                context.font = "32px Arial";
+                context.fillStyle = 'gray';
+                context.fillText("J F M A M J J A S O N D", 6, 36);
+
+                context.beginPath()
+                context.rect(yd, 0, 1, ht);
+                context.fillStyle = 'red';
+                context.fill();
+                context.closePath()
+            }
+        </script>
 
     </div>
 </x-layout>

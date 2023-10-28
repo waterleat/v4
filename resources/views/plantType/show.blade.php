@@ -9,27 +9,35 @@
                 {{ $plantType->name }}
             </h2>
             <div class="w-2/5 pt-10">
-                <div class="flex">
+                <div class="flex mb-2">
                     <h3 class="text-2xl w-32">Latin:</h3>
                     <p class="my-auto">{{ $plantType->latin }}</p>
                 </div>
 
-                <div class="flex">
+                <div class="flex mb-2">
                     <h3 class="text-2xl w-32">Family:</h3>
                     <p class="my-auto"> 
                         @if ($plantType->family_id)
-                        {{ $family->name }}
+                        <a href="{{ route('family.show', ['family'=>$plantType->family_id]) }}"
+                            class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" >
+                            {{ $family->name }}
+                        </a>
                         @else
                         Not known
                         @endif
                     </p>
                 </div>
 
-                <div class="flex">
+                <div class="flex mb-2">
                     <h3 class="text-2xl w-32">Varieties:</h3>
                     <ul class="my-auto">
                         @forelse ( $plantType->varieties as $variety )
-                            <li>{{ $variety['name'] }}</li>
+                        <li class="mb-2">
+                            <a href="{{ route('variety.show', ['variety'=>$variety]) }}"
+                                class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" >
+                                {{ $variety['name'] }}
+                            </a>
+                        </li>
                         @empty
                             No varieties found
                         @endforelse
@@ -38,15 +46,6 @@
             </div>
         </div>
 
-
-
-
-        <div class="flex">
-            <div class="w-1/3">
-                Perennial
-            </div>
-            
-        </div>
 
 
 
@@ -113,9 +112,9 @@
                     <tr>
                         <td class="text-xl ">Best dates</td>
                         <td></td>
-                        <td>Sowing</td>
+                        <td class="font-semibold">Sowing</td>
                         <td>{{ $plantType->dates_best_sow }}</td>
-                        <td>Harvest</td>
+                        <td class="font-semibold">Harvest</td>
                         <td>{{ $plantType->dates_main_harvest }}</td>
                         <td></td>
                     </tr>
@@ -133,6 +132,10 @@
             <div class="w-1/2">
                 <table>
                     <tbody>
+                        <tr>
+                            <td><h4 class="text-lg w-36">Germination</h4></td>
+                            <td><img src="{{ asset('storage/germtemp/'.$plantType->germ_temp_img) }}" alt="temp"></td>
+                        </tr>
                         <tr>
                             <td><h4 class="text-lg w-36">Multisow</h4></td>
                             <td><p class="">{{ $plantType->multisow }}</p></td>
@@ -160,6 +163,10 @@
                         <tr>
                             <td><h4 class="text-lg w-36">Relay with</h4></td>
                             <td><p class="">{{ $plantType->relay_plant_with }}</p></td>
+                        </tr>
+                        <tr>
+                            <td>Perennial</td>
+                            <td>{{ ($plantType->perennial) ? "Yes" : "No" }}</td>
                         </tr>
                     </tbody>
                 </table>

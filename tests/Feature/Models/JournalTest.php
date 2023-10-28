@@ -75,6 +75,7 @@ it('a new sowing log can be added', function () {
         'planted' => '',
         'first_harvest' => '',
         'last_harvest' => '',
+        'sow_direct' => false,
     ];
     // dd($sowing);
     // $response = $this->post('/journal/newsowing', $sowing);
@@ -135,6 +136,7 @@ it('the journal edit page route has statusCode 200', function () {
         'planted' => '',
         'first_harvest' => '',
         'last_harvest' => '',
+        'sow_direct' => false,
     ]);
     // dd($sowing);
     $response = $this->get('/journal/1/edit');

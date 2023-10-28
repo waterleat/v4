@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Journal extends Model
 {
     use HasFactory;
 
     protected $fillable = ['succession_id', 'variety_id', 'variety', 
-    'sown', 'planted', 'first_harvest', 'last_harvest',];
+    'sown', 'planted', 'first_harvest', 'last_harvest', 'sow_direct', ];
 
     protected $casts = [
         'sown' => 'date',
@@ -18,6 +19,14 @@ class Journal extends Model
         'first_harvest' => 'date',
         'last_harvest' => 'date',
     ];  // :Y-m-d'];        // d/m/Y',];
+
+    /**
+     * Get the plantType that owns the variety.
+     */
+    public function succession(): BelongsTo
+    {
+        return $this->belongsTo(Succession::class);
+    }
 
     /**
      * estimated planting date from a given sown date 

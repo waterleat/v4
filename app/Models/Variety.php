@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Variety extends Model
 {
@@ -23,6 +24,14 @@ class Variety extends Model
     public function plantType(): BelongsTo
     {
         return $this->belongsTo(PlantType::class);
+    }
+
+    /**
+     * Get the journals for the variety.
+     */
+    public function journals(): HasMany
+    {
+        return $this->hasMany(Journal::class);
     }
 }
 

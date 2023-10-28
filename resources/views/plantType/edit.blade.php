@@ -32,14 +32,14 @@
                         <div class="my-4">
                             <x-input.label for="name" :value="__('Name')" />
                             <x-input.text name="name" id="name"
-                            value="{{ $plantType->name }}"
+                            value="{{ old('name', $plantType->name) }}"
                             class="bg-white block border w-full h-10 text-2xl outline-none" />
                         </div>
         
                         <div class="my-4">
                             <x-input.label for="name" :value="__('Latin Name')" />
                             <x-input.text type="text" name="latin"
-                                value="{{ $plantType->latin }}"
+                                value="{{ old('latin', $plantType->latin) }}"
                                 class="bg-white block border w-full h-10 text-2xl outline-none" />
                         </div>
                     </div>
@@ -51,33 +51,47 @@
                             px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                                 <option>--Pick plant family--</option>
                                 @foreach ( $families as $family )
-                                    <option value="{{ $family->id }}" 
-                                    @if ($family->id == old('family_id', $plantType->family_id))
-                                        selected="selected"
-                                    @endif
-                                    >{{ $family->name }}</option>
+                                    <option value="{{ $family->id }}" {{ $family->id == old('family_id', $plantType->family_id) ? "selected" : ""}}>
+                                        {{ $family->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="w-10 my-4">
-                            <x-input.label for="perennial" :value="__('Perennial')" />
-                            <input name="perennial" id="perennial"
-                            type="checkbox" value="1"
-                            class="appearance-none bg-white block border w-full h-10 text-2xl outline-none
-                            border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                            {{ $plantType->perennial ? 'checked' : '' }} 
-                            >
+                        <div class="flex my-4">
+                            <div class="w-1/2">
+                                <x-input.label for="perennial" :value="__('Perennial')" />
+                                <input name="perennial" id="perennial"
+                                type="checkbox" value="1"
+                                class="appearance-none bg-white block border w-10 h-10 text-2xl outline-none
+                                border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                {{ $plantType->perennial ? 'checked' : '' }} 
+                                >
+                            </div>
+
+                            <div class="w-1/2">
+                                <x-input.label for="multisow" :value="__('multisow')" />
+                                <x-input.text id="multisow" name="multisow"
+                                    type="number"
+                                    class=" bg-white block border w-20 h-10 text-2xl outline-none" />
+                            </div>
                         </div>
+                        
                     </div>
                 </div>
 
+                <div class="my-4 pl-4">
+                    <x-input.label for="germ_temp_img" :value="__('Germination temperature image')" />
+                    <input type="file" name="germ_temp_img" id="germ_temp_img"
+                        class="pl-4 text-xl outline-none"
+                        value="{{ old('germ_temp_img', $plantType->germ_temp_img) }}">
+                </div>
 
                 <div class="my-4 flex">
                     <div class="w-1/2 px-4">
                         <x-input.label for="dates_best_sow" :value="__('dates_best_sow')" />
                         <x-input.text id="dates_best_sow" name="dates_best_sow"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
-                        value="{{ $plantType->dates_best_sow }}"
+                        value="{{ old('dates_best_sow', $plantType->dates_best_sow) }}"
                         />
                     </div>
     
@@ -85,7 +99,7 @@
                         <x-input.label for="dates_main_harvest" :value="__('dates_main_harvest')" />
                         <x-input.text id="dates_main_harvest" name="dates_main_harvest"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
-                        value="{{ $plantType->dates_main_harvest }}"
+                        value="{{ old('dates_main_harvest', $plantType->dates_main_harvest) }}"
                         />
                     </div>
                 </div>
@@ -93,22 +107,12 @@
 
                 <div class="flex my-4">
                     <div class="w-1/2 px-4">
-                        <div class="w-10 my-4">
-                            <x-input.label for="multisow" :value="__('multisow')" />
-                            <input id="multisow" name="multisow"
-                                type="checkbox" value="1"
-                                class="appearance-none bg-white block border  h-10 w-10 text-2xl outline-none
-                                border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                                {{ $plantType->cd ? 'checked' : '' }} 
-                                >
-                            </div>
-                        
                         <div class="my-4">
                             <x-input.label for="hardiness_young_plants" :value="__('hardiness_young_plants')" />
                             <x-input.text id="hardiness_young_plants" name="hardiness_young_plants"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->hardiness_young_plants }}"
+                            value="{{ old('hardiness_young_plants', $plantType->hardiness_young_plants) }}"
                             placeholder="Common name..." />
                         </div>
     
@@ -117,7 +121,7 @@
                             <x-input.text id="root_depth" name="root_depth"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->root_depth }}"
+                            value="{{ old('root_depth', $plantType->root_depth) }}"
                             placeholder="Common name..." />
                         </div>
                         
@@ -126,7 +130,7 @@
                             <x-input.text id="interplant_into" name="interplant_into"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->interplant_into }}"
+                            value="{{ old('interplant_into', $plantType->interplant_into) }}"
                             placeholder="Common name..." />
                         </div>
     
@@ -135,7 +139,7 @@
                             <x-input.text id="interplant_with" name="interplant_with"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->interplant_with }}"
+                            value="{{ old('interplant_into', $plantType->interplant_into) }}"
                             placeholder="Common name..." />
                         </div>
     
@@ -144,7 +148,7 @@
                             <x-input.text id="relay_plant_into" name="relay_plant_into"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->relay_plant_into }}"
+                            value="{{ old('relay_plant_into', $plantType->relay_plant_into) }}"
                             placeholder="Common name..." />
                         </div>
     
@@ -153,7 +157,7 @@
                             <x-input.text id="relay_plant_with" name="relay_plant_with"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->relay_plant_with }}"
+                            value="{{ old('relay_plant_with', $plantType->relay_plant_with) }}"
                             placeholder="Common name..." />
                         </div>
                     </div>
@@ -164,7 +168,7 @@
                             <x-input.text id="mulch" name="mulch"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->mulch }}"
+                            value="{{ old('mulch', $plantType->mulch) }}"
                             placeholder="Common name..." />
                         </div>
         
@@ -173,7 +177,7 @@
                             <x-input.text id="feeder_type" name="feeder_type"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->feeder_type }}"
+                            value="{{ old('feeder_type', $plantType->feeder_type) }}"
                             placeholder="Common name..." />
                         </div>
                         
@@ -182,7 +186,7 @@
                             <x-input.text id="fertiliser" name="fertiliser"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->fertiliser }}"
+                            value="{{ old('fertiliser', $plantType->fertiliser) }}"
                             placeholder="Common name..." />
                         </div>
         
@@ -191,7 +195,7 @@
                             <x-input.text id="when_to_fertilise" name="when_to_fertilise"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->when_to_fertilise }}"
+                            value="{{ old('when_to_fertilise', $plantType->when_to_fertilise) }}"
                             placeholder="Common name..." />
                         </div>                        
         
@@ -202,7 +206,7 @@
                             <x-input.text id="competitor" name="competitor"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->competitor }}"
+                            value="{{ old('competitor', $plantType->competitor) }}"
                             placeholder="Common name..." />
                         </div>
         
@@ -211,7 +215,7 @@
                             <x-input.text id="competition_period" name="competition_period"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->competition_period }}"
+                            value="{{ old('competition_period', $plantType->competition_period) }}"
                             placeholder="Common name..." />
                         </div>
         
@@ -220,7 +224,7 @@
                             <x-input.text id="companions" name="companions"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
-                            value="{{ $plantType->companions }}"
+                            value="{{ old('companions', $plantType->companions) }}"
                             placeholder="Common name..." />
                         </div>
     

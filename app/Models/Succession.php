@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\DB;
 
 class Succession extends Model
@@ -29,11 +30,19 @@ class Succession extends Model
     }
 
     /**
-     * Get the plantType that owns the variety.
+     * Get the successionType that owns the succession.
      */
     public function successionType(): BelongsTo
     {
         return $this->belongsTo(SuccessionType::class);
+    }
+
+    /**
+     * Get the journals for the succession.
+     */
+    public function journals(): HasMany
+    {
+        return $this->hasMany(Journal::class);
     }
 
     /**

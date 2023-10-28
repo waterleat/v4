@@ -21,10 +21,15 @@ class StoreJournalRequest extends FormRequest
      */
     public function prepareForValidation( ): void
     {
+        $this->merge([
+            'sow_direct' => $this->boolean('sow_direct'),
+        ]);
+        
         if (isset($this->sown)){
+            $sownDate = $this->sown[0];
             $this->merge([
-                'sown' => $this->sown[0],
-                'planted' => ($this->sow_direct) ? $this->sown[0] : null,
+                'sown' => $sownDate,
+                'planted' => ($this->sow_direct) ? $sownDate : null,
             ]);
         };
     }
@@ -45,6 +50,7 @@ class StoreJournalRequest extends FormRequest
             'planted' => [],
             'first_harvest' => [],
             'last_harvest' => [],
+            'sow_direct' => ['boolean'],
         ];
     }
 }

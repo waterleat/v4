@@ -37,6 +37,7 @@ class PlantTypeFactory extends Factory
             'interplant_with' => fake()->word(),
             'relay_plant_into' => fake()->word(),
             'relay_plant_with' => fake()->word(),
+            'germ_temp_img' => null,
         ];
     }
 }

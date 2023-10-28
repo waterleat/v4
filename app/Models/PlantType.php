@@ -27,6 +27,7 @@ class PlantType extends Model
         'interplant_with',
         'relay_plant_into',
         'relay_plant_with', 
+        'germ_temp_img',
     ];
 
     /**

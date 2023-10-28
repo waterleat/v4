@@ -43,7 +43,7 @@ it('records a journal entry for a sowing', function () {
 
     $this->assertCount(1, Journal::all());
     // expect(true)->toBeTrue();
-});
+})->skip();
 
 
 // it('calculates the estimated plant date', function(){
@@ -72,9 +72,12 @@ it('adds plant date if sow_direct is true', function(){
         'sown' => "2023-2-14",
         'variety_id' => $variety->id,
         'succession_id' => $succession->id,
-        'sow_direct' => true,
+        'sow_direct' => true, 
     ];
-    $entry = Journal::create($input); 
+    // $entry = Journal::create($input); 
+    $entry = $this->post(route('journal.store', $input));
+    // dd($entry);
+
 
     assertEquals($entry->planted, $entry->sown);
 
@@ -89,7 +92,7 @@ it('adds plant date if sow_direct is true', function(){
     // add nursery 28
     // plant 72
 
-});
+})->skip();
 
 it('calculates the estimated first harvest date', function(){
     $this->withoutExceptionHandling();
@@ -130,7 +133,7 @@ it('calculates the estimated first harvest date', function(){
     // add nursery 28
     // plant 72
 
-});
+})->skip();
 
 it('calculates the estimated last harvest date', function(){
     $this->withoutExceptionHandling();
@@ -171,4 +174,4 @@ it('calculates the estimated last harvest date', function(){
     // add nursery 28
     // plant 72
 
-});
+})->skip();

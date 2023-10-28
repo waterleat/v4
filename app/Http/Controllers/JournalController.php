@@ -48,6 +48,16 @@ class JournalController extends Controller
      */
     public function create()
     {
+        $today = Carbon::today();
+        $succession = Succession::find(1);
+        $plantType = PlantType::find($succession->plant_type_id);
+        $varieties = Variety::all()->where('plant_type_id', $plantType->id);
+        return view('journal.create', [
+            'plantType' => $plantType,
+            'varieties' => $varieties,
+            'succession' => $succession,
+            'today' => $today,
+        ]);
         // $sid = att;
         // $succession = Succession::find($succession->id);
         // dd($succession);
@@ -66,6 +76,7 @@ class JournalController extends Controller
      */
     public function store(StoreJournalRequest $request)
     {
+        // dd($request);
         // dd($request->validated());
 
         $journal = Journal::create($request->validated());
