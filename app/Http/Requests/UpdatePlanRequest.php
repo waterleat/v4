@@ -11,7 +11,7 @@ class UpdatePlanRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdatePlanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'succession_id' => ['required'],
+            'locn_growing' => ['required'],
         ];
+    }
+
+    public function prepareForValidation( ): void
+    {
+        // dd($this);
     }
 }

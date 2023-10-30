@@ -23,6 +23,7 @@ class StorePlanRequest extends FormRequest
     {
         return [
             'succession_id' => ['required'],
+            'locn_growing' => [],
         ];
     }
 }

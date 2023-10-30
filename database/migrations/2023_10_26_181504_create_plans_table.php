@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('succession_id');
+            $table->string('locn_growing')->nullable();
             $table->timestamps();
         });
     }

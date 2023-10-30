@@ -51,16 +51,27 @@ it('can detect if there are no planned successions', function () {
     $response->assertSee('No plans availible', false);
 });
 
-it('can detect if there are planned successions', function () {
-    // $family = Family::factory()->create();
-    // $plantType = PlantType::factory()->create(['family_id'=>$family->id]);
+it('shows the plantType name of the planned successions', function () {
+    $family = Family::factory()->create();
+    $plantType1 = PlantType::factory()->create(['family_id'=>$family->id]);
+    // $plantType2 = PlantType::factory()->create(['family_id'=>$family->id]);
+
     // $variety = Variety::factory()->create([
     //     'plant_type_id' => $plantType->id,
     //     'sow_direct' => false,
     // ]);
-    // $successionType = SuccessionType::factory()->create();
-    // $succession = Succession::factory()->create([
-    //     'plant_type_id' => $plantType->id,
+    $successionType = SuccessionType::factory()->create();
+    $succession1 = Succession::factory()->create([
+        'plant_type_id' => $plantType1->id,
+        'succession_type_id' => $successionType->id,
+        'sow_start' => 30,
+        'sow_end' => 60,
+        'days_nursery' => 28,
+        'days_maturity' => 60,
+        'days_harvest' => 30,
+    ]);
+    // $succession2 = Succession::factory()->create([
+    //     'plant_type_id' => $plantType2->id,
     //     'succession_type_id' => $successionType->id,
     //     'sow_start' => 30,
     //     'sow_end' => 60,
@@ -68,18 +79,116 @@ it('can detect if there are planned successions', function () {
     //     'days_maturity' => 60,
     //     'days_harvest' => 30,
     // ]);
-    // $plan = [
-    //     'succession_id' => $succession->id,
+    $plan1 = [
+        'succession_id' => $succession1->id,
+    ];
+    // $plan2 = [
+    //     'succession_id' => $succession2->id,
     // ];
 
+    // $plan = [
+    //     'succession_id' => 1,
+    // ];
+    // dd($plan);
+
+    $response = $this->post('/plan', $plan1);
+    // $response = $this->post('/plan', $plan2);
+    $response = $this->get('plan');
+
+    $response->assertStatus(200);
+    $response->assertSee($plantType1->name, false);
+    // $response->assertSee($plantType2->name, false);
+});
+
+it('a plan must have a succession', function () {
+    // error on creation of plan
     $plan = [
-        'succession_id' => 1,
+        'locn_growing' => 'fred',
     ];
     // dd($plan);
 
     $response = $this->post('/plan', $plan);
-    $response = $this->get('plan');
+    $response->assertSessionHasErrors('succession_id');
+});
 
-    $response->assertStatus(200);
-    $response->assertSee('some', false);
+it('adding a plant type adds all successions for that plant type', function () {
+    // create a plantType and several successions
+    // add planttype via a route
+    // check count of plans
+});
+
+it('a single plan can be deleted from list of plans', function () {
+    // create a succession and add to plan
+    // count = 1
+    // delete via a route
+    // count = 0
+});
+
+it('allows a location for germination', function () {
+    // create a succession and add to plan
+    // edit via a route
+    // update via route
+    // check plan has locn
+});
+
+it('allows a location for seedlings nursery', function () {
+    // create a succession and add to plan
+    // edit via a route
+    // update via route
+    // check plan has locn
+});
+
+it('allows a location for growing', function () {
+    $this->withoutExceptionHandling();
+
+    // create a succession and add to plan
+    $family = Family::factory()->create();
+    $plantType = PlantType::factory()->create(['family_id'=>$family->id]);
+    $successionType = SuccessionType::factory()->create();
+    $succession = Succession::factory()->create([
+        'plant_type_id' => $plantType->id,
+        'succession_type_id' => $successionType->id,
+        'sow_start' => 30,
+        'sow_end' => 60,
+        'days_nursery' => 28,
+        'days_maturity' => 60,
+        'days_harvest' => 30,
+    ]);
+    // $response = $this->post('/plan', [
+    //     'succession_id' => $succession->id,
+    // ]);
+    // $response->assertStatus(200);
+    // $this->assertCount(1, Plan::all());
+
+    // edit via a route
+    // update via route
+    $plan = Plan::factory()->create([
+        'succession_id' => $succession->id,
+    ]);
+    $plan->locn_growing = 'garden';
+    dd($plan);
+    
+    dd($plan->toArray());
+
+    // the above dd gives the updated version of plan
+    $response = $this->patch(route('plan.update', ['plan'=>$plan]));
+    // the plan in this line is the original without locn data
+
+
+
+    dd( Plan::all());
+    $this->assertCount(1, Plan::all());
+
+    // check plan has locn
+    $plan = Plan::find(1);
+    // dd($plan);
+    $this->assertEquals('garden', $plan->locn_growing);
+})->skip();
+
+it('can list plans by location for a given day', function () {
+    // create a succession and add to plan with location fields
+    // give a date during nursery period
+    // check not germination locn
+    // check plan has locn for nursery
+    // repeat
 });

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePlanRequest;
 use App\Http\Requests\UpdatePlanRequest;
 use App\Models\Plan;
+use App\Models\PlantType;
+use App\Models\Succession;
+use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
@@ -13,7 +16,11 @@ class PlanController extends Controller
      */
     public function index()
     {
-        return view('plan.index', ['plans' => Plan::all()]);
+        return view('plan.index', [
+            'plans' => Plan::all(),
+            // 'succesions' => Succession::all(),
+            // 'plantTypes' => PlantType::all(),
+        ]);
     }
 
     /**
@@ -53,7 +60,13 @@ class PlanController extends Controller
      */
     public function update(UpdatePlanRequest $request, Plan $plan)
     {
-        //
+        // dd($plan);
+        // dd($request->validate([
+        //     'succession_id' => [],
+        //     'locn_growing' => [],
+        // ]));
+
+        $plan->update($request->validated());
     }
 
     /**
