@@ -14,14 +14,10 @@ beforeEach(function() {
 });
 
 
-it('the journal index page route has statusCode 200', function () {
+it('has "New Journal" visible on page', function(){
     $response = $this->get('/journal');
 
     $response->assertStatus(200);
-});
-
-it('has "New Journal" visible on page', function(){
-    $response = $this->get('/journal');
     $response->assertSee('New Journal</a>', false);
 });
 
@@ -126,10 +122,10 @@ it('the journal edit page route has statusCode 200', function () {
     ]);
     $successionType = SuccessionType::factory()->create();
     $succession = Succession::factory()->create([
-        'succession_type_id' => $successionType->id, 'plant_type_id' => $plantType->id]);
+        'succession_type_id' => $successionType->id, 
+        'plant_type_id' => $plantType->id
+    ]);
     $sowing = Journal::factory()->create([
-        // 'plant_type_id' => $plantType->id,
-        // 'succession_type_id' => $successionType->id,
         'succession_id' => $succession->id,
         'variety_id' => $variety->id,
         'sown' => '2023-12-25',   // '25/12/2023',
@@ -139,7 +135,7 @@ it('the journal edit page route has statusCode 200', function () {
         'sow_direct' => false,
     ]);
     // dd($sowing);
-    $response = $this->get('/journal/1/edit');
+    $response = $this->get('journal/'.$sowing->id.'/edit');
 
     $response->assertStatus(200);
 });

@@ -48,28 +48,18 @@ class JournalController extends Controller
      */
     public function create()
     {
-        $today = Carbon::today();
-        $succession = Succession::find(1);
-        $plantType = PlantType::find($succession->plant_type_id);
-        $varieties = Variety::all()->where('plant_type_id', $plantType->id);
-        return view('journal.create', [
-            'plantType' => $plantType,
-            'varieties' => $varieties,
-            'succession' => $succession,
-            'today' => $today,
-        ]);
-        // $sid = att;
-        // $succession = Succession::find($succession->id);
-        // dd($succession);
-
-        // $valid = DB::table('successions')
-        // ->where('sow_start', '<=', date_format(today(), 'z'))
-        // ->where(function ( $query) {
-        //     $query->where('sow_end', '>=', date_format(today(), 'z'));
-        // })
-        // ->get();
-                        
+        // $today = Carbon::today();
+        // $succession = Succession::find(1);
+        // $plantType = PlantType::find($succession->plant_type_id);
+        // $varieties = Variety::all()->where('plant_type_id', $plantType->id);
+        // return view('journal.create', [
+        //     'plantType' => $plantType,
+        //     'varieties' => $varieties,
+        //     'succession' => $succession,
+        //     'today' => $today,
+        // ]);
     }
+                        
 
     /**
      * Store a newly created resource in storage.
