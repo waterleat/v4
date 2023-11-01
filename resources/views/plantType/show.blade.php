@@ -45,8 +45,13 @@
                 </div>
             </div>
         </div>
-
-
+        
+        <div class="my-4">
+            <a href="{{ route('plan.addPlantType', $plantType->id) }}"
+                class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" >
+                Add to planning list
+            </a>
+        </div>
 
 
         
@@ -102,7 +107,8 @@
                             <td>
                                 <a class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" 
                                 href="{{ route('journal.newSowing', $succession->id) }}">Create journal entry</a>
-        
+                                <a class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" 
+                                href="{{ route('plan.addSuccession', $succession->id) }}">add to plan</a>
                             </td>
                         </tr>
                     @empty

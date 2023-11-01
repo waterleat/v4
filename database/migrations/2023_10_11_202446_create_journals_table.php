@@ -16,11 +16,12 @@ return new class extends Migration
             $table->foreignId('succession_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('variety_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamp('sown');
-            $table->string('variety')->nullable();
+            $table->boolean('sow_direct');
             $table->timestamp('planted')->nullable();
             $table->timestamp('first_harvest')->nullable();
             $table->timestamp('last_harvest')->nullable();
             $table->timestamps();
+            $table->string('variety')->nullable();
         });
     }
 

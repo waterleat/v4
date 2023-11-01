@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePlanRequest;
 use App\Models\Plan;
 use App\Models\PlantType;
 use App\Models\Succession;
+use App\Models\Variety;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -26,9 +27,35 @@ class PlanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    // public function create()
+    // {
+    //     //
+    // }
+    public function addSuccession( $sid)
     {
-        //
+        $succession = Succession::find($sid);
+        $plantType = PlantType::find($succession->plant_type_id);
+        $varieties = Variety::all()->where('plant_type_id', $plantType->id);
+        return view('plan.create', [
+            'succession' => $succession,
+            'plantType' => $plantType,
+            'varieties' => $varieties,
+        ]);
+    }
+    public function addPlantType(PlantType $plantType)
+    {
+        // $response = $this->post('/plan', $plan1);
+
+        // dd($plantType->successions());
+        foreach ($plantType->successions() as $succession) {
+            Plan::create(['succession_id' => $succession->id]);
+            // $this->post('/plan', ['succession_id' => $succession->id]);
+        }
+        return view('plan.index', [
+            'plans' => Plan::all(),
+            // 'succesions' => Succession::all(),
+            // 'plantTypes' => PlantType::all(),
+        ]);
     }
 
     /**

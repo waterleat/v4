@@ -16,7 +16,7 @@
             </div >
         </x-layout.index-cards>
         @empty
-            No plans availible
+            No plans available
         @endforelse
 
         
