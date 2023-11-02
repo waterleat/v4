@@ -23,8 +23,8 @@ class FamilyRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'latin' => ['required'],
-            'description' => ['required'],
+            'latin' => [],
+            'description' => [],
         ];
     }
 }
