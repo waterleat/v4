@@ -10,16 +10,6 @@
             {{ $successionTypes->find($succession->succession_type_id)->name }} -- {{ $plantTypes->find($succession->plant_type_id)->name }}
         </h2>
 
-        
-        <div id="yearview"
-            data-ss="{{ $succession->sow_start }}"
-            data-se="{{ $succession->sow_end }}"
-            data-ps="{{ $succession->plant_start }}"
-            data-pe="{{ $succession->plant_end }}"
-            data-hs="{{ $succession->harvest_start }}"
-            data-he="{{ $succession->harvest_end }}"
-            data-yd="{{ getdate()['yday'] }}">
-        </div>
 
 
         <div class="bg-white p-8">
@@ -55,6 +45,15 @@
 
 
 
+        <div id="yearview"
+            data-ss="{{ $succession->sow_start }}"
+            data-se="{{ $succession->sow_end }}"
+            data-ps="{{ $succession->plant_start }}"
+            data-pe="{{ $succession->plant_end }}"
+            data-hs="{{ $succession->harvest_start }}"
+            data-he="{{ $succession->harvest_end }}"
+            data-yd="{{ getdate()['yday'] }}">
+        </div>
             <div id="plan" class="w-full h-12">
                 <canvas id="canvas"  style="border:1px solid #d3d3d3;" class="w-full h-full" width="365" height="48">
                     Your browser does not support the HTML canvas tag.

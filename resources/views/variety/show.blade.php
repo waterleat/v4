@@ -38,20 +38,19 @@
                     <p>Store: {{ $variety->store }}</p>
                 </div>
             </div>
-            <div class="w-1/2">
-                <h2 class="text-3xl font-bold mb-8">Plant type
-                    <span class="text-xl pl-4"> 
-                        {{-- {{ dd($plantTypes->find($variety->plant_type_id)) }} --}}
-                            @if ($variety->plant_type_id)
-                            <a href="{{ route('plantType.show', ['plantType'=>$plantType]) }}"
-                                class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" >
+            <div class="w-1/2"> 
+                <div class="flex">
+                    <h2 class="text-3xl font-bold mb-8">Plant type</h2>
+                    <div class="text-xl pl-4"> 
+                        @if ($variety->plant_type_id)
+                            <x-button.small href="{{ route('plantType.show', ['plantType'=>$plantType]) }}">
                                 {{ $plantType->name }}
-                            </a>
-                            @else
-                                not known
-                            @endif
-                    </span>
-                </h2>
+                            </x-button.small>
+                        @else
+                            not known
+                        @endif
+                    </div>
+                </div>
                 {{-- <h2 class="text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ml-10">
                     {{ $family->name }}
                 </h2>

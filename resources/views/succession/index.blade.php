@@ -6,12 +6,10 @@
     <div class="max-w-3xl mx-auto p-4 sm:p-6 lg:p-8">
         <div class="flex justify-between">
             <div class="py-6 sm:py-10">
-                <a class="primary-btn inline text-base sm:text-xl bg-green-500 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-green-400"
-                href="{{ route('succession.create') }}">New Succession</a>
+                <x-button.large href="{{ route('succession.create') }}">New Succession</x-button.large>
             </div>
             <div class="py-6 sm:py-10">
-                <a class="primary-btn inline text-base sm:text-xl bg-green-500 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-green-400"
-                href="{{ route('succession.sowtoday') }}">What to sow today</a>
+                <x-button.large href="{{ route('succession.sowtoday') }}">What to sow today</x-button.large>
             </div>
     
         </div>

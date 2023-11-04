@@ -19,10 +19,9 @@
 
             @forelse ( $family->plantTypes as $plantType )
             <li class="mb-2">
-                <a href="{{ route('plantType.show', ['plantType'=>$plantType]) }}"
-                    class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" >
+                <x-button.small href="{{ route('plantType.show', ['plantType'=>$plantType]) }}">
                     {{ $plantType['name'] }}
-                </a>
+                </x-button.small>
             </li>
             @empty
                 no plant types found

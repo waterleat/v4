@@ -18,10 +18,9 @@
                     <h3 class="text-2xl w-32">Family:</h3>
                     <p class="my-auto"> 
                         @if ($plantType->family_id)
-                        <a href="{{ route('family.show', ['family'=>$plantType->family_id]) }}"
-                            class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" >
-                            {{ $family->name }}
-                        </a>
+                            <x-button.small href="{{ route('family.show', ['family'=>$plantType->family_id]) }}">
+                                {{ $family->name }}
+                            </x-button.small>
                         @else
                         Not known
                         @endif
@@ -33,10 +32,9 @@
                     <ul class="my-auto">
                         @forelse ( $plantType->varieties as $variety )
                         <li class="mb-2">
-                            <a href="{{ route('variety.show', ['variety'=>$variety]) }}"
-                                class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" >
+                            <x-button.small href="{{ route('variety.show', ['variety'=>$variety]) }}">
                                 {{ $variety['name'] }}
-                            </a>
+                            </x-button.small>
                         </li>
                         @empty
                             No varieties found
@@ -47,9 +45,9 @@
         </div>
         
         <div class="my-4">
-            <a href="{{ route('plan.addPlantType', $plantType->id) }}"
-                class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" >
+            <x-button.small href="{{ route('plan.addPlantType', $plantType->id) }}">
                 Add to planning list
+            </x-button.small>
             </a>
         </div>
 
@@ -67,6 +65,7 @@
                         <th>First Harvest</th>
                         <th>Last Harvest</th>
                         <th>Varieties</th>
+                        <th>Add to</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,6 +84,16 @@
                             <td class="bg-blue-400 px-2">{{ $succession->first_harvest }}</td>
                             <td class="bg-red-400 px-2">{{ $succession->last_harvest }}</td>
                             <td rowspan="2" class="">{{ $succession->varieties_recommended }}</td>
+                            <td rowspan="2">
+                                <div class="mb-1">
+                                    <x-button.small href="{{ route('journal.newSowing', $succession->id) }}">
+                                        Journal entry
+                                    </x-button.small>
+                                </div>
+                                <x-button.small href="{{ route('plan.addSuccession', $succession->id) }}">
+                                    Planning
+                                </x-button.small>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="4">
@@ -99,16 +108,11 @@
                                     data-yd="{{ getdate()['yday'] }}">
                                 </div>
                                 <div id="plan-{{ $loop->iteration }}" class="w-full h-8">
-                                    <canvas id="canvas-{{ $loop->iteration }}"  style="border:1px solid #d3d3d3;" class="w-full h-full" width="365" height="30">
+                                    <canvas id="canvas-{{ $loop->iteration }}" width="365" height="30" 
+                                        class="w-full h-full border border-gray-300">
                                         Your browser does not support the HTML canvas tag.
                                     </canvas>
                                 </div>
-                            </td>
-                            <td>
-                                <a class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" 
-                                href="{{ route('journal.newSowing', $succession->id) }}">Create journal entry</a>
-                                <a class="primary-btn inline text-base  bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400" 
-                                href="{{ route('plan.addSuccession', $succession->id) }}">add to plan</a>
                             </td>
                         </tr>
                     @empty
