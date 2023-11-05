@@ -1,7 +1,6 @@
 <x-layout>
     <x-slot:title>
-        edit succession
-        {{-- Edit PlantType {{ $succession->name }} --}}
+        Edit Succession
     </x-slot:title>
     
     <div class="mx-8 p-4 sm:p-6 lg:p-8">
@@ -12,7 +11,6 @@
                 <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
                     Something went wrong ...
                 </div>
-                {{-- {{ dd($errors) }} --}}
                 <ul class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
                     @foreach ($errors->all() as $message )
                         <li> {{ $message }} </li>
@@ -31,9 +29,6 @@
             <div class="flex">
                 <div class="w-1/2">
                     <x-input.label for="succession_type_id" :value="__('Type')" />
-                    {{-- <x-input.text name="type" id="type"
-                        value="{{ $succession->type }}"
-                        class="bg-white block border w-full h-10 text-2xl outline-none" /> --}}
                     <select name="succession_type_id" id="succession_type_id" 
                     class="bg-white block border w-full h-10 text-xl outline-none
                     px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
@@ -110,7 +105,6 @@
                 <div class="w-80 my-4">
                     <x-input.label for="last_harvest" :value="__('Last Harvest')" />
                     <x-input.text id="last_harvest" name="last_harvest"
-                        {{-- placeholder="Last Harvest..."  --}}
                         value="{{ $succession->last_harvest }}"
                         class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
@@ -119,21 +113,18 @@
             <div class=" my-4">
                 <x-input.label for="start_seeds" :value="__('Start seeds')" />
                 <x-input.text id="start_seeds" name="start_seeds"
-                    {{-- placeholder="Last Harvest..."  --}}
                     value="{{ $succession->start_seeds }}"
                     class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
             </div>
             <div class=" my-4">
                 <x-input.label for="grow_seedlings" :value="__('Grow seedlings')" />
                 <x-input.text id="grow_seedlings" name="grow_seedlings"
-                    {{-- placeholder="Last Harvest..."  --}}
                     value="{{ $succession->grow_seedlings }}"
                     class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
             </div>
             <div class=" my-4">
                 <x-input.label for="grow_plants" :value="__('Grow plants')" />
                 <x-input.text id="grow_plants" name="grow_plants"
-                    {{-- placeholder="Last Harvest..."  --}}
                     value="{{ $succession->lastHarvest }}"
                     class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
             </div>

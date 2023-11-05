@@ -69,23 +69,10 @@ class PlantTypeController extends Controller
     public function update(PlantTypeRequest $request, PlantType $plantType)
     {
         $path = $request->file('germ_temp_img')->store('germtemp', 'public');
-        // dd(storage_path('app') . "/$path");
-        // $plantType->update(['germ_temp_img' => storage_path('app') . "/$path"]);
-        // dd($plantType);
-        // dd($request->validated());
-        // dd($request->file('germ_temp_img'));
-        // dd($path);
         
         $data = $request->validated();
-        // $filename = $request->getSchemeAndHttpHost() . $plantType->name . $request->germ_temp_img->extension() ;
-        // $filename = $plantType->name . $request->germ_temp_img->extension() ;
-        // // dd($img);
-        // $request->germ_temp_img->move(public_path('images', $filename));
-        // $data['germ_temp_img'] =  storage_path('app') . "/$path";
         $data['germ_temp_img'] =  $path;
-        // dd($data['germ_temp_img']);
         $plantType->update($data);
-        // $request['germ_temp_img'] = $request->germ_temp_img->getClientOriginalName();    //filename() . "." . $request->germ_temp_img->extension();
         return Redirect(route('plantType.index'));
     }
 
@@ -95,7 +82,6 @@ class PlantTypeController extends Controller
     public function destroy(PlantType $plantType)
     {
         $plantType->delete() ;
-        // PlantType::destroy($id);
         return redirect(route('plantType.index'))->with('message', 'PlantType has been deleted');
     }
 }

@@ -37,12 +37,10 @@ class SuccessionController extends Controller
         // $successions = Succession::all();
         $varieties = Variety::all();
         return view('succession.create', [
-            // 'successions' => $successions,
             'successionTypes' => $successionTypes,
             'plantTypes' => $plantTypes,
             'varieties' => $varieties,
         ]);
-        // return view('succession.create');
     }
 
     /**

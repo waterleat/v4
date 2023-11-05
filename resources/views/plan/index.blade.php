@@ -18,12 +18,12 @@
                     </div>
                     <div id="suc-{{ $loop->iteration }}" class="year flex"
                         data-el="<?= "canvas-".$loop->iteration  ?>"
-                        data-ss="<?= htmlspecialchars($plan->succession->sow_start) ?>"
-                        data-se="<?= htmlspecialchars($plan->succession->sow_end) ?>"
-                        data-ps="<?= htmlspecialchars($plan->succession->plant_start) ?>"
-                        data-pe="<?= htmlspecialchars($plan->succession->plant_end) ?>"
-                        data-hs="<?= htmlspecialchars($plan->succession->harvest_start) ?>"
-                        data-he="<?= htmlspecialchars($plan->succession->harvest_end) ?>"
+                        data-ss="{{ $plan->succession->sow_start }}"
+                        data-se="{{ $plan->succession->sow_end }}"
+                        data-ps="{{ $plan->succession->plant_start }}"
+                        data-pe="{{ $plan->succession->plant_end }}"
+                        data-hs="{{ $plan->succession->harvest_start }}"
+                        data-he="{{ $plan->succession->harvest_end }}"
                         data-yd="{{ getdate()['yday'] }}">
                     </div>
                     <div id="plan-{{ $loop->iteration }}" class="max:w-2xl h-8">

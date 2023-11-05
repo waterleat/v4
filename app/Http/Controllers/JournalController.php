@@ -37,9 +37,9 @@ class JournalController extends Controller
         $plantType = PlantType::find($succession->plant_type_id);
         $varieties = Variety::all()->where('plant_type_id', $plantType->id);
         return view('journal.create', [
+            'succession' => $succession,
             'plantType' => $plantType,
             'varieties' => $varieties,
-            'succession' => $succession,
             'today' => $today,
         ]);
     }
@@ -48,16 +48,16 @@ class JournalController extends Controller
      */
     public function create()
     {
-        // $today = Carbon::today();
-        // $succession = Succession::find(1);
-        // $plantType = PlantType::find($succession->plant_type_id);
-        // $varieties = Variety::all()->where('plant_type_id', $plantType->id);
-        // return view('journal.create', [
-        //     'plantType' => $plantType,
-        //     'varieties' => $varieties,
-        //     'succession' => $succession,
-        //     'today' => $today,
-        // ]);
+        $today = Carbon::today();
+        $succession = Succession::find(1);
+        $plantType = PlantType::find($succession->plant_type_id);
+        $varieties = Variety::all()->where('plant_type_id', $plantType->id);
+        return view('journal.create', [
+            'plantType' => $plantType,
+            'varieties' => $varieties,
+            'succession' => $succession,
+            'today' => $today,
+        ]);
     }
                         
 

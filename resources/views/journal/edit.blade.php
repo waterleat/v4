@@ -11,7 +11,6 @@
                 <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
                     Something went wrong ...
                 </div>
-                {{-- {{ dd($errors) }} --}}
                 <ul class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
                     @foreach ($errors->all() as $message )
                         <li> {{ $message }} </li>
@@ -21,7 +20,6 @@
             @endif
             
             <form
-                {{-- action="{{ route('family.update', $family->id) }}" --}}
                 action="{{ route('journal.update', ['journal'=>$journal] ) }}"
                 method="POST"
                 enctype="multipart/form-data">
@@ -31,10 +29,6 @@
                 <div>today: {{ $today->format('d M Y') }} </div>
                 sown: {{ $journal->sown->format('d M Y') }}
                 <div class="my-4">
-                    {{-- <x-input.label for="name" :value="__('Name')" />
-                    <x-input.text name="name" id="name"
-                        value="{{ $family->name }}"
-                        class="bg-white block border w-full h-10 text-2xl outline-none" /> --}}
                     <select id="plant_type_id" name="plant_type_id" 
                         class="bg-white block border w-full h-10 text-xl outline-none
                         px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
@@ -45,11 +39,7 @@
                 </div>
 
                 <div class="my-4">
-                    {{-- <x-input.label for="name" :value="__('Latin Name')" />
-                    <x-input.text type="text" name="latin"
-                        value="{{ $family->latin }}"
-                        class="bg-white block border w-full h-10 text-2xl outline-none" /> --}}
-                    <select id="plant_type_id" name="plant_type_id" 
+                    <select id="variety_id" name="variety_id" 
                         class="bg-white block border w-full h-10 text-xl outline-none
                         px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
                         @foreach ($varieties as $variety)
@@ -58,14 +48,6 @@
                             </option>
                         @endforeach
                     </select>
-                </div>
-
-                <div class="my-4">
-                    {{-- <x-input.label for="description" :value="__('Description')" />
-                    <x-input.textarea name="description"
-                        placeholder=""
-                        :value="$family->description"
-                        class="p-3 bg-white block border w-full h-60 text-2xl outline-none" /> --}}
                 </div>
 
                 <button

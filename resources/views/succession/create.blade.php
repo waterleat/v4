@@ -59,18 +59,6 @@
                     </div>
                 </div>
 
-                {{-- varieties
-                <div class="my-4">
-                    <x-input.label for="family" :value="__('Family')" />
-                    <select id="family" name="family_id" 
-                        class="bg-white block border w-full h-10 text-xl outline-none
-                        px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                        <option>--Pick plant family--</option>
-                        @foreach ( $families as $family )
-                            <option value="{{ $family->id }}" >{{ $family->name }}</option>
-                        @endforeach
-                    </select>
-                </div> --}}
                 <div class="my-4">
                     <x-input.label for="varieties_recommended" :value="__('varieties_recommended')" />
                     <x-input.text id="varieties_recommended" name="varieties_recommended"

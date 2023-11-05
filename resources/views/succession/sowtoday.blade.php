@@ -6,7 +6,6 @@
     <div class=" mx-6 pb-20">
         <div class="flex">
             <h2 class="w-4/5 text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ">
-                {{-- {{ $plantType->name }} --}}
                 Successions to sow today
             </h2>
         </div>
@@ -37,12 +36,12 @@
                 <td colspan="4">
                     <div id="suc-{{ $loop->iteration }}" class="year flex"
                         data-el="<?= "canvas-".$loop->iteration  ?>"
-                        data-ss="<?= htmlspecialchars($succession->sow_start) ?>"
-                        data-se="<?= htmlspecialchars($succession->sow_end) ?>"
-                        data-ps="<?= htmlspecialchars($succession->plant_start) ?>"
-                        data-pe="<?= htmlspecialchars($succession->plant_end) ?>"
-                        data-hs="<?= htmlspecialchars($succession->harvest_start) ?>"
-                        data-he="<?= htmlspecialchars($succession->harvest_end) ?>"
+                        data-ss="{{ $succession->sow_start }}"
+                        data-se="{{ $succession->sow_end }}"
+                        data-ps="{{ $succession->plant_start }}"
+                        data-pe="{{ $succession->plant_end }}"
+                        data-hs="{{ $succession->harvest_start }}"
+                        data-he="{{ $succession->harvest_end }}"
                         data-yd="{{ getdate()['yday'] }}">
                     </div>
                     <div id="plan-{{ $loop->iteration }}" class="w-full h-8">

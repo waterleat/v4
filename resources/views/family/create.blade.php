@@ -11,7 +11,6 @@
                 <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
                     Something went wrong ...
                 </div>
-                {{-- {{ dd($errors) }} --}}
                 <ul class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
                     @foreach ($errors->all() as $message )
                         <li> {{ $message }} </li>
@@ -46,26 +45,6 @@
                         class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
                 </div>
 
-
-                {{-- <label for="is_published" class="text-gray-500 text-2xl">
-                    Is Published
-                </label>
-                <input
-                    type="checkbox"
-                    class="bg-transparent  border-b-2 inline text-2xl outline-none"
-                    name="is_published"> --}}
-
-                {{-- <div class="bg-grey-lighter py-10">
-                    <label class="w-44 flex flex-col items-center px-2 py-3 bg-white-rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer">
-                            <span class="mt-2 text-base leading-normal">
-                                Select a file
-                            </span>
-                        <input
-                            type="file"
-                            name="image"
-                            class="hidden">
-                    </label>
-                </div> --}}
 
                 <button
                     type="submit"
