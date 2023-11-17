@@ -118,7 +118,7 @@ class SuccessionController extends Controller
         ->where(function ( $query) {
             $query->where('sow_end', '>=', date_format(today(), 'z'));
         })
-        ->get();
+        ->get()->sortBy('sow_start')->sortBy('plant_type_id');
         return view('succession.sowtoday', [
             'plantTypes' => $plantTypes,
             'successionTypes' => $successionTypes,
