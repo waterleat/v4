@@ -1,4 +1,4 @@
-<div class="py-5 px-12 flex">
+<div class="py-5 px-12 flex ">
     <x-button.nav href="{{ route('home') }}">
         < Home page
     </x-button.nav>

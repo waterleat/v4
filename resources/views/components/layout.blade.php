@@ -15,7 +15,7 @@
     </head>
 
     <body>
-        <div class="fixed top-0 w-full bg-white">
+        <div class="fixed top-0 w-full bg-white z-10">
             @include('components.navigation')
         </div>
         <main class="mt-16 bg-green-100">

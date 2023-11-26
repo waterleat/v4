@@ -4,47 +4,47 @@
     </x-slot:title>
 
     <div class=" mx-auto p-4 sm:p-6 lg:p-8">
-
-        @forelse ($plans as $plan)
-        <x-layout.index-cards>
-            <div class="w-full">
-                <div class="flex">
-                    <div class="w-1/4 text-gray-900 py-1 px-2  mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
-                        <a href="{{ route('plan.show', ['plan'=>$plan->id]) }}">
-                            <h2 class="text-xl font-bold">
-                                {{ $plan->succession->plantType->name }} at {{ $plan->locn_growing }} 
-                            </h2>
-                        </a>
+        <div class="flex flex-wrap">
+            @forelse ($plans as $plan)
+            <x-layout.index-cards class="w-5/12">
+                <div class="w-full">
+                    <div class="">
+                        <div class=" text-gray-900 py-1 px-2  mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
+                            <a href="{{ route('plan.show', ['plan'=>$plan->id]) }}">
+                                <h2 class="text-xl font-bold">
+                                    {{ $plan->succession->plantType->name }} at {{ $plan->locn_growing }} 
+                                </h2>
+                            </a>
+                        </div>
+                        <div id="suc-{{ $loop->iteration }}" class="year flex"
+                            data-el="<?= "canvas-".$loop->iteration  ?>"
+                            data-ss="{{ $plan->succession->sow_start }}"
+                            data-se="{{ $plan->succession->sow_end }}"
+                            data-ps="{{ $plan->succession->plant_start }}"
+                            data-pe="{{ $plan->succession->plant_end }}"
+                            data-hs="{{ $plan->succession->harvest_start }}"
+                            data-he="{{ $plan->succession->harvest_end }}"
+                            data-yd="{{ getdate()['yday'] }}">
+                        </div>
+                        <div id="plan-{{ $loop->iteration }}" class="max:w-2xl h-8">
+                            <canvas id="canvas-{{ $loop->iteration }}" width="365" height="30" 
+                                class="w-full h-full border border-gray-300">
+                                Your browser does not support the HTML canvas tag.
+                            </canvas>
+                        </div>
+                        <div class="ml-4">
+                            <x-button.small href="{{ route('journal.newSowing', $plan->succession->id) }}">
+                                Create journal entry
+                            </x-button.small>
+                        </div>
                     </div>
-                    <div id="suc-{{ $loop->iteration }}" class="year flex"
-                        data-el="<?= "canvas-".$loop->iteration  ?>"
-                        data-ss="{{ $plan->succession->sow_start }}"
-                        data-se="{{ $plan->succession->sow_end }}"
-                        data-ps="{{ $plan->succession->plant_start }}"
-                        data-pe="{{ $plan->succession->plant_end }}"
-                        data-hs="{{ $plan->succession->harvest_start }}"
-                        data-he="{{ $plan->succession->harvest_end }}"
-                        data-yd="{{ getdate()['yday'] }}">
-                    </div>
-                    <div id="plan-{{ $loop->iteration }}" class="max:w-2xl h-8">
-                        <canvas id="canvas-{{ $loop->iteration }}" width="365" height="30" 
-                            class="w-full h-full border border-gray-300">
-                            Your browser does not support the HTML canvas tag.
-                        </canvas>
-                    </div>
-                    <div class="ml-4">
-                        <x-button.small href="{{ route('journal.newSowing', $plan->succession->id) }}">
-                            Create journal entry
-                        </x-button.small>
-                    </div>
-                </div>
-            </div >
-            
-        </x-layout.index-cards>
-        @empty
-            No plans available
-        @endforelse
-
+                </div >
+                
+            </x-layout.index-cards>
+            @empty
+                No plans available
+            @endforelse
+        </div>
         
     </div>
     <script type="text/javascript">
