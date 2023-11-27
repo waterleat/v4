@@ -140,8 +140,14 @@
                 <h3 class="text-2xl">varieties recommended :</h3>
                 <p class="pl-6">{{ $succession->varieties_recommended }}</p>
             </div>
+            
+            <div class="">
+                <h3 class="text-2xl">my varieties :</h3>
+                @foreach ($succession->varieties as $variety)
+                    <p class="pl-6">{{ $variety->name }}</p>
+                @endforeach
+            </div>
         </div>
-
 
     </div>
 </x-layout>

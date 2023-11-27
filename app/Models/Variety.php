@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Variety extends Model
@@ -33,5 +34,15 @@ class Variety extends Model
     {
         return $this->hasMany(Journal::class);
     }
-}
+    
+    /**
+     * The successions that belong to the Variety
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function successions(): BelongsToMany
+    {
+        return $this->belongsToMany(Succession::class);
+    }
 
+}
