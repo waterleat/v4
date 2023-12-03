@@ -27,10 +27,11 @@ class Plan extends Model
 
     protected $fillable = [
         'succession_id',
+        'sow_start', 'sow_end', 'plant_start', 'plant_end', 'harvest_start', 'harvest_end',
+        'days_nursery', 'days_maturity', 'days_harvest', 
         'sow', 'plant', 'first_harvest', 'last_harvest', 
         'locn_sowing', 'locn_nursery', 'locn_growing', 
         'sown', 'germinated', 'planted', 'first_cropped', 'last_cropped', 
-        'sow_start', 'sow_end', 'plant_start', 'plant_end', 'harvest_start', 'harvest_end',
     ];
 
     /**
