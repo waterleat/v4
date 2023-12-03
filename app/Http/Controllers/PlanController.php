@@ -9,6 +9,7 @@ use App\Models\PlantType;
 use App\Models\Succession;
 use App\Models\Variety;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class PlanController extends Controller
 {
@@ -40,8 +41,22 @@ class PlanController extends Controller
             'succession' => $succession,
             'plantType' => $plantType,
             'varieties' => $varieties,
+            'sow_start' => $this->doyToDate($succession->sow_start),
+            'sow_end' => $this->doyToDate($succession->sow_end),
+            'plant_start' => $this->doyToDate($succession->plant_start),
+            'plant_end' => $this->doyToDate($succession->plant_end),
+            'harvest_start' => $this->doyToDate($succession->harvest_start),
+            'harvest_end' => $this->doyToDate($succession->harvest_end),
         ]);
     }
+
+    public function doyToDate(int $doy)
+    {
+        // dd($doy);
+        $startOfYear = Carbon::createMidnightDate(null, 1, 1);
+        return $startOfYear->addDays($doy);
+    }
+
     public function addPlantType(PlantType $plantType)
     {
         // $response = $this->post('/plan', $plan1);
