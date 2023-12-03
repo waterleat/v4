@@ -10,7 +10,28 @@ class Plan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['succession_id', 'locn_growing', ];
+    protected $casts = [
+        'sow_start' => 'datetime',
+        'sow_end' => 'datetime',
+        'plant_start' => 'datetime',
+        'plant_end' => 'datetime',
+        'harvest_start' => 'datetime',
+        'harvest_end' => 'datetime',
+        'sown' => 'datetime',
+        'germinated' => 'datetime',
+        'planted' => 'datetime',
+        'first_cropped' => 'datetime',
+        'last_cropped' => 'datetime',
+
+    ];
+
+    protected $fillable = [
+        'succession_id',
+        'sow', 'plant', 'first_harvest', 'last_harvest', 
+        'locn_sowing', 'locn_nursery', 'locn_growing', 
+        'sown', 'germinated', 'planted', 'first_cropped', 'last_cropped', 
+        'sow_start', 'sow_end', 'plant_start', 'plant_end', 'harvest_start', 'harvest_end',
+    ];
 
     /**
      * Get the succession that owns the plan.
