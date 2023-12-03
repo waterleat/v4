@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Family;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,24 +16,24 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('latin');
-            $table->foreignId('family_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Family::class);
             $table->boolean('perennial');
-            $table->text('dates_best_sow')->nullable();
-            $table->text('dates_main_harvest')->nullable();
-            $table->text('feeder_type')->nullable();
-            $table->text('root_depth')->nullable();
-            $table->text('mulch')->nullable();
-            $table->text('fertiliser')->nullable();
-            $table->text('when_to_fertilise')->nullable();
+            $table->string('dates_best_sow')->nullable();
+            $table->string('dates_main_harvest')->nullable();
+            $table->string('feeder_type')->nullable();
+            $table->string('root_depth')->nullable();
+            $table->string('mulch')->nullable();
+            $table->string('fertiliser')->nullable();
+            $table->string('when_to_fertilise')->nullable();
             $table->integer('multisow')->nullable();
-            $table->text('hardiness_young_plants')->nullable();
-            $table->text('competitor')->nullable();
+            $table->string('hardiness_young_plants')->nullable();
+            $table->string('competitor')->nullable();
             $table->text('competition_period')->nullable();
-            $table->text('companions')->nullable();
-            $table->text('interplant_into')->nullable();
-            $table->text('interplant_with')->nullable();
-            $table->text('relay_plant_into')->nullable();
-            $table->text('relay_plant_with')->nullable();
+            $table->string('companions')->nullable();
+            $table->string('interplant_into')->nullable();
+            $table->string('interplant_with')->nullable();
+            $table->string('relay_plant_into')->nullable();
+            $table->string('relay_plant_with')->nullable();
             $table->string('germ_temp_img')->nullable();
             $table->timestamps();
         });

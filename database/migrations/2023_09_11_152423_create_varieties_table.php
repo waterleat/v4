@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('varieties', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plant_type_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignIdFor(PlantType::class);
             $table->string('name');
             $table->string('info');
             $table->text('description');

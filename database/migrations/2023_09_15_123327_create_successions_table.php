@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\PlantType;
+use App\Models\SuccessionType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('successions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('succession_type_id')->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('plant_type_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignIdFor(SuccessionType::class);
+            $table->foreignIdFor(PlantType::class);
             $table->boolean('cd');
             $table->string('varieties_recommended')->nullable();
             $table->string('sow')->nullable();
