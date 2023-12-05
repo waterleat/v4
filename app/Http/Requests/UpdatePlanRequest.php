@@ -23,7 +23,28 @@ class UpdatePlanRequest extends FormRequest
     {
         return [
             'succession_id' => ['required'],
-            'locn_growing' => ['required'],
+            'sow_start' => ['required'],
+            'sow_end' => ['required'],
+            'plant_start' => ['required'],
+            'plant_end' => ['required'],
+            'harvest_start' => ['required'],
+            'harvest_end' => ['required'],
+            'days_nursery' => [],
+            'days_maturity' => [],
+            'days_harvest' => [],
+            // 'sow' => [],
+            // 'plant' => [],
+            // 'first_harvest' => [],
+            // 'last_harvest' => [],
+            'sown' => [],
+            'locn_sowing' => [],
+            'germinated' => [],
+            'locn_nursery' => [],
+            'planted' => [],
+            'locn_growing' => [],
+            'first_cropped' => [],
+            'last_cropped' => [],
+            'status' => [],
         ];
     }
 

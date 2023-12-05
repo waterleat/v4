@@ -32,6 +32,7 @@ class Plan extends Model
         'sow', 'plant', 'first_harvest', 'last_harvest', 
         'locn_sowing', 'locn_nursery', 'locn_growing', 
         'sown', 'germinated', 'planted', 'first_cropped', 'last_cropped', 
+        'status', 
     ];
 
     /**

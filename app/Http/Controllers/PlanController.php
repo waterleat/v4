@@ -47,6 +47,9 @@ class PlanController extends Controller
             'plant_end' => $this->doyToDate($succession->plant_end),
             'harvest_start' => $this->doyToDate($succession->harvest_start),
             'harvest_end' => $this->doyToDate($succession->harvest_end),
+            'days_nursery' => $succession->days_nursery ?: 28,
+            'days_maturity' => $succession->days_maturity ?: 60,
+            'days_harvest' => $succession->days_harvest ?: 40,
         ]);
     }
 
@@ -79,6 +82,7 @@ class PlanController extends Controller
     public function store(StorePlanRequest $request)
     {
         $plan = Plan::create($request->validated());
+        return Redirect(route('plan.index'));
     }
 
     /**
@@ -86,7 +90,9 @@ class PlanController extends Controller
      */
     public function show(Plan $plan)
     {
-        //
+        return view('plan.show', [
+            'plan' => $plan,
+        ]);
     }
 
     /**
@@ -94,7 +100,24 @@ class PlanController extends Controller
      */
     public function edit(Plan $plan)
     {
-        //
+        $succession = Succession::find($plan->succession_id);
+        $plantType = PlantType::find($succession->plant_type_id);
+        $varieties = Variety::all()->where('plant_type_id', $plantType->id);
+        return view('plan.edit', [
+            'plan' => $plan,
+            'succession' => $succession,
+            'plantType' => $plantType,
+            'varieties' => $varieties,
+            // 'sow_start' => $this->doyToDate($succession->sow_start),
+            // 'sow_end' => $this->doyToDate($succession->sow_end),
+            // 'plant_start' => $this->doyToDate($succession->plant_start),
+            // 'plant_end' => $this->doyToDate($succession->plant_end),
+            // 'harvest_start' => $this->doyToDate($succession->harvest_start),
+            // 'harvest_end' => $this->doyToDate($succession->harvest_end),
+            // 'days_nursery' => $succession->days_nursery ?: 28,
+            // 'days_maturity' => $succession->days_maturity ?: 60,
+            // 'days_harvest' => $succession->days_harvest ?: 40,
+        ]);
     }
 
     /**
@@ -109,6 +132,7 @@ class PlanController extends Controller
         // ]));
 
         $plan->update($request->validated());
+        return Redirect(route('plan.index'));
     }
 
     /**

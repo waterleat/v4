@@ -28,8 +28,11 @@
                 @csrf
                 <input type="hidden" id="succession_id" name="succession_id" value="{{ $succession->id }}">
 
+                <h2 class="text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ">
+                    {{ $succession->successionType->name }}: {{ $succession->plantType->name }}
+                </h2>
 
-                <div class="w-1/4">
+                {{-- <div class="w-1/4">
                     <x-input.label for="plant_type_id" :value="__('Plant Type')" />
                     <select id="plant_type_id" name="plant_type_id" 
                         class="bg-white block border w-full h-10 text-xl outline-none
@@ -38,39 +41,41 @@
                             {{ $plantType->name }}
                         </option>
                     </select>
-                </div>
+                </div> --}}
+
                 <div class="flex">
                     <div class="w-1/6">
                         <p>{{ $sow_start->format('d M Y') }}</p>
                         <x-input.label for="sow_start" :value="__('sow start')" />
-                        <input type="date" name="sow_start" id="sow_start" value="{{ $sow_start->format('d M Y') }}" />
+                        <input type="date" name="sow_start" id="sow_start" value="{{ $sow_start->format('Y-m-d') }}" />
                     </div>
                     <div class="w-1/6">
                         <p>{{ $sow_end->format('d M Y') }}</p>
                         <x-input.label for="sow_end" :value="__('sow end')" />
-                        <input type="date" name="sow_end" id="sow_end" value="{{ $sow_end->format('d M Y') }}" />
+                        <input type="date" name="sow_end" id="sow_end" value="{{ $sow_end->format('Y-m-d') }}" />
                     </div>
                     <div class="w-1/6">
                         <p>{{ $plant_start->format('d M Y') }}</p>
                         <x-input.label for="plant_start" :value="__('plant start')" />
-                        <input type="date" name="plant_start" id="plant_start" value="{{ $plant_start->format('d M Y') }}" />
+                        <input type="date" name="plant_start" id="plant_start" value="{{ $plant_start->format('Y-m-d') }}" />
                     </div>
                     <div class="w-1/6">
                         <p>{{ $plant_end->format('d M Y') }}</p>
                         <x-input.label for="plant_end" :value="__('plant end')" />
-                        <input type="date" name="plant_end" id="plant_end" value="{{ $plant_end->format('d M Y') }}" />
+                        <input type="date" name="plant_end" id="plant_end" value="{{ $plant_end->format('Y-m-d') }}" />
                     </div>
                     <div class="w-1/6">
                         <p>{{ $harvest_start->format('d M Y') }}</p>
                         <x-input.label for="harvest_start" :value="__('harvest start')" />
-                        <input type="date" name="harvest_start" id="harvest_start" value="{{ $harvest_start->format('d M Y') }}" />
+                        <input type="date" name="harvest_start" id="harvest_start" value="{{ $harvest_start->format('Y-m-d') }}" />
                     </div>
                     <div class="w-1/6">
                         <p>{{ $harvest_end->format('d M Y') }}</p>
                         <x-input.label for="harvest_end" :value="__('harvest end')" />
-                        <input type="date" name="harvest_end" id="harvest_end" value="{{ $harvest_end->format('d M Y') }}" />
+                        <input type="date" name="harvest_end" id="harvest_end" value="{{ $harvest_end->format('Y-m-d') }}" />
                     </div>
                 </div>
+
                 <div class="w-1/4">
                     <x-input.label for="variety_id" :value="__('variety Name')" />
                     <select id="variety_id" name="variety_id" 

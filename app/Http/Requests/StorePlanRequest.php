@@ -23,7 +23,28 @@ class StorePlanRequest extends FormRequest
     {
         return [
             'succession_id' => ['required'],
+            'sow_start' => [],
+            'sow_end' => [],
+            'plant_start' => [],
+            'plant_end' => [],
+            'harvest_start' => [],
+            'harvest_end',
+            'days_nursery' => [],
+            'days_maturity' => [],
+            'days_harvest' => [],
+            // 'sow' => [],
+            // 'plant' => [],
+            // 'first_harvest' => [],
+            // 'last_harvest' => [],
+            'sown' => [],
+            'locn_sowing' => [],
+            'germinated' => [],
+            'locn_nursery' => [],
+            'planted' => [],
             'locn_growing' => [],
+            'first_cropped' => [],
+            'last_cropped' => [],
+            'status' => [],
         ];
     }
 }

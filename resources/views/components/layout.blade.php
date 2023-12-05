@@ -18,7 +18,7 @@
         <div class="fixed top-0 w-full bg-white z-10">
             @include('components.navigation')
         </div>
-        <main class="mt-16 bg-green-100">
+        <main class="mt-20 bg-green-100">
             {{ $slot }}
         </main>
     </body>

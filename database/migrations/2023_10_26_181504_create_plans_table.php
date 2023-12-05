@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('locn_growing')->nullable();
             $table->dateTime('first_cropped')->nullable();
             $table->dateTime('last_cropped')->nullable();
+            $table->string('status')->default('Planned');
             $table->timestamps();
         });
     }
