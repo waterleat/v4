@@ -35,22 +35,39 @@ class PlanController extends Controller
     public function addSuccession( $sid)
     {
         $succession = Succession::find($sid);
-        $plantType = PlantType::find($succession->plant_type_id);
-        $varieties = Variety::all()->where('plant_type_id', $plantType->id);
-        return view('plan.create', [
-            'succession' => $succession,
-            'plantType' => $plantType,
-            'varieties' => $varieties,
+        $data = [
+            'succession_id' => $succession->id,
             'sow_start' => $this->doyToDate($succession->sow_start),
             'sow_end' => $this->doyToDate($succession->sow_end),
             'plant_start' => $this->doyToDate($succession->plant_start),
             'plant_end' => $this->doyToDate($succession->plant_end),
             'harvest_start' => $this->doyToDate($succession->harvest_start),
             'harvest_end' => $this->doyToDate($succession->harvest_end),
-            'days_nursery' => $succession->days_nursery ?: 28,
-            'days_maturity' => $succession->days_maturity ?: 60,
-            'days_harvest' => $succession->days_harvest ?: 40,
-        ]);
+            'days_nursery' => $succession->days_nursery,
+            'days_maturity' => $succession->days_maturity,
+            'days_harvest' => $succession->days_harvest,
+            // 'status' => 'Planned',
+        ];
+        // dd($data);
+        $plan = Plan::create($data);
+        return Redirect(route('succession.show', $succession->id));
+
+        // $plantType = PlantType::find($succession->plant_type_id);
+        // $varieties = Variety::all()->where('plant_type_id', $plantType->id);
+        // return view('plan.create', [
+        //     'succession' => $succession,
+        //     'plantType' => $plantType,
+        //     'varieties' => $varieties,
+        //     'sow_start' => $this->doyToDate($succession->sow_start),
+        //     'sow_end' => $this->doyToDate($succession->sow_end),
+        //     'plant_start' => $this->doyToDate($succession->plant_start),
+        //     'plant_end' => $this->doyToDate($succession->plant_end),
+        //     'harvest_start' => $this->doyToDate($succession->harvest_start),
+        //     'harvest_end' => $this->doyToDate($succession->harvest_end),
+        //     'days_nursery' => $succession->days_nursery ?: 28,
+        //     'days_maturity' => $succession->days_maturity ?: 60,
+        //     'days_harvest' => $succession->days_harvest ?: 40,
+        // ]);
     }
 
     public function doyToDate(int $doy)
@@ -141,5 +158,6 @@ class PlanController extends Controller
     public function destroy(Plan $plan)
     {
         $plan->delete();
+        return Redirect(route('plan.index'));
     }
 }

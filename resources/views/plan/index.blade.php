@@ -36,6 +36,11 @@
                             <x-button.small href="{{ route('journal.newSowing', $plan->succession->id) }}">
                                 Create journal entry
                             </x-button.small>
+                            <form action="{{ route('plan.destroy', $plan) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="ml-4 px-3 text-red-500 rounded-full border border-red-500" type="submit">Delete</button>
+                            </form>
                         </div>
                     </div>
                 </div >
@@ -47,6 +52,57 @@
         </div>
         
     </div>
+
+
+    <div class="mt-8">
+        <h4 class="text-2xl font-semibold">Sowing order</h4>
+        @forelse ($plans as $plan)
+        <x-layout.index-cards class="!w-1/2">
+            <div class="w-full">
+                <div class="">
+                    <div class=" text-gray-900 py-1 px-2  mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
+                        <a href="{{ route('plan.show', ['plan'=>$plan->id]) }}">
+                            <h2 class="text-xl font-bold">
+                                {{ $plan->succession->plantType->name }} at {{ $plan->locn_growing }} 
+                            </h2>
+                        </a>
+                    </div>
+                    <div id="suc-{{ $loop->iteration }}" class="year flex"
+                        data-el="<?= "canvas-sow-".$loop->iteration  ?>"
+                        data-ss="{{ $plan->succession->sow_start }}"
+                        data-se="{{ $plan->succession->sow_end }}"
+                        data-ps="{{ $plan->succession->plant_start }}"
+                        data-pe="{{ $plan->succession->plant_end }}"
+                        data-hs="{{ $plan->succession->harvest_start }}"
+                        data-he="{{ $plan->succession->harvest_end }}"
+                        data-yd="{{ getdate()['yday'] }}">
+                    </div>
+                    <div id="plan-{{ $loop->iteration }}" class="max:w-2xl h-8">
+                        <canvas id="canvas-sow-{{ $loop->iteration }}" width="365" height="30" 
+                            class="w-full h-full border border-gray-300">
+                            Your browser does not support the HTML canvas tag.
+                        </canvas>
+                    </div>
+                    <div class="ml-4">
+                        <x-button.small href="{{ route('journal.newSowing', $plan->succession->id) }}">
+                            Create journal entry
+                        </x-button.small>
+                        <form action="{{ route('plan.destroy', $plan) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="ml-4 px-3 text-red-500 rounded-full border border-red-500" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div >
+            
+        </x-layout.index-cards>
+        @empty
+            No plans available
+        @endforelse
+    </div>
+
+
     <script type="text/javascript">
         const ht = 30
         // const yv = document.querySelector("#yearview")
