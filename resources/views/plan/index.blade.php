@@ -32,15 +32,18 @@
                                 Your browser does not support the HTML canvas tag.
                             </canvas>
                         </div>
-                        <div class="ml-4">
-                            <x-button.small href="{{ route('journal.newSowing', $plan->succession->id) }}">
-                                Create journal entry
+                        <div class="mt-4 mx-4 flex justify-between">
+                            <x-button.small href="{{ route('plan.edit', $plan) }}">
+                                Edit
                             </x-button.small>
                             <form action="{{ route('plan.destroy', $plan) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="ml-4 px-3 text-red-500 rounded-full border border-red-500" type="submit">Delete</button>
                             </form>
+                            <div class="bg-yellow-500 text-lg px-2">
+                                {{ $plan->status }}
+                            </div>
                         </div>
                     </div>
                 </div >
@@ -83,15 +86,18 @@
                             Your browser does not support the HTML canvas tag.
                         </canvas>
                     </div>
-                    <div class="ml-4">
-                        <x-button.small href="{{ route('journal.newSowing', $plan->succession->id) }}">
-                            Create journal entry
+                    <div class="mt-4 mx-4 flex justify-between">
+                        <x-button.small href="{{ route('plan.edit', $plan->succession->id) }}">
+                            Edit the plan
                         </x-button.small>
                         <form action="{{ route('plan.destroy', $plan) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="ml-4 px-3 text-red-500 rounded-full border border-red-500" type="submit">Delete</button>
                         </form>
+                        <div class="bg-yellow-500 text-lg px-2">
+                            {{ $plan->status }}
+                        </div>
                     </div>
                 </div>
             </div >
@@ -125,31 +131,31 @@
             
             context.beginPath()
             context.rect(ss, 0, se-ss, ht);
-            context.fillStyle = 'green';
+            context.fillStyle = 'orange';
             context.fill();
             context.closePath()
 
             context.beginPath()
             context.rect(ps, 0, pe-ps, ht);
-            context.fillStyle = 'orange';
+            context.fillStyle = 'green';
             context.fill();
             context.closePath()
             
             if (he-hs<0) {
                 context.beginPath()
                 context.rect(hs, 0, 365-hs, ht);
-                context.fillStyle = 'purple';
+                context.fillStyle = 'indigo';
                 context.fill();
                 context.closePath()
                 context.beginPath()
                 context.rect(0, 0, he, ht);
-                context.fillStyle = 'purple';
+                context.fillStyle = 'indigo';
                 context.fill();
                 context.closePath()
             }else{
                 context.beginPath()
                 context.rect(hs, 0, he-hs, ht);
-                context.fillStyle = 'purple';
+                context.fillStyle = 'indigo';
                 context.fill();
                 context.closePath()
             }
@@ -161,7 +167,7 @@
 
             context.beginPath()
             context.rect(yd, 0, 1, ht);
-            context.fillStyle = 'red';
+            context.fillStyle = 'black';
             context.fill();
             context.closePath()
               

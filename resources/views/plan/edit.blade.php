@@ -85,25 +85,36 @@
                     </div>
                     <div class="w-1/3 flex">
                         <x-input.label for="days_maturity" :value="__('days to maturity')" />
-                        <x-input.text type="number" id="days_maturity" name="days_maturity" class="w-40 ml-3" value="{{ old('days_maturity', $plan->days_nursey) }}" />
+                        {{-- {{ dd($plan) }} --}}
+                        <x-input.text type="number" id="days_maturity" name="days_maturity" class="w-40 ml-3" value="{{ old('days_maturity', $plan->days_maturity) }}" />
                     </div>
                     <div class="w-1/3 flex">
                         <x-input.label for="days_harvest" :value="__('days of harvest')" />
-                        <x-input.text type="number" id="days_harvest" name="days_harvest" class="w-40 ml-3" value="{{ old('days_harvest', $plan->days_nursey) }}" />
+                        <x-input.text type="number" id="days_harvest" name="days_harvest" class="w-40 ml-3" value="{{ old('days_harvest', $plan->days_harvest) }}" />
                     </div>
                 </div>
-                <div class="w-1/4">
-                    <x-input.label for="variety_id" :value="__('variety Name')" />
-                    <select id="variety_id" name="variety_id" 
-                        class="bg-white block border w-full h-10 text-xl outline-none
-                        px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
-                        <option value="">-- variety sown --</option>
-                        @foreach ($varieties as $variety)
-                            <option value="{{ $variety->id }}" {{ old('variety_id') == $variety->id ? 'selected' : '' }}>
-                                {{ $variety->name }}
-                            </option>
-                        @endforeach
-                    </select>
+
+                <div class="flex">
+                    <div class="w-1/4 pr-4">
+                        <x-input.label for="status" :value="__('status')" />
+                        <select id="status" name="status"
+                            class="bg-white block border w-full h-10 text-xl outline-none
+                            px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
+                        </select>
+                    </div>
+                    <div class="w-1/4">
+                        <x-input.label for="variety_id" :value="__('variety Name')" />
+                        <select id="variety_id" name="variety_id" 
+                            class="bg-white block border w-full h-10 text-xl outline-none
+                            px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
+                            <option value="">-- variety sown --</option>
+                            @foreach ($varieties as $variety)
+                                <option value="{{ $variety->id }}" {{ old('variety_id') == $variety->id ? 'selected' : '' }}>
+                                    {{ $variety->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <button type="submit"

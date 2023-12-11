@@ -25,11 +25,14 @@
 - - -
 - - -
 # Planning Model Actions
-- get the number from the url
 - read the succession data for that id
 ## add succession to Plans
-- status is created = "Planning"
-- ss to he are converted from doy to dates (with check for EOY)
+- status is created = "Planned"
+- ss to he are converted from doy to dates
+
+
+- 
+- ss to he need to check for EOY
 ## sow seeds
 - status is changed to "Sown"
 - sown field is datepicker
