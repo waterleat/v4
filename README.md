@@ -7,7 +7,7 @@ steup the necessary files
 - run the local server with
   - php artisan serve
 - css is compiled with 
- - npm run dev
+  - npm run dev
   
 
 
