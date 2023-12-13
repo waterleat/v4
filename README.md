@@ -1,15 +1,37 @@
 # Veg Planner
-steup the necessary files
-- install composer
-- load composer dependancies by running 
-  - composer install
-- also load npm dependancies
-- run the local server with
-  - php artisan serve
-- css is compiled with 
-  - npm run dev
-  
+## install php
+- requires php ^8.1
+## setup the dependancies
+- install composer as per instructions at https://getcomposer.org/ 
+- load composer dependancies to updated versions by running 
+  - composer update
+- also load updated npm dependancies
+  - npm update
 
+## setup database details in .env file
+- copy .env.example renameing to .env
+- edit this file lines 11-16
+  - database setup default is mysql. 
+  - One can use sqlite in memory database, 
+  - see documentation https://laravel.com/docs/10.x/installation#databases-and-migrations 
+
+## commands to run to start app
+- php artisan key:generate         // can't explain this
+- php artisan migrate --seed         // runs script to create database, the tables and seed them
+- php artisan serve         // run the local server with app at localhost:8000
+- npm run dev         // css is auto compiled upon code changes
+
+## explore 
+the interesting parts starts with adding successions to the plan. how to change from a planned sowing to recoding them with dates and other notes
+
+## known issues
+- don't use monthType class
+- journal class currently not used. 
+- hope to use status field in plan for accessing extra fields
+- javascript to draw html canvas element is repeated in each page used - 2 versions single and multiple canvases on page
+- see todo.md for more coding to do
+ - - -
+ below here is the original laravel readme
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
