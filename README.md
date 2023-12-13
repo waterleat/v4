@@ -21,6 +21,9 @@
 - php artisan serve         // run the local server with app at localhost:8000
 - npm run dev         // css is auto compiled upon code changes
 
+## Database structure
+Diagram can be found at https://drawsql.app/teams/veg-planner/diagrams/vp1 
+
 ## explore 
 the interesting parts starts with adding successions to the plan. how to change from a planned sowing to recoding them with dates and other notes
 
