@@ -247,6 +247,11 @@
             var hs = yv.dataset.hs
             var he = yv.dataset.he
             var yd = yv.dataset.yd
+
+            if (ps>365) {ps=ps-365}
+            if (pe>365) {pe=pe-365}
+            if (hs>365) {hs=hs-365}
+            if (he>365) {he=he-365}
             
             var canvas = document.getElementById(el);
             var context = canvas.getContext("2d");

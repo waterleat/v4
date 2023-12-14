@@ -57,7 +57,7 @@
     </div>
 
 
-    <div class="mt-8">
+    <div class="mt-8 mx-auto p-4 sm:p-6 lg:p-8">
         <h4 class="text-2xl font-semibold">Sowing order</h4>
         @forelse ($plans as $plan)
         <x-layout.index-cards class="!w-1/2">
@@ -125,6 +125,11 @@
             var hs = yv.dataset.hs
             var he = yv.dataset.he
             var yd = yv.dataset.yd
+
+            if (ps>365) {ps=ps-365}
+            if (pe>365) {pe=pe-365}
+            if (hs>365) {hs=hs-365}
+            if (he>365) {he=he-365}
             
             var canvas = document.getElementById(el);
             var context = canvas.getContext("2d");
