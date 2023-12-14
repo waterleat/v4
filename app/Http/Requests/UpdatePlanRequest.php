@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\JournalStatusEnum;
+use Illuminate\Validation\Rules\Enum;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePlanRequest extends FormRequest
@@ -44,7 +46,7 @@ class UpdatePlanRequest extends FormRequest
             'locn_growing' => [],
             'first_cropped' => [],
             'last_cropped' => [],
-            'status' => [],
+            'status' => [new Enum(JournalStatusEnum::class)],
         ];
     }
 

@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\JournalStatusEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Plan extends Model
 {
@@ -22,7 +23,7 @@ class Plan extends Model
         'planted' => 'datetime',
         'first_cropped' => 'datetime',
         'last_cropped' => 'datetime',
-
+        'status' => JournalStatusEnum::class,
     ];
 
     protected $fillable = [

@@ -100,6 +100,11 @@
                         <select id="status" name="status"
                             class="bg-white block border w-full h-10 text-xl outline-none
                             px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
+                            @foreach (\App\Enums\JournalStatusEnum::values() as $key=>$value)
+                                <option value="{{ $key }}" {{ old('status') == $key ? 'selected' : '' }}>
+                                    {{ $value }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="w-1/4">
@@ -114,6 +119,14 @@
                                 </option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="w-1/4 flex justify-around items-center">
+                        <div>
+                            <button type="button" class="text-base bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400">-1 Yr</button>
+                        </div>
+                        <div>
+                            <button type="button" class="text-base bg-green-500 py-1 px-2 shadow-xl rounded-full transition-all hover:bg-green-400">+1 Yr</button>
+                        </div>
                     </div>
                 </div>
 

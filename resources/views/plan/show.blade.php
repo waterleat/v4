@@ -9,7 +9,7 @@
                 <h2 class="text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ">
                     {{ $plan->succession->successionType->name }}: {{ $plan->succession->plantType->name }}
                 </h2>
-                <h3 class="text-2xl px-4 py-2 bg-amber-500">{{ $plan->status }}</h3>
+                <h3 class="text-2xl px-4 py-2 bg-amber-500">{{ $plan->status->name }}</h3>
             </div>
             <div class="w-2/5 pt-10 text-center">
                 
