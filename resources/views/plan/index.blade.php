@@ -149,18 +149,18 @@
             if (he-hs<0) {
                 context.beginPath()
                 context.rect(hs, 0, 365-hs, ht);
-                context.fillStyle = 'indigo';
+                context.fillStyle = 'purple';
                 context.fill();
                 context.closePath()
                 context.beginPath()
                 context.rect(0, 0, he, ht);
-                context.fillStyle = 'indigo';
+                context.fillStyle = 'purple';
                 context.fill();
                 context.closePath()
             }else{
                 context.beginPath()
                 context.rect(hs, 0, he-hs, ht);
-                context.fillStyle = 'indigo';
+                context.fillStyle = 'purple';
                 context.fill();
                 context.closePath()
             }

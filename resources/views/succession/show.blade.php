@@ -82,13 +82,13 @@
                     
                     context.beginPath()
                     context.rect(ss, 0, se-ss, ht);
-                    context.fillStyle = 'green';
+                    context.fillStyle = 'orange';
                     context.fill();
                     context.closePath()
-
+                    
                     context.beginPath()
                     context.rect(ps, 0, pe-ps, ht);
-                    context.fillStyle = 'orange';
+                    context.fillStyle = 'green';
                     context.fill();
                     context.closePath()
                     
