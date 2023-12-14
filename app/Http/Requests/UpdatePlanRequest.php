@@ -29,7 +29,7 @@ class UpdatePlanRequest extends FormRequest
             'plant_end' => ['required'],
             'harvest_start' => ['required'],
             'harvest_end' => ['required'],
-            'days_nursery' => [],
+            'days_nursery' => ['numeric'],
             'days_maturity' => [],
             'days_harvest' => [],
             // 'sow' => [],
@@ -50,6 +50,11 @@ class UpdatePlanRequest extends FormRequest
 
     public function prepareForValidation( ): void
     {
+        if ($this->days_nursery == null){
+            $this->merge([
+                'days_nursery' => 0
+            ]);
+        };
         // dd($this);
     }
 }
