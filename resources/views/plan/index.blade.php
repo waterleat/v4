@@ -42,7 +42,7 @@
                                 <button class="ml-4 px-3 text-red-500 rounded-full border border-red-500" type="submit">Delete</button>
                             </form>
                             <div class="bg-yellow-500 text-lg px-2">
-                                {{ $plan->status }}
+                                {{ $plan->status->name }}
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                             <button class="ml-4 px-3 text-red-500 rounded-full border border-red-500" type="submit">Delete</button>
                         </form>
                         <p class="bg-yellow-500 text-lg px-2">
-                            {{ $plan->status }}
+                            {{ $plan->status->name }}
                         </p>
                     </div>
                 </div>
