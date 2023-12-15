@@ -10,8 +10,9 @@
         
         <!-- Fonts -->
 
-        <!-- Scrips -->
+        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
 
     <body>
@@ -21,5 +22,6 @@
         <main class="mt-20 bg-green-100">
             {{ $slot }}
         </main>
+        @livewireScripts
     </body>
 </html>
