@@ -55,6 +55,7 @@
         
         <div>
             <h3 class="text-2xl">Successions</h3>
+
             <table class="w-full py-2">
                 <thead>
                     <tr>
@@ -79,20 +80,15 @@
                                     CD
                                 @endif
                             </td>
-                            <td class="bg-green-400 px-2">{{ $succession->sow }}</td>
-                            <td class="bg-orange-400 px-2">{{ $succession->plant }}</td>
+                            <td class="bg-orange-400 px-2">{{ $succession->sow }}</td>
+                            <td class="bg-green-400 px-2">{{ $succession->plant }}</td>
                             <td class="bg-blue-400 px-2">{{ $succession->first_harvest }}</td>
                             <td class="bg-red-400 px-2">{{ $succession->last_harvest }}</td>
                             <td rowspan="2" class="">{{ $succession->varieties_recommended }}</td>
                             <td rowspan="2">
-                                <div class="mb-1">
-                                    <x-button.small href="{{ route('journal.newSowing', $succession->id) }}">
-                                        Journal entry
-                                    </x-button.small>
+                                <div class="items-center">
+                                    <livewire:create-plan :sid="$succession->id" />
                                 </div>
-                                <x-button.small href="{{ route('plan.addSuccession', $succession->id) }}">
-                                    Planning
-                                </x-button.small>
                             </td>
                         </tr>
                         <tr>
