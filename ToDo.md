@@ -29,10 +29,11 @@
 ## add succession to Plans
 - status is created = "Planned"
 - ss to he are converted from doy to dates
-
-
-- 
 - ss to he need to check for EOY
+
+
+
+- auto increment date to make future plan if today is >7days past plant end
 ## sow seeds
 - status is changed to "Sown"
 - sown field is datepicker
@@ -44,7 +45,7 @@
 ## germinated
 - datepicker, 
 - calc days to germinate
-## plant seeds
+## plant seedlings
 - status is changed to "Planted"
 - planted field is datepicker
 - calc days in nursery
@@ -62,6 +63,12 @@
 
 
 
-
-
+# Index page for plans
+- action buttons on all cards to be hidden with button to enable them
+- filter on status
+- filter on growing locn
+- exclude plans if crop finished
+  - WORKING by using all, sorted, past finished sets of Plans, which are hardcoded
+  - however, this needs to be selected by tabs/buttons
+- delete works but needs a confirmation action
 

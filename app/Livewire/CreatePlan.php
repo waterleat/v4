@@ -16,29 +16,31 @@ class CreatePlan extends Component
     public function addPlan()
     {
         $succession = Succession::find($this->sid);
+
+        $today = Carbon::now();
+        $year = ($this->doyToDate($succession->plant_end, null)->diffInDays($today)>7) ? getdate()['year']+1 : null;
+
         $data = [
             'succession_id' => $succession->id,
-            'sow_start' => $this->doyToDate($succession->sow_start),
-            'sow_end' => $this->doyToDate($succession->sow_end),
-            'plant_start' => $this->doyToDate($succession->plant_start),
-            'plant_end' => $this->doyToDate($succession->plant_end),
-            'harvest_start' => $this->doyToDate($succession->harvest_start),
-            'harvest_end' => $this->doyToDate($succession->harvest_end),
+            'sow_start' => $this->doyToDate($succession->sow_start, $year),
+            'sow_end' => $this->doyToDate($succession->sow_end, $year),
+            'plant_start' => $this->doyToDate($succession->plant_start, $year),
+            'plant_end' => $this->doyToDate($succession->plant_end, $year),
+            'harvest_start' => $this->doyToDate($succession->harvest_start, $year),
+            'harvest_end' => $this->doyToDate($succession->harvest_end, $year),
             'days_nursery' => $succession->days_nursery,
             'days_maturity' => $succession->days_maturity,
             'days_harvest' => $succession->days_harvest,
             // 'status' => 'planned',
         ];
-        // dd($data);
+        
         $plan = Plan::create($data);
         session()->flash('status', 'Plan added successfully!');
-        // return redirect()->to($this->url);
     }
 
-    public function doyToDate(int $doy)
+    public function doyToDate(int $doy, $year)
     {
-        // dd($doy);
-        $startOfYear = Carbon::createMidnightDate(null, 1, 1);
+        $startOfYear = Carbon::createMidnightDate($year, 1, 1);
         return $startOfYear->addDays($doy);
     }
 

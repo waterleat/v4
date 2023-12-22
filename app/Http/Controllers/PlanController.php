@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePlanRequest;
-use App\Http\Requests\UpdatePlanRequest;
+use Carbon\Carbon;
 use App\Models\Plan;
+use App\Models\Variety;
 use App\Models\PlantType;
 use App\Models\Succession;
-use App\Models\Variety;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
+use App\Http\Requests\StorePlanRequest;
+use App\Http\Requests\UpdatePlanRequest;
+// use Illuminate\Support\Carbon;
 
 class PlanController extends Controller
 {
@@ -18,11 +19,23 @@ class PlanController extends Controller
      */
     public function index()
     {
+        $today = Carbon::now();
+
+        $sorted = Plan::all()->sortBy([
+            ['sow_start', 'asc'],
+            ['harvest_end', 'asc']
+        ]);
+        // $first = $sorted->first();
+        $active = $sorted->where('harvest_end', '>', $today);
+
         return view('plan.index', [
             'plans' => Plan::all(),
-            // 'succesions' => Succession::all(),
-            // 'plantTypes' => PlantType::all(),
+            'sorted' => $sorted,
+            'active' => $active,
+            'today' => $today,
+            'doy' => Carbon::createMidnightDate($today->year , 1, 1)->diffInDays($today, false),
         ]);
+        // $doy = $jan->diffInDays($today, false);
     }
 
     /**
