@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SuccessionTypeSeeder::class);
         $this->call(MonthTypeSeeder::class);
         $this->call(SuccessionSeeder::class);
+        $this->call(PlanSeeder::class);
     }
 }

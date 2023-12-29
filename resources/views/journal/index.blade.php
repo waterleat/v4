@@ -20,7 +20,7 @@
                 <div class="text-gray-900 py-1 px-2 w-full mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
                     <a href="{{ route('journal.show', ['journal'=>$journal->id]) }}">
                         <h2 class="text-xl font-bold">
-                            {{ $variety->name }} a {{ $plantType->name }} sown on {{ date_format($journal->sown, 'd M Y') }}
+                            {{ $journal->variety->name }} a {{ $journal->plan->succession->plantType->name }} sown on {{ date_format($journal->sown, 'd M Y') }}
                         </h2>
                     </a>
                 </div >
@@ -41,7 +41,7 @@
                 </div>
             </x-layout.index-cards>
         @empty
-            no jourrnal entries
+            no journal entries
         @endforelse
 
         

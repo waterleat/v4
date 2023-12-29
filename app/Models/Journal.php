@@ -10,22 +10,31 @@ class Journal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['succession_id', 'variety_id', 'variety', 
-    'sown', 'planted', 'first_harvest', 'last_harvest', 'sow_direct', ];
+    protected $fillable = ['plan_id', 'variety_id', 'sown_direct', 
+    'sown', 'germinated', 'planted', 'first_harvest', 'last_harvest', 'nursery_locn', 'growing_locn'];
 
     protected $casts = [
-        'sown' => 'date',
-        'planted' => 'date',
-        'first_harvest' => 'date',
-        'last_harvest' => 'date',
+        'sown' => 'datetime',
+        'germinated' => 'datetime',
+        'planted' => 'datetime',
+        'first_harvest' => 'datetime',
+        'last_harvest' => 'datetime',
     ];  // :Y-m-d'];        // d/m/Y',];
 
     /**
-     * Get the plantType that owns the variety.
+     * Get the plan that owns the journal.
      */
-    public function succession(): BelongsTo
+    public function plan(): BelongsTo
     {
-        return $this->belongsTo(Succession::class);
+        return $this->belongsTo(Plan::class);
+    }
+
+    /**
+     * Get the variety that owns the journal.
+     */
+    public function variety(): BelongsTo
+    {
+        return $this->belongsTo(Variety::class);
     }
 
     /**

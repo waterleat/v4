@@ -25,7 +25,7 @@
                 method="POST"
                 enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" id="succession_id" name="succession_id" value="{{ $succession->id }}">
+                <input type="hidden" id="plan_id" name="plan_id" value="{{ $plan->id }}">
                 <div class="my-4 flex justify-around">
                     <div class="">
                         <x-input.label for="sown[]" :value="__('Sowing Date')" />

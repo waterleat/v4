@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Plan;
+use App\Models\Variety;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,15 +15,17 @@ return new class extends Migration
     {
         Schema::create('journals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('succession_id')->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('variety_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Plan::class);
             $table->timestamp('sown');
-            $table->boolean('sow_direct');
+            $table->foreignIdFor(Variety::class);
+            $table->boolean('sown_direct')->default(false);
+            $table->string('nursery_locn')->nullable();
+            $table->string('growing_locn')->nullable();
+            $table->timestamp('germinated')->nullable();
             $table->timestamp('planted')->nullable();
             $table->timestamp('first_harvest')->nullable();
             $table->timestamp('last_harvest')->nullable();
             $table->timestamps();
-            $table->string('variety')->nullable();
         });
     }
 

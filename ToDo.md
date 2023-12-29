@@ -30,10 +30,10 @@
 - status is created = "Planned"
 - ss to he are converted from doy to dates
 - ss to he need to check for EOY
-
-
-
 - auto increment date to make future plan if today is >7days past plant end
+
+
+
 ## sow seeds
 - status is changed to "Sown"
 - sown field is datepicker

@@ -21,7 +21,7 @@
             <x-layout.index-cards class="!w-full">
                 <div class="w-full">
                     <div class="flex">
-                        <div class="w-24 text-gray-900 py-1 px-2  mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
+                        <div class="w-32 text-gray-900 py-1 px-2  mr-2 hover:text-gray-700 hover:bg-green-100 transition-all">
                             <a href="{{ route('plan.show', ['plan'=>$plan->id]) }}">
                                 <h2 class="text-xl font-bold">
                                     {{ $plan->succession->plantType->name }} 
@@ -49,7 +49,9 @@
                             <button class="bg-yellow-500 w-28 text-lg px-2 mr-4">
                                 {{ $plan->status->name }}
                             </button>
-                            {{-- at {{ $plan->locn_growing }} --}}
+                            <livewire:sow-seeds :pid="$plan->id" />
+                            <p class="mr-4">at windowsill</p>
+                            {{-- {{ $plan->locn_growing }} --}}
                             <div class="flex justify-between items-center">
                                 <x-button.small href="{{ route('plan.edit', $plan->id) }}">
                                     Edit
