@@ -35,7 +35,7 @@ class SucccessionRequest extends FormRequest
             'plant_start' => [],
             'plant_end' => [],
             'harvest_start' => [],
-            'harvest_end' => [], 
+            'harvest_end' => [],
             'start_seeds' => [],
             'grow_seedlings' => [],
             'grow_plants' => [],

@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FamilyRequest;
 use App\Models\Family;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 
 class FamilyController extends Controller
 {
@@ -16,6 +13,7 @@ class FamilyController extends Controller
     public function index()
     {
         $families = Family::all();
+
         return view('family.index', ['families' => $families]);
     }
 
@@ -33,6 +31,7 @@ class FamilyController extends Controller
     public function store(FamilyRequest $request)
     {
         Family::create($request->validated());
+
         return Redirect(route('family.index'));
     }
 
@@ -50,7 +49,7 @@ class FamilyController extends Controller
     public function edit(Family $family)
     {
         return view('family.edit', [
-            'family' => $family
+            'family' => $family,
         ]);
     }
 
@@ -60,6 +59,7 @@ class FamilyController extends Controller
     public function update(FamilyRequest $request, Family $family)
     {
         $family->update($request->validated());
+
         return Redirect(route('family.index'));
     }
 
@@ -68,7 +68,8 @@ class FamilyController extends Controller
      */
     public function destroy(Family $family)
     {
-        $family->delete() ;
+        $family->delete();
+
         return redirect(route('family.index'))
             ->with('message', 'Family has been deleted');
     }

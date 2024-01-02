@@ -14,12 +14,12 @@ class Succession extends Model
     use HasFactory;
 
     protected $fillable = [
-        'succession_type_id', 'plant_type_id', 'varieties_recommended', 
-        'cd', 'sow', 'plant', 'first_harvest', 'last_harvest', 
-        'sow_start', 'sow_end', 'plant_start', 'plant_end', 'harvest_start', 'harvest_end', 
-        'days_nursery', 'days_maturity', 'days_harvest', 
-        'start_seeds', 'grow_seedlings', 'grow_plants', 'planting_density', 
-        'variety_notes', 'growing_notes', 'yield_notes', 
+        'succession_type_id', 'plant_type_id', 'varieties_recommended',
+        'cd', 'sow', 'plant', 'first_harvest', 'last_harvest',
+        'sow_start', 'sow_end', 'plant_start', 'plant_end', 'harvest_start', 'harvest_end',
+        'days_nursery', 'days_maturity', 'days_harvest',
+        'start_seeds', 'grow_seedlings', 'grow_plants', 'planting_density',
+        'variety_notes', 'growing_notes', 'yield_notes',
     ];
 
     /**
@@ -48,8 +48,6 @@ class Succession extends Model
 
     /**
      * The varieties that belong to the Succession
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function varieties(): BelongsToMany
     {
@@ -59,17 +57,17 @@ class Succession extends Model
     /**
      * from all successions select only those to sow today
      */
-    public function availibleSowings( )
+    public function availibleSowings()
     {
         $today = today();
         $todayDOY = date_format($today, 'z');
 
         $valid = DB::table('successions')
-                ->whereColumn([
-                    ['sow_start', '<=', $todayDOY],
-                    ['sow_end', '>=', $todayDOY],
+            ->whereColumn([
+                ['sow_start', '<=', $todayDOY],
+                ['sow_end', '>=', $todayDOY],
 
-                ])->get();
+            ])->get();
 
         // foreach (Succession::all() as $succession){
         //     if ($today >= $succession->sow_start && $today <= $succession->sow_end){
@@ -78,5 +76,4 @@ class Succession extends Model
         // }
         return $valid;
     }
-
 }

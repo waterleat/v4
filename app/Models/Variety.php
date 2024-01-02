@@ -12,12 +12,11 @@ class Variety extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'info', 'description', 
-    'plant_type_id', 'height', 'spread', 'days2maturity',
-    'sow_direct', 'multi', 'spacing', 
-    'sowing', 'harvest', 'store', 
+    protected $fillable = ['name', 'info', 'description',
+        'plant_type_id', 'height', 'spread', 'days2maturity',
+        'sow_direct', 'multi', 'spacing',
+        'sowing', 'harvest', 'store',
     ];
-
 
     /**
      * Get the plantType that owns the variety.
@@ -34,15 +33,12 @@ class Variety extends Model
     {
         return $this->hasMany(Journal::class);
     }
-    
+
     /**
      * The successions that belong to the Variety
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function successions(): BelongsToMany
     {
         return $this->belongsToMany(Succession::class);
     }
-
 }

@@ -35,7 +35,7 @@ class VarietyRequest extends FormRequest
             'sowing' => [],
             'harvest' => [],
             'store' => [],
-            
+
         ];
     }
 

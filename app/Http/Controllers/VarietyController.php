@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VarietyRequest;
-use App\Models\Family;
 use App\Models\PlantType;
 use App\Models\Variety;
-use Illuminate\Http\Request;
 
 class VarietyController extends Controller
 {
@@ -16,16 +14,18 @@ class VarietyController extends Controller
     public function index()
     {
         $varieties = Variety::all();
+
         return view('variety.index', ['varieties' => $varieties]);
 
     }
 
     /**
-     * Show the form for creating a new resource.  
+     * Show the form for creating a new resource.
      */
     public function create()
     {
         $plantTypes = PlantType::all();
+
         return view('variety.create', ['plantTypes' => $plantTypes]);
     }
 
@@ -35,6 +35,7 @@ class VarietyController extends Controller
     public function store(VarietyRequest $request)
     {
         Variety::create($request->validated());
+
         return Redirect(route('variety.index'));
     }
 
@@ -44,6 +45,7 @@ class VarietyController extends Controller
     public function show(Variety $variety)
     {
         $plantType = PlantType::find($variety->plant_type_id);
+
         return view('variety.show', [
             'variety' => $variety,
             'plantType' => $plantType,
@@ -57,6 +59,7 @@ class VarietyController extends Controller
     public function edit(Variety $variety)
     {
         $plantTypes = PlantType::all();
+
         return view('variety.edit', [
             'variety' => $variety,
             'plantTypes' => $plantTypes,
@@ -68,7 +71,8 @@ class VarietyController extends Controller
      */
     public function update(VarietyRequest $request, Variety $variety)
     {
-        $variety->update($request->validated(),);
+        $variety->update($request->validated());
+
         return Redirect(route('variety.index'));
     }
 
@@ -77,7 +81,8 @@ class VarietyController extends Controller
      */
     public function destroy(Variety $variety)
     {
-        $variety->delete() ;
+        $variety->delete();
+
         return redirect(route('variety.index'))->with('message', 'Variety has been deleted');
     }
 }

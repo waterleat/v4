@@ -18,20 +18,20 @@ class PlantTypeFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            'latin'=> fake()->words(2, true),
+            'latin' => fake()->words(2, true),
             'family_id' => fake()->randomDigitNotNull(),
-            'perennial' => fake()->boolean(), 
-            'dates_best_sow' => fake()->word(), 
-            'dates_main_harvest' => fake()->word(), 
-            'feeder_type' => fake()->word(), 
-            'root_depth'=> fake()->words(2, true),
-            'mulch'=> fake()->words(2, true),
-            'fertiliser'=> fake()->words(2, true),
-            'when_to_fertilise'=> fake()->words(2, true),
-            'multisow' => fake()->biasedNumberBetween(1, 6, 'sqrt'), 
-            'hardiness_young_plants'=> fake()->words(2, true),
-            'competitor'=> fake()->words(2, true),
-            'competition_period'=> fake()->words(2, true),
+            'perennial' => fake()->boolean(),
+            'dates_best_sow' => fake()->word(),
+            'dates_main_harvest' => fake()->word(),
+            'feeder_type' => fake()->word(),
+            'root_depth' => fake()->words(2, true),
+            'mulch' => fake()->words(2, true),
+            'fertiliser' => fake()->words(2, true),
+            'when_to_fertilise' => fake()->words(2, true),
+            'multisow' => fake()->biasedNumberBetween(1, 6, 'sqrt'),
+            'hardiness_young_plants' => fake()->words(2, true),
+            'competitor' => fake()->words(2, true),
+            'competition_period' => fake()->words(2, true),
             'companions' => fake()->word(),
             'interplant_into' => fake()->word(),
             'interplant_with' => fake()->word(),
@@ -41,4 +41,3 @@ class PlantTypeFactory extends Factory
         ];
     }
 }
-    

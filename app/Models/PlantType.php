@@ -12,11 +12,11 @@ class PlantType extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'latin', 'family_id', 'perennial', 
-        'dates_best_sow', 'dates_main_harvest', 
-        'dates_main_harvest', 'feeder_type', 
-        'feeder_type', 'root_depth', 
-        'mulch', 'fertiliser', 
+        'name', 'latin', 'family_id', 'perennial',
+        'dates_best_sow', 'dates_main_harvest',
+        'dates_main_harvest', 'feeder_type',
+        'feeder_type', 'root_depth',
+        'mulch', 'fertiliser',
         'fertiliser', 'when_to_fertilise',
         'multisow',
         'hardiness_young_plants',
@@ -26,7 +26,7 @@ class PlantType extends Model
         'interplant_into',
         'interplant_with',
         'relay_plant_into',
-        'relay_plant_with', 
+        'relay_plant_with',
         'germ_temp_img',
     ];
 

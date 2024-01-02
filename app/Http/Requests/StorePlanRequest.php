@@ -28,7 +28,7 @@ class StorePlanRequest extends FormRequest
             'plant_start' => [],
             'plant_end' => [],
             'harvest_start' => [],
-            'harvest_end'=> [],
+            'harvest_end' => [],
             'days_nursery' => [],
             'days_maturity' => [],
             'days_harvest' => [],

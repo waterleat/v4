@@ -6,13 +6,13 @@
 
 // class ExampleTest extends TestCase
 // {
-    //     /**
-    //      * A basic test example.
-    //      */
-    //     public function test_that_true_is_true(): void
+//     /**
+//      * A basic test example.
+//      */
+//     public function test_that_true_is_true(): void
 //     {
-    //         $this->assertTrue(true);
-    //     }
+//         $this->assertTrue(true);
+//     }
 // }
 
 it('assert true is true', function () {
@@ -21,9 +21,9 @@ it('assert true is true', function () {
 
 it('can sum 2 numbers', function () {
     // PREPARE
-    
+
     // ACT
-    $sum = 2+5;
+    $sum = 2 + 5;
     // ASSERT
     $this->assertEquals($sum, 7);
 });

@@ -2,7 +2,8 @@
 
 namespace App\Enums;
 
-enum JournalStatusEnum:string {
+enum JournalStatusEnum: string
+{
     case Planned = 'planned';
     case Germinated = 'germinated';
     case Growing = 'growing';

@@ -18,10 +18,10 @@ class VarietyFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            'info'=> fake()->words(2, true),
+            'info' => fake()->words(2, true),
             'description' => fake()->sentences(2, true),
-            'days2maturity' => fake()->numberBetween(30, 99), 
-            'height' => fake()->randomFloat(2, 0.2, 1.5), 
+            'days2maturity' => fake()->numberBetween(30, 99),
+            'height' => fake()->randomFloat(2, 0.2, 1.5),
             'spread' => fake()->randomFloat(2, 0.2, 1.5),
         ];
     }

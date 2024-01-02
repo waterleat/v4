@@ -9,12 +9,11 @@ use App\Models\Variety;
 use Carbon\Carbon;
 
 use function PHPUnit\Framework\assertEquals;
-use function PHPUnit\Framework\assertTrue;
 
 it('records a journal entry for a sowing', function () {
     $this->withoutExceptionHandling();
     $family = Family::factory()->create();
-    $plantType = PlantType::factory()->create(['family_id'=>$family->id]);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]);
     $variety = Variety::factory()->create([
         'plant_type_id' => $plantType->id,
         'sow_direct' => false,
@@ -37,7 +36,6 @@ it('records a journal entry for a sowing', function () {
     ];
     $entry = Journal::create($input);
 
-
     $this->assertEquals($entry->sown, Carbon::today());
     $this->assertEquals($entry->variety_id, $input['variety_id']);
 
@@ -45,14 +43,13 @@ it('records a journal entry for a sowing', function () {
     // expect(true)->toBeTrue();
 })->skip();
 
-
 // it('calculates the estimated plant date', function(){
-it('adds plant date if sow_direct is true', function(){
-        $this->withoutExceptionHandling();
+it('adds plant date if sow_direct is true', function () {
+    $this->withoutExceptionHandling();
 
     // Journal -> family, plantType, successionType, succession, varietySown
     $family = Family::factory()->create();
-    $plantType = PlantType::factory()->create(['family_id'=>$family->id]);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]);
     $variety = Variety::factory()->create([
         'plant_type_id' => $plantType->id,
         'sow_direct' => true,
@@ -67,22 +64,21 @@ it('adds plant date if sow_direct is true', function(){
         'days_maturity' => 60,
         'days_harvest' => 30,
     ]);
-    
+
     $input = [
-        'sown' => "2023-2-14",
+        'sown' => '2023-2-14',
         'variety_id' => $variety->id,
         'succession_id' => $succession->id,
-        'sow_direct' => true, 
+        'sow_direct' => true,
     ];
-    // $entry = Journal::create($input); 
+    // $entry = Journal::create($input);
     $entry = $this->post(route('journal.store', $input));
     // dd($entry);
-
 
     assertEquals($entry->planted, $entry->sown);
 
     // $plantDate = $entry->estimatedCropingDate($succession->days_nursery);
-    
+
     // $plantDOY = date_format($plantDate, 'z');
 
     // assertEquals(72, $plantDOY);
@@ -94,12 +90,12 @@ it('adds plant date if sow_direct is true', function(){
 
 })->skip();
 
-it('calculates the estimated first harvest date', function(){
+it('calculates the estimated first harvest date', function () {
     $this->withoutExceptionHandling();
 
     // Journal -> family, plantType, successionType, succession, varietySown
     $family = Family::factory()->create();
-    $plantType = PlantType::factory()->create(['family_id'=>$family->id]);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]);
     $variety = Variety::factory()->create([
         'plant_type_id' => $plantType->id,
         'sow_direct' => true,
@@ -116,18 +112,18 @@ it('calculates the estimated first harvest date', function(){
     ]);
 
     $input = [
-        'sown' => "2023-2-14",
+        'sown' => '2023-2-14',
         'succession_id' => $succession->id,
         'variety_id' => $variety->id,
         // 'sow_direct' => false,
     ];
-    $entry = Journal::factory()->create($input); 
-  
+    $entry = Journal::factory()->create($input);
+
     $harvestDate = $entry->estimatedCropingDate($succession->days_maturity);
     $harvestDOY = date_format($harvestDate, 'z');
 
     assertEquals(104, $harvestDOY);
-    
+
     // sown 44
     // estimatePlantingDate
     // add nursery 28
@@ -135,12 +131,12 @@ it('calculates the estimated first harvest date', function(){
 
 })->skip();
 
-it('calculates the estimated last harvest date', function(){
+it('calculates the estimated last harvest date', function () {
     $this->withoutExceptionHandling();
 
     // Journal -> family, plantType, successionType, succession, varietySown
     $family = Family::factory()->create();
-    $plantType = PlantType::factory()->create(['family_id'=>$family->id]);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]);
     $variety = Variety::factory()->create([
         'plant_type_id' => $plantType->id,
         'sow_direct' => true,
@@ -157,18 +153,18 @@ it('calculates the estimated last harvest date', function(){
     ]);
 
     $input = [
-        'sown' => date_create("2023-2-14"),
+        'sown' => date_create('2023-2-14'),
         'succession_id' => $succession->id,
         'variety_id' => $variety->id,
     ];
-    $entry = Journal::create($input); 
-  
+    $entry = Journal::create($input);
+
     // $harvestDate = $entry->estimatedFirstHarvestDate($succession->days_maturity);
     $finishingDate = $entry->estimatedCropingDate($succession->days_maturity + $succession->days_harvest);
     $finishingDOY = date_format($finishingDate, 'z');
 
     assertEquals(134, $finishingDOY);
-    
+
     // sown 44
     // estimatePlantingDate
     // add nursery 28

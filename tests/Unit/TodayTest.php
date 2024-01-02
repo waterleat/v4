@@ -11,14 +11,13 @@ test('valid succession, to sow for dayOfYear, can be select from all successions
 
     $today = 180;
 
-
     $family = Family::factory()->create();
-    $plantType = PlantType::factory()->create(['family_id'=>$family->id]);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]);
     // $varieties = Variety::factory()->count(3)->create();
     $successionType = SuccessionType::factory()->count(3)->create();
 
-    $this->assertCount(3,SuccessionType::all());
-    
+    $this->assertCount(3, SuccessionType::all());
+
     $succession1 = Succession::factory()->create([
         'plant_type_id' => $plantType->id,
         'succession_type_id' => 1,
@@ -47,19 +46,18 @@ test('valid succession, to sow for dayOfYear, can be select from all successions
         'days_harvest' => 30,
     ]);
 
-    $this->assertCount(3,Succession::all());
-    
+    $this->assertCount(3, Succession::all());
 
     $successions = Succession::all();
 
-    foreach ($successions as $succession){
-        if ($today >= $succession->sow_start && $today <= $succession->sow_end){
+    foreach ($successions as $succession) {
+        if ($today >= $succession->sow_start && $today <= $succession->sow_end) {
             $valid[] = $succession;
         }
     }
     // dd($valid);
 
-    $this->assertEquals(1, sizeof($valid));
+    $this->assertEquals(1, count($valid));
 
 });
 
@@ -68,14 +66,13 @@ test('no successions selected from all successions when dayOfYear not in sow ran
 
     $today = 101;
 
-
     $family = Family::factory()->create();
-    $plantType = PlantType::factory()->create(['family_id'=>$family->id]);
+    $plantType = PlantType::factory()->create(['family_id' => $family->id]);
     // $varieties = Variety::factory()->count(3)->create();
     $successionType = SuccessionType::factory()->count(3)->create();
 
-    $this->assertCount(3,SuccessionType::all());
-    
+    $this->assertCount(3, SuccessionType::all());
+
     $succession1 = Succession::factory()->create([
         'plant_type_id' => $plantType->id,
         'succession_type_id' => 1,
@@ -108,10 +105,9 @@ test('no successions selected from all successions when dayOfYear not in sow ran
     // $this->assertCount(3,Succession::all());
     expect($successions)->toHaveCount(3);
 
-
     $valid = [];
-    foreach ($successions as $succession){
-        if ($today >= $succession->sow_start && $today <= $succession->sow_end){
+    foreach ($successions as $succession) {
+        if ($today >= $succession->sow_start && $today <= $succession->sow_end) {
             $valid[] = $succession;
         }
     }

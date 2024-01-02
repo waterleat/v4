@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\SuccessionType;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class SuccessionTypeSeeder extends Seeder
@@ -26,9 +25,9 @@ class SuccessionTypeSeeder extends Seeder
             ['name' => 'Winter crop'],
         ];
 
-        foreach( $successionTypes as $key => $value ) {
+        foreach ($successionTypes as $key => $value) {
             SuccessionType::create($value);
-        }    
+        }
 
     }
 }

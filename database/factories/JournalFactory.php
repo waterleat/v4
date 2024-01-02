@@ -22,7 +22,7 @@ class JournalFactory extends Factory
             'succession_id' => 1,
             'variety_id' => 1,
             'variety' => fake()->word(),
-            'sown'=> fake()->date('Y-m-d'),
+            'sown' => fake()->date('Y-m-d'),
             'planted' => null,
             'first_harvest' => null,
             'last_harvest' => null,

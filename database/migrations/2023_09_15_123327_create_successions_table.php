@@ -33,12 +33,12 @@ return new class extends Migration
             $table->integer('days_maturity')->default(60);
             $table->integer('days_harvest')->default(30);
             $table->string('start_seeds')->nullable();
-            $table->string( 'grow_seedlings')->nullable();
-            $table->string( 'grow_plants')->nullable();
+            $table->string('grow_seedlings')->nullable();
+            $table->string('grow_plants')->nullable();
             $table->text('planting_density')->nullable();
             $table->text('variety_notes')->nullable();
-            $table->text( 'growing_notes')->nullable();
-            $table->text( 'yield_notes')->nullable();
+            $table->text('growing_notes')->nullable();
+            $table->text('yield_notes')->nullable();
             $table->timestamps();
         });
     }

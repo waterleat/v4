@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Enums\JournalStatusEnum;
-use Illuminate\Validation\Rules\Enum;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class UpdatePlanRequest extends FormRequest
 {
@@ -50,13 +50,13 @@ class UpdatePlanRequest extends FormRequest
         ];
     }
 
-    public function prepareForValidation( ): void
+    public function prepareForValidation(): void
     {
-        if ($this->days_nursery == null){
+        if ($this->days_nursery == null) {
             $this->merge([
-                'days_nursery' => 0
+                'days_nursery' => 0,
             ]);
-        };
+        }
         // dd($this);
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Requests\PlantTypeRequest;
 use App\Models\Family;
 use App\Models\PlantType;
 use App\Models\SuccessionType;
-use Illuminate\Http\Request;
 
 class PlantTypeController extends Controller
 {
@@ -16,6 +15,7 @@ class PlantTypeController extends Controller
     public function index()
     {
         $plantTypes = PlantType::all();
+
         return view('plantType.index', ['plantTypes' => $plantTypes]);
     }
 
@@ -25,6 +25,7 @@ class PlantTypeController extends Controller
     public function create()
     {
         $families = Family::all();
+
         return view('plantType.create', ['families' => $families]);
     }
 
@@ -34,6 +35,7 @@ class PlantTypeController extends Controller
     public function store(PlantTypeRequest $request)
     {
         PlantType::create($request->validated());
+
         return Redirect(route('plantType.index'));
     }
 
@@ -44,6 +46,7 @@ class PlantTypeController extends Controller
     {
         $family = Family::find($plantType->family_id);
         $successionTypes = SuccessionType::all();
+
         return view('plantType.show', [
             'plantType' => $plantType,
             'family' => $family,
@@ -57,6 +60,7 @@ class PlantTypeController extends Controller
     public function edit(PlantType $plantType)
     {
         $families = Family::all();
+
         return view('plantType.edit', [
             'plantType' => $plantType,
             'families' => $families,
@@ -69,10 +73,11 @@ class PlantTypeController extends Controller
     public function update(PlantTypeRequest $request, PlantType $plantType)
     {
         $path = $request->file('germ_temp_img')->store('germtemp', 'public');
-        
+
         $data = $request->validated();
-        $data['germ_temp_img'] =  $path;
+        $data['germ_temp_img'] = $path;
         $plantType->update($data);
+
         return Redirect(route('plantType.index'));
     }
 
@@ -81,7 +86,8 @@ class PlantTypeController extends Controller
      */
     public function destroy(PlantType $plantType)
     {
-        $plantType->delete() ;
+        $plantType->delete();
+
         return redirect(route('plantType.index'))->with('message', 'PlantType has been deleted');
     }
 }
