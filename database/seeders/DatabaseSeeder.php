@@ -20,12 +20,14 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(FamilySeeder::class);
-        $this->call(PlantTypeSeeder::class);
-        $this->call(VarietySeeder::class);
-        $this->call(SuccessionTypeSeeder::class);
-        $this->call(MonthTypeSeeder::class);
-        $this->call(SuccessionSeeder::class);
-        $this->call(PlanSeeder::class);
+        $this->call([
+            FamilySeeder::class,
+            PlantTypeSeeder::class,
+            VarietySeeder::class,
+            SuccessionTypeSeeder::class,
+            SuccessionSeeder::class,
+            PlanSeeder::class,
+            LocationSeeder::class
+        ]);
     }
 }
