@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             SuccessionSeeder::class,
             PlanSeeder::class,
             PlanStatusSeeder::class,
-            LocationSeeder::class
+            LocationSeeder::class,
         ]);
     }
 }

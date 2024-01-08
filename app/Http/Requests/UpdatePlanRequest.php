@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\JournalStatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
 class UpdatePlanRequest extends FormRequest
 {

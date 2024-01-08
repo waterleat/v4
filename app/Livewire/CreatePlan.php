@@ -22,15 +22,15 @@ class CreatePlan extends Component
 
         $data = [
             'succession_id' => $succession->id,
-            'sow_start'     => $this->doyToDate($succession->sow_start, $year),
-            'sow_end'       => $this->doyToDate($succession->sow_end, $year),
-            'plant_start'   => $this->doyToDate($succession->plant_start, $year),
-            'plant_end'     => $this->doyToDate($succession->plant_end, $year),
+            'sow_start' => $this->doyToDate($succession->sow_start, $year),
+            'sow_end' => $this->doyToDate($succession->sow_end, $year),
+            'plant_start' => $this->doyToDate($succession->plant_start, $year),
+            'plant_end' => $this->doyToDate($succession->plant_end, $year),
             'harvest_start' => $this->doyToDate($succession->harvest_start, $year),
-            'harvest_end'   => $this->doyToDate($succession->harvest_end, $year),
-            'days_nursery'  => $succession->days_nursery,
+            'harvest_end' => $this->doyToDate($succession->harvest_end, $year),
+            'days_nursery' => $succession->days_nursery,
             'days_maturity' => $succession->days_maturity,
-            'days_harvest'  => $succession->days_harvest,
+            'days_harvest' => $succession->days_harvest,
             // 'plan_status_id' => 'planned',
         ];
 

@@ -68,8 +68,6 @@ Route::resource('plan', PlanController::class);
 Route::get('plan/planttype/{id}', [PlanController::class, 'addPlantType'])->name('plan.addPlantType');
 Route::get('plan/addSuccession/{sid}', [PlanController::class, 'addSuccession'])->name('plan.addSuccession');
 
-
-
 // // individual routes
 // // GET
 // Route::get('family', [FamilyController::class, 'index'])->name('family.index');
