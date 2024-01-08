@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Plan;
-use App\Models\Variety;
-use App\Models\PlantType;
-use App\Models\Succession;
-use Illuminate\Http\Request;
 use App\Http\Requests\StorePlanRequest;
 use App\Http\Requests\UpdatePlanRequest;
+use App\Models\Plan;
+use App\Models\PlanStatus;
+use App\Models\PlantType;
+use App\Models\Succession;
+use App\Models\Variety;
+use Carbon\Carbon;
+
 // use Illuminate\Support\Carbon;
 
 class PlanController extends Controller
@@ -23,7 +24,7 @@ class PlanController extends Controller
 
         $sorted = Plan::all()->sortBy([
             ['sow_start', 'asc'],
-            ['harvest_end', 'asc']
+            ['harvest_end', 'asc'],
         ]);
         // $first = $sorted->first();
         $active = $sorted->where('harvest_end', '>', $today);
@@ -31,9 +32,9 @@ class PlanController extends Controller
         return view('plan.index', [
             'plans' => Plan::all(),
             'sorted' => $sorted,
-            'active' => $active,
+            'planStatuses' => PlanStatus::all(),
             'today' => $today,
-            'doy' => Carbon::createMidnightDate($today->year , 1, 1)->diffInDays($today, false),
+            'doy' => Carbon::createMidnightDate($today->year, 1, 1)->diffInDays($today, false),
         ]);
         // $doy = $jan->diffInDays($today, false);
     }
@@ -45,7 +46,7 @@ class PlanController extends Controller
     // {
     //     //
     // }
-    public function addSuccession( $sid)
+    public function addSuccession($sid)
     {
         $succession = Succession::find($sid);
         $data = [
@@ -63,6 +64,7 @@ class PlanController extends Controller
         ];
         // dd($data);
         $plan = Plan::create($data);
+
         return Redirect(route('succession.show', $succession->id));
 
         // $plantType = PlantType::find($succession->plant_type_id);
@@ -87,6 +89,7 @@ class PlanController extends Controller
     {
         // dd($doy);
         $startOfYear = Carbon::createMidnightDate(null, 1, 1);
+
         return $startOfYear->addDays($doy);
     }
 
@@ -99,6 +102,7 @@ class PlanController extends Controller
             Plan::create(['succession_id' => $succession->id]);
             // $this->post('/plan', ['succession_id' => $succession->id]);
         }
+
         return view('plan.index', [
             'plans' => Plan::all(),
             // 'succesions' => Succession::all(),
@@ -112,6 +116,7 @@ class PlanController extends Controller
     public function store(StorePlanRequest $request)
     {
         $plan = Plan::create($request->validated());
+
         return Redirect(route('plan.index'));
     }
 
@@ -133,8 +138,10 @@ class PlanController extends Controller
         $succession = Succession::find($plan->succession_id);
         $plantType = PlantType::find($succession->plant_type_id);
         $varieties = Variety::all()->where('plant_type_id', $plantType->id);
+
         return view('plan.edit', [
             'plan' => $plan,
+            'planStatuses' => PlanStatus::all(),
             'succession' => $succession,
             'plantType' => $plantType,
             'varieties' => $varieties,
@@ -153,6 +160,7 @@ class PlanController extends Controller
         // ]));
 
         $plan->update($request->validated());
+
         return Redirect(route('plan.index'));
     }
 
@@ -162,6 +170,7 @@ class PlanController extends Controller
     public function destroy(Plan $plan)
     {
         $plan->delete();
+
         return Redirect(route('plan.index'));
     }
 }

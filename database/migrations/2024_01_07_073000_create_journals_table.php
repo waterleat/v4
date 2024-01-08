@@ -2,9 +2,10 @@
 
 use App\Models\Plan;
 use App\Models\Variety;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Location;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -19,8 +20,10 @@ return new class extends Migration
             $table->timestamp('sown');
             $table->foreignIdFor(Variety::class);
             $table->boolean('sown_direct')->default(false);
-            $table->string('nursery_locn')->nullable();
-            $table->string('growing_locn')->nullable();
+            $table->foreignIdFor(Location::class);
+            $table->bigInteger('sowing_locn')->nullable();
+            $table->bigInteger('nursery_locn')->nullable();
+            $table->bigInteger('growing_locn')->nullable();
             $table->timestamp('germinated')->nullable();
             $table->timestamp('planted')->nullable();
             $table->timestamp('first_harvest')->nullable();

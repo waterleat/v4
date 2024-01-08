@@ -5,7 +5,7 @@
     
     <div class=" p-4 sm:p-6 lg:p-8">
         
-        <div class="m-auto py-8">
+        <div class="m-auto ">
             @if ($errors->any())
             <div class="pb-8">
                 <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
@@ -81,7 +81,7 @@
                 <div class="flex pt-4">
                     <div class="w-1/3 flex">
                         <x-input.label for="days_nursery" :value="__('days in nursery')" />
-                        <x-input.text type="number" id="days_nursery" name="days_nursery" class="w-40 ml-3" value="{{ old('days_nursery', $plan->days_nursey) }}" />
+                        <x-input.text type="number" id="days_nursery" name="days_nursery" class="w-40 ml-3" value="{{ old('days_nursery', $plan->days_nursery) }}" />
                     </div>
                     <div class="w-1/3 flex">
                         <x-input.label for="days_maturity" :value="__('days to maturity')" />
@@ -96,13 +96,17 @@
 
                 <div class="flex">
                     <div class="w-1/4 pr-4">
-                        <x-input.label for="status" :value="__('status')" />
-                        <select id="status" name="status"
+                        <x-input.label for="plan_status_id" :value="__('status')" />
+                        <select id="plan_status_id" name="plan_status_id"
                             class="bg-white block border w-full h-10 text-xl outline-none
                             px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
-                            @foreach (\App\Enums\JournalStatusEnum::values() as $key=>$value)
-                                <option value="{{ $key }}" {{ old('status') == $key ? 'selected' : '' }}>
-                                    {{ $value }}
+                            @foreach ($planStatuses as $planStatus)
+                                <option value="{{ $planStatus->id }}" {{ old('plan_status_id') == $planStatus->id ? 'selected' : '' }}
+                                    @if ($planStatus->id == old('plan_status_id', $plan->planStatus->id))
+                                    selected="selected"
+                                    @endif
+                                >
+                                    {{ $planStatus->name }}
                                 </option>
                             @endforeach
                         </select>

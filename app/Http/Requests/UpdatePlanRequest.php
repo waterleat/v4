@@ -46,7 +46,7 @@ class UpdatePlanRequest extends FormRequest
             'locn_growing' => [],
             'first_cropped' => [],
             'last_cropped' => [],
-            'status' => [new Enum(JournalStatusEnum::class)],
+            'plan_status_id' => ['required'],
         ];
     }
 

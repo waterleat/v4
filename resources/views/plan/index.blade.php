@@ -13,7 +13,8 @@
         // // $first = $sorted->first();
         // $active = $sorted->where('')
     @endphp
-    
+    <div class="bg-yellow-300"></div>
+    <div class="bg-orange-500"></div>
     <div class="mt-8 mx-auto p-4 sm:p-6 lg:p-8">
         <h4 class="text-2xl font-semibold">Sowing order</h4>
 
@@ -46,9 +47,13 @@
                             </canvas>
                         </div>
                         <div class=" ml-4 flex justify-between">
-                            <button class="bg-yellow-500 w-28 text-lg px-2 mr-4">
-                                {{ $plan->status->name }}
+                            <button class="bg-{{ $plan->planStatus->colour }} w-28 text-lg px-2 mr-4">
+                                {{ $plan->planStatus->name }}
                             </button>
+                            <x-button.small href="{{ route('journal.addJournal', $plan->id) }}">
+                                sow!
+                            </x-button.small>
+                            {{-- <button type="button" wire>test</button> --}}
                             <livewire:sow-seeds :pid="$plan->id" />
                             <p class="mr-4">at windowsill</p>
                             {{-- {{ $plan->locn_growing }} --}}
@@ -75,6 +80,14 @@
     </div>
 
 
+    <x-modal name="test" title="test sowing" >
+        <x-slot:body>
+            test area 
+            {{-- {{ $value }} --}}
+        </x-slot:body>
+    </x-modal>
+    <livewire:sowing-modal  />
+    
     <script type="text/javascript">
         const ht = 30
         const pos = 300

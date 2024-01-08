@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreJournalRequest;
 use App\Http\Requests\UpdateJournalRequest;
 use App\Models\Journal;
+use App\Models\Plan;
 use App\Models\PlantType;
 use App\Models\Succession;
 use App\Models\Variety;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class JournalController extends Controller
 {
@@ -29,13 +29,14 @@ class JournalController extends Controller
     /**
      * setup for creating new journal
      */
-    public function newSowing( $sid)
+    public function newSowing($sid)
     {
         // dd($sid);
         $today = Carbon::today();
         $succession = Succession::find($sid);
         $plantType = PlantType::find($succession->plant_type_id);
         $varieties = Variety::all()->where('plant_type_id', $plantType->id);
+
         return view('journal.create', [
             'succession' => $succession,
             'plantType' => $plantType,
@@ -43,6 +44,29 @@ class JournalController extends Controller
             'today' => $today,
         ]);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    // public function create()
+    // {
+    //     //
+    // }
+    public function addJournal($pid)
+    {
+        $today = Carbon::today();
+        $plan = Plan::find($pid);
+        $plantType = PlantType::find($plan->succession->plant_type_id);
+        $varieties = Variety::all()->where('plant_type_id', $plantType->id);
+
+        return view('journal.create', [
+            'plan' => $plan,
+            'plantType' => $plantType,
+            'varieties' => $varieties,
+            'today' => $today,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -52,6 +76,7 @@ class JournalController extends Controller
         $succession = Succession::find(1);
         $plantType = PlantType::find($succession->plant_type_id);
         $varieties = Variety::all()->where('plant_type_id', $plantType->id);
+
         return view('journal.create', [
             'plantType' => $plantType,
             'varieties' => $varieties,
@@ -59,7 +84,6 @@ class JournalController extends Controller
             'today' => $today,
         ]);
     }
-                        
 
     /**
      * Store a newly created resource in storage.
@@ -70,8 +94,9 @@ class JournalController extends Controller
         // dd($request->validated());
 
         $journal = Journal::create($request->validated());
+
         // dd($journal);
-        return redirect('/journal/'. $journal->id);
+        return redirect('/journal/'.$journal->id);
     }
 
     /**
@@ -120,7 +145,8 @@ class JournalController extends Controller
     public function update(UpdateJournalRequest $request, Journal $journal)
     {
         $journal->update($request->validated());
-        return redirect('/journal/'. $journal->id);
+
+        return redirect('/journal/'.$journal->id);
     }
 
     /**
@@ -129,6 +155,7 @@ class JournalController extends Controller
     public function destroy(Journal $journal)
     {
         $journal->delete();
+
         return redirect('journal');
     }
 }

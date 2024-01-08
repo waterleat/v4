@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
-use App\Enums\JournalStatusEnum;
+// use App\Enums\JournalStatusEnum;
+use App\Models\Journal;
+use App\Models\PlanStatus;
+use App\Models\Succession;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,17 +27,17 @@ class Plan extends Model
         'planted' => 'datetime',
         'first_cropped' => 'datetime',
         'last_cropped' => 'datetime',
-        'status' => JournalStatusEnum::class,
+        // 'status' => JournalStatusEnum::class,
     ];
 
     protected $fillable = [
         'succession_id',
         'sow_start', 'sow_end', 'plant_start', 'plant_end', 'harvest_start', 'harvest_end',
-        'days_nursery', 'days_maturity', 'days_harvest', 
-        'sow', 'plant', 'first_harvest', 'last_harvest', 
-        'locn_sowing', 'locn_nursery', 'locn_growing', 
-        'sown', 'germinated', 'planted', 'first_cropped', 'last_cropped', 
-        'status', 
+        'days_nursery', 'days_maturity', 'days_harvest',
+        'sow', 'plant', 'first_harvest', 'last_harvest',
+        'locn_sowing', 'locn_nursery', 'locn_growing',
+        'sown', 'germinated', 'planted', 'first_cropped', 'last_cropped',
+        'plan_status_id',
     ];
 
     /**
@@ -46,13 +49,18 @@ class Plan extends Model
     }
 
     /**
-     * Get the journals for the plan.
+     * Get the planStatus that owns the plan.
      */
-    public function journals(): HasMany
+    public function planStatus(): BelongsTo
     {
-        return $this->hasMany(Journal::class);
+        return $this->belongsTo(PlanStatus::class);
     }
-    
-    
 
+    /**
+     * Get the journal that owns the plan.
+     */
+    public function journal(): BelongsTo
+    {
+        return $this->belongsTo(Journal::class);
+    }
 }

@@ -10,8 +10,10 @@ class Journal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['plan_id', 'variety_id', 'sown_direct', 
-    'sown', 'germinated', 'planted', 'first_harvest', 'last_harvest', 'nursery_locn', 'growing_locn'];
+    protected $fillable = ['plan_id', 'variety_id', 'location_id', 'sown_direct',
+        'sown', 'germinated', 'planted', 'first_harvest', 'last_harvest', 
+        'sowing_locn', 'nursery_locn', 'growing_locn'
+    ];
 
     protected $casts = [
         'sown' => 'datetime',
@@ -38,7 +40,7 @@ class Journal extends Model
     }
 
     /**
-     * estimated planting date from a given sown date 
+     * estimated planting date from a given sown date
      * datetime obj with time=0
      */
     public function estimatedCropingDate($interval)

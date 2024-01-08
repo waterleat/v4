@@ -144,12 +144,12 @@
                 <div class="flex">
                     <div class="w-full">
                         <div id="yearview"
-                        data-ss="{{ $journal->succession->sow_start }}"
-                        data-se="{{ $journal->succession->sow_end }}"
-                        data-ps="{{ $journal->succession->plant_start }}"
-                        data-pe="{{ $journal->succession->plant_end }}"
-                        data-hs="{{ $journal->succession->harvest_start }}"
-                            data-he="{{ $journal->succession->harvest_end }}"
+                            data-ss="{{ $journal->plan->succession->sow_start }}"
+                            data-se="{{ $journal->plan->succession->sow_end }}"
+                            data-ps="{{ $journal->plan->succession->plant_start }}"
+                            data-pe="{{ $journal->plan->succession->plant_end }}"
+                            data-hs="{{ $journal->plan->succession->harvest_start }}"
+                            data-he="{{ $journal->plan->succession->harvest_end }}"
                             data-yd="{{ getdate()['yday'] }}">
                         </div>
                         
@@ -166,39 +166,39 @@
                         <h3 class="text-lg md:text-xl lg:text-2xl">Sown</h3>
                         <div>{{ $journal->sown->format('d M Y') }}</div>
 
-                        <p class="">{{ $journal->succession->sown }}</p>
-                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->sow_start.'D'))->format('dM'); ?></p>
-                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->sow_end.'D'))->format('dM'); ?></p>
+                        {{-- <p class="">{{ $journal->sown }}</p> --}}
+                        {{-- <p>{{ (new DateTime('2022-12-31'))->add(new DateInterval($journal->plan->sow_start))->format('dM') }}</p>
+                        <p>{{ (new DateTime('2022-12-31'))->add(new DateInterval($journal->plan->sow_end))->format('dM') }}</p> --}}
                     </div>
                     <div class="w-1/4">
                         <h3 class="text-lg md:text-xl lg:text-2xl">Plant</h3>
                         <p class="{{ ($journal->planted) ? : "bg-blue-300" }}">
-                            {{ ($journal->planted) ? $journal->planted->format('d M Y') : $journal->estimatedCropingDate($journal->succession->days_nursery) }}
+                            {{ ($journal->planted) ? $journal->planted->format('d M Y') : $journal->estimatedCropingDate($journal->plan->succession->days_nursery) }}
                         </p>
                         
-                        <p class="">{{ $journal->succession->plant }}</p>
+                        {{-- <p class="">{{ $journal->succession->plant }}</p> --}}
                         {{-- <p><?php //$datess = new DateTime('2022-12-31');
                             // $datess->add(new DateInterval('P'.$journal->succession->plant_start.'D')); 
                             // echo($datess->format('dM')); ?>
                         </p> --}}
-                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->plant_start.'D'))->format('dM'); ?></p>
-                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->plant_end.'D'))->format('dM'); ?></p>
+                        {{-- <p>{{ (new DateTime('2022-12-31'))->add(new DateInterval($journal->succession->plant_start))->format('dM') }}</p>
+                        <p>{{ (new DateTime('2022-12-31'))->add(new DateInterval($journal->succession->plant_end))->format('dM') }}</p> --}}
                         
                     </div>
                     <div class="w-1/4">
                         <h3 class="text-lg md:text-xl lg:text-2xl">first Harvest</h3>
-                        <p class="{{ ($journal->first_harvest) ? : "bg-blue-300" }}">
-                            {{ ($journal->first_harvest) ? $journal->first_harvest->format('d M'): $journal->estimatedCropingDate($journal->succession->days_maturity) }}</p>
-                        <p class="">{{ $journal->succession->first_harvest }}</p>
-                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->harvest_start.'D'))->format('dM'); ?></p>
-                        <p><?php echo(new DateTime('2022-12-31'))->add(new DateInterval('P'.$journal->succession->harvest_end.'D'))->format('dM'); ?></p>
+                        <p class="{{ ($journal->plan->first_harvest) ? : "bg-blue-300" }}">
+                            {{ ($journal->first_harvest) ? $journal->first_harvest->format('d M'): $journal->estimatedCropingDate($journal->plan->succession->days_maturity) }}</p>
+                        {{-- <p class="">{{ $journal->succession->first_harvest }}</p> --}}
+                        {{-- <p>{{ (new DateTime('2022-12-31'))->add(new DateInterval($journal->succession->harvest_start))->format('dM') }}</p>
+                        <p>{{ (new DateTime('2022-12-31'))->add(new DateInterval($journal->succession->harvest_end))->format('dM') }}</p> --}}
                     </div>
                     <div class="w-1/4">
                         <h3 class="text-lg md:text-xl lg:text-2xl">Last Harvest</h3>
                         <p class="{{ ($journal->last_harvest) ? : "bg-blue-300" }}">
-                            {{ ($journal->last_harvest) ? $journal->last_harvest->format('d M'): $journal->estimatedCropingDate($journal->succession->days_maturity + $journal->succession->days_harvest) }}</p>
-                        <p class="">{{ $journal->succession->last_harvest }}</p>
-                        <p class="">{{ $journal->succession->first_harvest }}</p>
+                            {{ ($journal->last_harvest) ? $journal->last_harvest->format('d M'): $journal->estimatedCropingDate($journal->plan->succession->days_maturity + $journal->plan->succession->days_harvest) }}</p>
+                        {{-- <p class="">{{ $journal->succession->last_harvest }}</p>
+                        <p class="">{{ $journal->succession->first_harvest }}</p> --}}
                     </div>
                 </div>
                 @empty

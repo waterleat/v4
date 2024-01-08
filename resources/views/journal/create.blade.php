@@ -32,7 +32,7 @@
                         <x-input.text type="date" name="sown[]" 
                             class="bg-white block border w-full h-10 text-xl outline-none
                             px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" 
-                            value="{{ old('sown', $today->format('d M Y')) }}" />
+                            value="{{ old('sown', $today->format('Y-m-d')) }}" />
                     </div>
                     <div>
                         <x-input.label for="sow_direct" :value="__('Direct Sown')" />
@@ -52,6 +52,19 @@
                     </div>
                     <div class="w-1/4">
                         <x-input.label for="variety_id" :value="__('variety Name')" />
+                        <select id="variety_id" name="variety_id" 
+                            class="bg-white block border w-full h-10 text-xl outline-none
+                            px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
+                            <option value="">-- variety sown --</option>
+                            @foreach ($varieties as $variety)
+                                <option value="{{ $variety->id }}" {{ old('variety_id') == $variety->id ? 'selected' : '' }}>
+                                    {{ $variety->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="w-1/4">
+                        <x-input.label for="nursey_locn_id" :value="__('variety Name')" />
                         <select id="variety_id" name="variety_id" 
                             class="bg-white block border w-full h-10 text-xl outline-none
                             px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >

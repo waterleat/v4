@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\FamilyController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PlantTypeController;
 use App\Http\Controllers\SuccessionController;
 use App\Http\Controllers\VarietyController;
+use App\Models\Plan;
+use App\Models\Variety;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,10 +26,26 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/child', function () {return view('child');});
+Route::get('/test2', function () {
+    return view('test2', [
+        'plan' => Plan::find(9),
+        'varieties' => Variety::all(),
+        'today' => Carbon::now(),
+        'sorted' => Plan::all()->sortBy([
+            ['sow_start', 'asc'],
+            ['harvest_end', 'asc'],
+        ]),
+    ]);
+});
 
-
-
+Route::get('test', function () {
+    return view('test', [
+        'plan' => Plan::find(9),
+        'varieties' => Variety::all(),
+        'today' => Carbon::now(),
+        'pid' => 8,
+    ]);
+});
 
 // Route::get('/blog',  [FamilyController::class, 'index']); // doesn't give named routes   ---vid 7
 
@@ -43,6 +61,7 @@ Route::get('sowtoday', [SuccessionController::class, 'sowtoday'])->name('success
 Route::resource('journal', JournalController::class);
 
 Route::get('journal/newSowing/{sid}', [JournalController::class, 'newSowing'])->name('journal.newSowing');
+Route::get('journal/addJournal/{pid}', [JournalController::class, 'addJournal'])->name('journal.addJournal');
 
 // Route::post('plan', [PlanController::class, 'store']);
 Route::resource('plan', PlanController::class);
@@ -66,5 +85,3 @@ Route::get('plan/addSuccession/{sid}', [PlanController::class, 'addSuccession'])
 
 // // DELETE
 // Route::delete('family/{id}', [FamilyController::class, 'destroy'])->name('family.destroy');
-
-

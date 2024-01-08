@@ -26,8 +26,8 @@ class LocationSeeder extends Seeder
             ['name' => 'windowsill'],
         ];
 
-    foreach ($locations as $key => $value) {
-        Location::create($value);
-    }
+        foreach ($locations as $key => $value) {
+            Location::create($value);
+        }
     }
 }
