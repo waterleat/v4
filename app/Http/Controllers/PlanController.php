@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Plan;
+use App\Models\Journal;
+use App\Models\Variety;
+use App\Models\Location;
+use App\Models\PlantType;
+use App\Models\PlanStatus;
+use App\Models\Succession;
 use App\Http\Requests\StorePlanRequest;
 use App\Http\Requests\UpdatePlanRequest;
-use App\Models\Plan;
-use App\Models\PlanStatus;
-use App\Models\PlantType;
-use App\Models\Succession;
-use App\Models\Variety;
-use Carbon\Carbon;
 
 // use Illuminate\Support\Carbon;
 
@@ -125,8 +127,11 @@ class PlanController extends Controller
      */
     public function show(Plan $plan)
     {
+        // $journal = Journal::find($plan->journal_id);
+
         return view('plan.show', [
             'plan' => $plan,
+            'locations' => Location::all(),
         ]);
     }
 

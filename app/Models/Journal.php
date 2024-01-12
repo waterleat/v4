@@ -10,7 +10,7 @@ class Journal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['plan_id', 'variety_id', 'location_id', 'sown_direct',
+    protected $fillable = ['plan_id', 'variety_id', 'sown_direct',
         'sown', 'germinated', 'planted', 'first_harvest', 'last_harvest',
         'sowing_locn', 'nursery_locn', 'growing_locn',
     ];

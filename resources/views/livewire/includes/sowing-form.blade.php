@@ -5,8 +5,8 @@
             <div class="">
                 <div class="flex">
                     <div class="mr-4 ">
-                        <x-input.label value="Date Sown" for="sown" class=" mb-1 !text-sm font-medium text-gray-900 dark:text-gray-300" />
-                        <x-input.text wire:model="sownDate" value="{{ $today->format('Y-m-d') }}" type="date" id="sown" 
+                        <x-input.label value="Sown Date" for="sown" class=" mb-1 !text-sm font-medium text-gray-900 dark:text-gray-300" />
+                        <x-input.text wire:model="sownDate" type="date" id="sown" value="{{ $today->format('Y-m-d') }}" 
                         class="p-3 bg-white block border w-full h-10 text-sm outline-none" required />
                         @error('sownDate')
                             <span class="text-red-500 text-xs mt-3 block ">{{ $message }}</span>
@@ -30,19 +30,17 @@
                     </div> --}}
                     <div class="mr-4">
                         <x-input.label for="sow_direct" value="Sow Direct" class="mb-1 !text-sm font-medium text-gray-900 dark:text-gray-400" />
-                        <input wire:model="sow_direct" type="checkbox" id="sow_direct" value="1"
+                        <input wire:model="sow_direct" type="checkbox" id="sow_direct" value="1" {{ $sow_direct ? 'checked' : '' }}
                         class="appearance-none bg-white block border mx-auto w-10 h-10 text-2xl outline-none border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
                     </div>
                     <div class="mr-4">
                         <x-input.label value="Sowing Location" for="sowing_location" class="mb-1 !text-sm font-medium text-gray-900 dark:text-gray-400" />
                         <select wire:model="sowing_location" id="sowing_location" 
                         class="bg-white block border w-full h-10 text-sm outline-none p2 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
-                            <option value="">Sowing Locn</option>
+                            <option value="" disabled>Sowing Locn</option>
                             @foreach ($locations as $location)
                                 <option value="{{ $location->id }}"
-                                    {{-- @if ()
-                                        
-                                    @endif --}}
+                                    {{ $location->id == $sowing_location ? 'selected' : '' }}
                                 >
                                     {{ $location->name }}
                                 </option>
@@ -75,7 +73,7 @@
             
             <div class="flex flex-col justify-around w-28">
                 <button wire:click.prevent="createSowing" type="submit" class=" py-1 px-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save Sowing</button>
-                <button wire:click.prevent="cancelSowing" type="submit" class="py-1 px-2 text-sm font-medium text-center text-white rounded-lg bg-red-700  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Cancel</button>
+                <button wire:click.prevent="cancelForm" type="submit" class="py-1 px-2 text-sm font-medium text-center text-white rounded-lg bg-red-700  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Cancel</button>
             </div>
         </form>
     </div>

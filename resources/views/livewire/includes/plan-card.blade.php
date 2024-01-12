@@ -1,8 +1,9 @@
 <div  wire:key={{ $plan->id }} >
-    <x-layout.index-cards class="!w-full">
+    <x-layout.index-cards class="w-full">
         <div class="w-full flex">
             <div>
-                <div class="w-28 mr-4 px-2 py-1 bg-{{ $plan->planStatus->colour }} text-lg text-center">
+                {{-- {{ dd($plan->planStatus->colour) }} --}}
+                <div class="w-28 mr-2 px-2 py-1 {{ $plan->planStatus->colour }} text-lg text-center">
                     {{ $plan->planStatus->name }}
                 </div>
             </div>
@@ -30,7 +31,7 @@
                             @endforeach
                         </select>
                         <button wire:click.prevent="createLocn" type="submit" class=" py-1 px-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save Locn</button>
-                        <button wire:click.prevent="cancelLocn" type="submit" class="py-1 px-2 text-sm font-medium text-center text-white rounded-lg bg-red-700  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Cancel</button>
+                        <button wire:click.prevent="cancelForm" type="submit" class="py-1 px-2 text-sm font-medium text-center text-white rounded-lg bg-red-700  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Cancel</button>
                     </div>
                 @else
                     <h3 class="py-1 text-lg text-semibold text-gray-800">
@@ -50,42 +51,43 @@
                 data-he="{{ $today->diffInDays($plan->harvest_end, false)+365 }}"
                 data-yd="{{ $doy }}">
             </div>
-            <div id="plan-{{ $loop->iteration }}" class="w-80 h-8">
-                <canvas id="canvas-sow-{{ $loop->iteration }}" width="730" height="30" 
+            <div id="plan-{{ $loop->iteration }}" class="w-64 h-8">
+                <canvas id="canvas-sow-{{ $loop->iteration }}" width="600" height="30" 
                     class="w-full h-full border border-gray-300">
                     Your browser does not support the HTML canvas tag.
                 </canvas>
             </div>
 
-            <div class=" ml-4 flex justify-between items-center">
+            <div class=" ml-4 flex  items-center flex-wrap">
                 <button wire:click="changeGrowLocn({{ $plan->id }})" type="button"
-                class="bg-green-600 w-28 text-lg px-2 text-center mr-4 rounded-full">
+                class="bg-green-400  my-1 px-2 text-center mr-4 rounded-full">
                     Location
                 </button>
                 <button wire:click="sowSeeds({{ $plan->id }})" type="button"
-                class="bg-green-600 w-28 text-lg px-2 text-center mr-4 rounded-full">
+                class="bg-green-400  my-1 px-2 text-center mr-4 rounded-full">
                     Sow seeds
                 </button>
-                
-                {{-- <x-button.small href="{{ route('journal.addJournal', $plan->id) }}">
-                    sow!
-                </x-button.small> --}}
-                {{-- <button type="button" wire>test</button> --}}
-                {{-- <livewire:sow-seeds :pid="$plan->id" />
-                <p class="mr-4">at windowsill</p> --}}
-                {{-- {{ $plan->locn_growing }} --}}
-                {{-- <div class="flex justify-between items-center">
-                    <x-button.small href="{{ route('plan.edit', $plan->id) }}">
-                        Edit
-                    </x-button.small>
-                    <form action="{{ route('plan.destroy', $plan) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="ml-4 px-3 text-white bg-red-500 rounded-full border border-black" type="submit">Delete</button>
-                    </form>
-                    <button type="button" class="bg-blue-400 px-2 ml-4 rounded">-1 Yr</button>
-                    <button type="button" class="bg-blue-400 px-2 ml-4 rounded">+1 Yr</button>
-                </div> --}}
+
+                <button wire:click="germinateSeeds({{ $plan->id }})" type="button"
+                class="bg-green-400  my-1 px-2 text-center mr-4 rounded-full">
+                    Germinated
+                </button>
+
+                <button wire:click="plantSeedlings({{ $plan->id }})" type="button"
+                class="bg-green-400  my-1 px-2 text-center mr-4 rounded-full">
+                    Planted
+                </button>
+
+                <button wire:click="fistHarvest({{ $plan->id }})" type="button"
+                class="bg-green-400  my-1 px-2 text-center mr-4 rounded-full">
+                    1st harvest
+                </button>
+                        
+                <button wire:click="lastHarvest({{ $plan->id }})" type="button"
+                class="bg-green-400  my-1 px-2 text-center mr-4 rounded-full">
+                    Finished
+                </button>
+    
             </div>
         </div >
         
@@ -95,6 +97,10 @@
 
         @if ($selectedPlanGermination === $plan->id)
             @include('livewire.includes.germination-form')
+        @endif
+
+        @if ($selectedPlanPlanted === $plan->id)
+            @include('livewire.includes.planted-form')
         @endif
     </x-layout.index-cards>
 </div>

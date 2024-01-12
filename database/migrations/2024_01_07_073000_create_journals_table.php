@@ -20,7 +20,6 @@ return new class extends Migration
             $table->timestamp('sown');
             $table->foreignIdFor(Variety::class);
             $table->boolean('sown_direct')->default(false);
-            $table->foreignIdFor(Location::class);
             $table->bigInteger('sowing_locn')->nullable();
             $table->bigInteger('nursery_locn')->nullable();
             $table->bigInteger('growing_locn')->nullable();

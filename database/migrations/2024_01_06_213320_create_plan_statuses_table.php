@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('plan_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('colour');
+            $table->string('colour')->nullable();
             $table->timestamps();
         });
     }

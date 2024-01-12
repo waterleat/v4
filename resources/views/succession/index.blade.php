@@ -28,7 +28,7 @@
 
         <div class="flex flex-wrap justify-between">
             @foreach ( $successions as $succession )
-            <x-layout.index-cards>
+            <x-layout.index-cards class="w-72">
                 <div class="text-gray-900 py-1 px-2 w-full mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
                     <a href="{{ route('succession.show', ['succession'=>$succession]) }}">
                         <h2 class="text-xl font-bold">{{  $successionTypes->find($succession->succession_type_id)->name  }} - 

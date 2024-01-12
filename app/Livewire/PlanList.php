@@ -21,7 +21,7 @@ class PlanList extends Component
 
     public $selectedPlanGermination;
     // public $selectedPlanTransplanted;
-    // public $selectedPlanPlanted;
+    public $selectedPlanPlanted;
     // public $selectedPlanHarvesting;
     // public $selectedPlanFinished;
 
@@ -34,6 +34,18 @@ class PlanList extends Component
     #[Rule(['required'])]
     // #[Rule([ 'gte:1'])]
     public $sowing_location;
+
+    #[Rule(['required'])]
+    public $germinationDate;
+
+    #[Rule([])]
+    public $nursery_locn;
+
+    #[Rule([])]
+    public $plantedDate;
+
+    #[Rule([])]
+    public $growing_locn;
 
     #[Rule([])]
     public $sow_direct;
@@ -63,8 +75,8 @@ class PlanList extends Component
                 'locations' => Location::all(),
                 'sorted' => Plan::all()->sortBy([
                     ['plan_status_id', 'desc'],
-                    ['sow_start', 'asc'],
                     ['harvest_end', 'asc'],
+                    ['sow_start', 'asc'],
                 ]),
             ]);
     }
@@ -82,60 +94,62 @@ class PlanList extends Component
         Plan::find($this->selectedPlanLocation)->update([
             'locn_growing' => $validated['editLocn'],
         ]);
-        $this->cancelLocn();
+        $this->reset('selectedPlanLocation', 'editLocn');
+        // $this->cancelForm();
     }
 
-    public function cancelLocn()
+    public function cancelForm()
     {
-        $this->reset('selectedPlanLocation', 'editLocn');
+        return redirect(request()->header('Referer'));
     }
 
     public function sowSeeds(Plan $plan): void
     {
         $this->selectedPlanSowing = $plan->id;
-        $journal = Journal::all()->where('plan_id', $plan->id);
-        // dd($journal);
-        $journal->whenEmpty(function () {
+        $journal = Journal::where('plan_id', $plan->id)->first();
+        
+        if ($journal) {
+            $this->sownDate = $journal->sown->format('Y-m-d');
+            $this->variety_id = $journal->variety_id;
+            $this->sow_direct = $journal->sown_direct;
+            $this->sowing_location = $journal->sowing_locn;
+        } else {
             $this->sownDate = Carbon::today()->format('Y-m-d');
-        }, function ($journal) {
-            $this->sownDate = $journal->first()->sown->format('Y-m-d');
-            $this->variety_id = $journal->first()->variety_id;
-            $this->sowing_location = $journal->first()->sowing_locn;
-        });
+            $this->sowing_location = '';
+        }
     }
 
     public function createSowing()
     {
-        $validated = $this->validate();
-        // dd($validated);
+        $rules = [
+            'sownDate' => 'required',
+            'sowing_location' => 'required|integer',
+            'variety_id' => 'required|integer',
+            'sow_direct' => 'nullable',
+        ];
+        $validated = $this->validate($rules);
+        
         $plan = Plan::find($this->selectedPlanSowing);
-
-        $sownX = Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00');
-        $sownCD = Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00');
-        // $se = $sownCD->addDays($plan->days_nursery - 7);
-        // $c = Carbon::createMidnightDate($parsed->year(),$parsed->month(),$parsed->day());
-        // dump($validated['sownDate'],$sownX->format('Y-m-d'), $sownCD, $se); // , $sownD->addDays($plan->days_nursery - 7));
 
         $j = [
             'plan_id' => $this->selectedPlanSowing,
             'sown' => $validated['sownDate'],
             'variety_id' => $validated['variety_id'],
-            'sown_direct' => $validated['sow_direct'],
-            'location_id' => $validated['sowing_location'],
+            'sown_direct' => $validated['sow_direct'] == null ? 0 : 1,
             'sowing_locn' => $validated['sowing_location'],
+            'nursery_locn' => ($validated['sow_direct']) ? $validated['sowing_location'] : null,
             'growing_locn' => ($validated['sow_direct']) ? $validated['sowing_location'] : null,
         ];
-        $journal = Journal::create($j);
 
-        $a = [
+        $common_plan = [
             'plan_status_id' => 2,
             'sow_start' => $validated['sownDate'],
             'harvest_start' => Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00')->addDays($plan->days_maturity),
             'harvest_end' => Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00')->addDays($plan->days_maturity + $plan->days_harvest),
         ];
 
-        if ($validated['sownDate']) {
-            $p = array_merge($a,
+        if ($validated['sow_direct']) {
+            $p = array_merge($common_plan,
                 [
                     'sow_end' => $validated['sownDate'],
                     'plant_start' => $validated['sownDate'],
@@ -143,52 +157,111 @@ class PlanList extends Component
                     'locn_growing' => $validated['sowing_location'],
                 ]);
         } else {
-            $p = array_merge($a,
+            $p = array_merge($common_plan,
                 [
                     'sow_end' => Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00')->addDays($plan->days_nursery - 7),
                     'plant_start' => Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00')->addDays($plan->days_nursery - 7),
                     'plant_end' => Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00')->addDays($plan->days_nursery + 7),
                 ]);
         }
-        // $plan->update([
-        // $p =[
-        //     // 'sown' => $sown,
-        //     // 'locn_sowing' => $validated['sowing_location'],
-        //     'plan_status_id' => 2,
-
-        //     'sow_start' => $validated['sownDate'],
-
-        //     'sow_end'       => Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00')->addDays($plan->days_nursery - 7),
-        //     'plant_start'   => Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00')->addDays($plan->days_nursery - 7),
-        //     'plant_end'     => Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00')->addDays($plan->days_nursery + 7),
-        //     'harvest_start' => Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00')->addDays($plan->days_maturity),
-        //     'harvest_end'   => Carbon::createFromFormat('Y-m-d h:i:s', $validated['sownDate'].' 00:00:00')->addDays($plan->days_maturity + $plan->days_harvest),
-        //     // 'journal_id' => $journal->id,
-        // ];
-        $plan->update($p);
+        
         // dd($validated, $j, $p);
-        $this->cancelSowing();
+        $journal = Journal::create($j);
+        $plan->update($p);
+        $this->cancelForm();
     }
 
-    public function cancelSowing()
+    public function germinateSeeds(Plan $plan): void
     {
-        return redirect(request()->header('Referer'));
+        $this->selectedPlanGermination = $plan->id;
+        $journal = Journal::where('plan_id', $plan->id)->first();
+        $this->germinationDate = $journal->germinated ? $journal->germinated->format('Y-m-d') : Carbon::today()->format('Y-m-d');
+        $this->nursery_locn = $journal->nursery_locn ?: '';
     }
 
-    // public function germinateSeeds(Plan $plan): void
-    // {
-    //     $this->selectedPlanGermination = $plan->id;
-    // }
+    public function createGermination()
+    {
+        $rules = [
+            'germinationDate' => 'required',
+            'nursery_locn' => 'required|integer',
+        ];
+        $validated = $this->validate($rules);
+        
+        $plan = Plan::find($this->selectedPlanGermination);
+        $journal = Journal::where('plan_id', $plan->id)->first();
+
+        $j = [
+            'id' => $journal->id,
+            'germinated' => $validated['germinationDate'],
+            'nursery_locn' => $validated['nursery_locn'],
+        ];
+        
+        $journal->update($j);
+        $plan->update(['plan_status_id' => $journal->sown_direct == 1 ? 5 : 3]);
+
+        $this->cancelForm();
+    }
 
     // public function transplantSeedlingss(Plan $plan): void
     // {
     //     $this->selectedPlanTransplanted = $plan->id;
     // }
 
-    // public function plantSeedlings(Plan $plan): void
-    // {
-    //     $this->selectedPlanSowing = $plan->id;
-    // }
+    public function plantSeedlings(Plan $plan): void
+    {
+        $this->selectedPlanPlanted = $plan->id;
+        $journal = Journal::where('plan_id', $plan->id)->first();
+        if ($journal){
+            $this->plantedDate = $journal->planted ? $journal->planted->format('Y-m-d') : Carbon::today()->format('Y-m-d');
+            $this->growing_locn = $journal->growing_locn ?: $plan->locn_growing ?: '';
+        }else{
+            $this->plantedDate = Carbon::today()->format('Y-m-d');
+            $this->growing_locn = $plan->locn_growing ?: '';
+        }
+
+        // dd($journal);
+    }
+
+    public function createPlanted()
+    {
+        $rules = [
+            'plantedDate' => 'required',
+            'growing_locn' => 'required|integer',
+        ];
+        $validated = $this->validate($rules);
+        
+        $plan = Plan::find($this->selectedPlanPlanted);
+        $journal = Journal::where('plan_id', $plan->id)->first();
+        if ($journal){
+            $j = [
+                'id' => $journal->id,
+                'planted' => $validated['plantedDate'],
+                'growing_locn' => $validated['growing_locn'],
+            ];
+            $journal->update($j);
+        }else{
+            $j = [
+                'plan_id' => $this->selectedPlanPlanted,
+                'planted' => $validated['plantedDate'],
+                'growing_locn' => $validated['growing_locn'],
+            ];
+            $journal = Journal::create($j);
+        }
+
+        // $carbonPlantedDate = Carbon::createFromFormat('Y-m-d h:i:s', $validated['plantedDate'].' 00:00:00');
+        $p = [
+            'plan_status_id' => 5,
+            'locn_growing' => $validated['growing_locn'],
+            'plant_start' => $validated['plantedDate'],
+            'plant_end' => Carbon::createFromFormat('Y-m-d h:i:s', $validated['plantedDate'].' 00:00:00')->subDays($plan->days_nursery)->addDays($plan->days_maturity),
+            'harvest_start' => Carbon::createFromFormat('Y-m-d h:i:s', $validated['plantedDate'].' 00:00:00')->subDays($plan->days_nursery)->addDays($plan->days_maturity),
+            'harvest_end' => Carbon::createFromFormat('Y-m-d h:i:s', $validated['plantedDate'].' 00:00:00')->subDays($plan->days_nursery)->addDays($plan->days_maturity + $plan->days_harvest),
+        ];
+
+        $plan->update($p);
+
+        $this->cancelForm();
+    }
 
     // public function firstHarvest(Plan $plan): void
     // {

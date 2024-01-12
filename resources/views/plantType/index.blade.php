@@ -25,7 +25,7 @@
 
         <div class="flex flex-wrap justify-between">
             @foreach ( $plantTypes as $plantType )
-            <x-layout.index-cards>
+            <x-layout.index-cards class="w-72">
                 <div class="text-gray-900 py-1 px-2 w-full mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
                     <a href="{{ route('plantType.show', ['plantType'=>$plantType]) }}">
                         <h2 class="text-2xl font-bold">{{ $plantType->name }} </h2>

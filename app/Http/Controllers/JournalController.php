@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreJournalRequest;
 use App\Http\Requests\UpdateJournalRequest;
 use App\Models\Journal;
+use App\Models\Location;
 use App\Models\Plan;
 use App\Models\PlantType;
 use App\Models\Succession;
@@ -115,6 +116,7 @@ class JournalController extends Controller
             'plantType' => $plantType,
             'variety' => $variety,
             'succession' => $succession,
+            'locations' => Location::all(),
         ]);
     }
 

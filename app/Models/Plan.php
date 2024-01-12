@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Plan extends Model
 {
@@ -23,7 +24,6 @@ class Plan extends Model
         'planted' => 'datetime',
         'first_cropped' => 'datetime',
         'last_cropped' => 'datetime',
-        // 'status' => JournalStatusEnum::class,
     ];
 
     protected $fillable = [
@@ -53,10 +53,10 @@ class Plan extends Model
     }
 
     /**
-     * Get the journal that owns the plan.
+     * Get the journal that is for the plan.
      */
-    public function journal(): BelongsTo
+    public function journal(): HasOne
     {
-        return $this->belongsTo(Journal::class);
+        return $this->hasOne(Journal::class);
     }
 }

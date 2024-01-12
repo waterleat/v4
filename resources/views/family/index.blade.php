@@ -27,7 +27,7 @@
 
     <div class="flex flex-wrap justify-between">
         @foreach ( $families as $family )
-        <x-layout.index-cards >
+        <x-layout.index-cards class="w-72">
             <div class=" text-gray-900 py-1 px-4 mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
                 <a href="{{ route('family.show', ['family'=>$family]) }}">
                     <h2 class="text-4xl font-bold">{{ $family->name }}</h2>

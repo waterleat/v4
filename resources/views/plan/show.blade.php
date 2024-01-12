@@ -9,7 +9,7 @@
                 <h2 class="text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ">
                     {{ $plan->succession->successionType->name }}: {{ $plan->succession->plantType->name }}
                 </h2>
-                <h3 class="text-2xl px-4 py-2 bg-amber-500">{{ $plan->status->name }}</h3>
+                <h3 class="text-2xl px-4 py-2 bg-amber-500">{{ $plan->planStatus->name }}</h3>
             </div>
             <div class="w-2/5 pt-10 text-center">
                 
@@ -173,14 +173,39 @@
                         </tr>
                         </table>
                 </div>
+                {{-- {{ dd($locations) }} --}}
                 <div class="w-1/3">
                     <h4 class="text-xl font-semibold">Journal details</h4>
                     <div class="pl-4">
-                        <p>sown on {{ $plan->sown }} at {{ $plan->locn_sowing }}</p>
-                        <p>germinated on {{ $plan->germinated }} now in {{ $plan->locn_nursery }}</p>
-                        <p>planted on {{ $plan->planted }} in {{ $plan->locn_growing }}</p>
-                        <p>first cropped on {{ $plan->first_cropped }}</p>
-                        <p>until {{ $plan->last_cropped }}</p>
+                        <table>
+                        @if ($plan->plan_status_id > 1)
+                            <tr>
+                                <td>sown on </td><td>{{ $plan->journal->sown->format('d M') }}</td>
+                                <td>at</td><td>{{ $locations->find($plan->journal->sowing_locn)->name }}</td>
+                            </tr>
+                        @endif
+                        @if ($plan->plan_status_id > 2)
+                            <tr>
+                                <td>germinated </td><td>{{ $plan->journal->germinated->format('d M') }}</td>
+                                <td>now in</td><td>{{ $locations->find($plan->journal->nursery_locn)->name }}</td>
+                            </tr>
+                        @endif
+                        @if ($plan->plan_status_id > 3)
+                            <tr>
+                                <td>planted out </td><td>{{ $plan->journal->planted->format('d M') }}</td>
+                                <td>in</td><td>{{ $locations->find($plan->journal->growing_locn)->name }}</td>
+                            </tr>
+                        @endif
+                        @if ($plan->plan_status_id > 5)
+                            <tr>
+                                <td>first cropped </td><td>{{ $plan->journal->first_harvest->format('d M') }}</td>
+                            </tr>
+                        @endif
+                        @if ($plan->plan_status_id > 6)
+                            <tr>
+                                <td>until </td><td>{{ $plan->journal->last_harvest->format('d M') }}</td>
+                            </tr>
+                        @endif
                     </div>
                 </div>
             </div>
