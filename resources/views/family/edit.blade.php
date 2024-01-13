@@ -29,14 +29,14 @@
                 <div class="my-4">
                     <x-input.label for="name" :value="__('Name')" />
                     <x-input.text name="name" id="name"
-                        value="{{ $family->name }}"
+                        value="{{ old('name', $family->name) }}"
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
                 <div class="my-4">
-                    <x-input.label for="name" :value="__('Latin Name')" />
-                    <x-input.text type="text" name="latin"
-                        value="{{ $family->latin }}"
+                    <x-input.label for="latin" :value="__('Latin Name')" />
+                    <x-input.text type="text" name="latin" id="latin"
+                        value="{{ old('latin', $family->latin) }}"
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
@@ -44,7 +44,7 @@
                     <x-input.label for="description" :value="__('Description')" />
                     <x-input.textarea name="description"
                         placeholder=""
-                        :value="$family->description"
+                        :value="{{ old('description', $family->description) }}"
                         class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
                 </div>
 

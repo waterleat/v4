@@ -30,7 +30,7 @@
                 <div class="my-4">
                     <x-input.label for="name" :value="__('Variety')" />
                     <x-input.text type="text" name="name" id="name"
-                        value="{{ $variety->name }}"
+                        value="{{ old('name', $variety->name) }}"
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
@@ -39,13 +39,12 @@
                     <select id="plantType" name="plant_type_id" 
                     class="bg-white block border w-full h-10 text-xl outline-none
                     px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                        <option>--Pick plant type--</option>
+                        <option disabled>--Pick plant type--</option>
                         @foreach ( $plantTypes as $plantType )
                             <option value="{{ $plantType->id }}" 
-                            @if ($plantType->id == old('plant_type_id', $variety->plant_type_id))
-                                selected="selected"
-                            @endif
-                            >{{ $plantType->name }}</option>
+                            {{ $plantType->id == old('plant_type_id', $variety->plant_type_id) ? "selected" : "" }}>
+                                {{ $plantType->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -54,7 +53,7 @@
                 <div class="my-4">
                     <x-input.label for="info" :value="__('Info')" />
                     <x-input.text type="text" name="info" id="info"
-                        value="{{ $variety->info }}"
+                        value="{{ old('info', $variety->info) }}"
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
@@ -63,7 +62,7 @@
                     <x-input.label for="description" :value="__('Description')" />
                     <x-input.textarea name="description" id="description"
                         placeholder=""
-                        value="{{ $variety->description }}"
+                        value="{{ old('description', $variety->description) }}"
                         class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
                 </div>
 
@@ -71,9 +70,9 @@
                     <div class="w-40 my-4">
                         <x-input.label for="height" :value="__('Height (m)')" />
                         <x-input.text id="height" name="height"
-                            type="number" min="0" step=0.1 max="10"
+                            type="number" min="0" step=0.05 max="10"
                             placeholder="Height..."
-                            value="{{ $variety->height }}"
+                            value="{{ old('height', $variety->height) }}"
                             class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
                     </div>
 
@@ -81,14 +80,14 @@
                         <x-input.label for="spread" :value="__('Spread (m)')" />
                         <x-input.text id="spread"  name="spread"
                             type="number" min="0" step=0.05 max="10"
-                            value="{{ $variety->spread }}"
+                            value="{{ old('spread', $variety->spread) }}"
                             class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
                     </div>
                     <div class="w-40 my-4">
                         <x-input.label for="days2maturity" :value="__('Days to Maturity')" />
                         <x-input.text name="days2maturity" id="days2maturity"
                             type="number"
-                            value="{{ $variety->days2maturity }}"
+                            value="{{ old('days2maturity', $variety->days2maturity) }}"
                             class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
                     </div>
                 </div>
@@ -103,7 +102,7 @@
                             type="checkbox" value="1"
                             class="appearance-none bg-white block border w-full h-10 text-2xl outline-none
                             border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                            {{ $variety->sow_direct ? 'checked' : '' }} 
+                            {{ old('sow_direct', $variety->sow_direct) ? 'checked' : '' }} 
                             >
                         </div>
                         
@@ -111,7 +110,7 @@
                             <x-input.label for="multi" :value="__('multi')" />
                             <x-input.text id="multi" name="multi"
                             type="number"
-                            value="{{ $variety->multi }}"
+                            value="{{ old('multi', $variety->multi) }}"
                             class="p-3 bg-white block border w-20 h-10 text-2xl outline-none" />
                         </div>
 
@@ -119,7 +118,7 @@
                             <x-input.label for="spacing" :value="__('spacing')" />
                             <x-input.text id="spacing" name="spacing"
                                 type="number"
-                                value="{{ $variety->spacing }}"
+                                value="{{ old('spcacing', $variety->spacing) }}"
                                 class="p-3 bg-white block border w-20 h-10 text-2xl outline-none" />
                         </div>
                     </div>
@@ -129,7 +128,7 @@
                             <x-input.label for="sowing" :value="__('sowing')" />
                             <x-input.text id="sowing" name="sowing"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
-                            value="{{ $variety->sowing }}"
+                            value="{{ old('sowing', $variety->sowing) }}"
                             autocomplete="off"
                             placeholder="Common name..." />
                         </div>
@@ -138,7 +137,7 @@
                             <x-input.label for="harvest" :value="__('harvest')" />
                             <x-input.text id="harvest" name="harvest"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
-                            value="{{ $variety->harvest }}"
+                            value="{{ old('harvest', $variety->harvest) }}"
                             autocomplete="off"
                             placeholder="Common name..." />
                         </div>
@@ -147,35 +146,12 @@
                             <x-input.label for="store" :value="__('store')" />
                             <x-input.text id="store" name="store"
                             class="bg-white block border w-full h-10 text-2xl outline-none"
-                            value="{{ $variety->store }}"
+                            value="{{ old('store', $variety->store) }}"
                             autocomplete="off"
                             placeholder="Common name..." />
                         </div>
                     </div>
                 </div>
-
-
-
-                {{-- <label for="is_published" class="text-gray-500 text-2xl">
-                    Is Published
-                </label>
-                <input
-                    type="checkbox"
-                    class="bg-transparent  border-b-2 inline text-2xl outline-none"
-                    name="is_published"> --}}
-
-                    
-                {{-- <div class="bg-grey-lighter py-10">
-                    <label class="w-44 flex flex-col items-center px-2 py-3 bg-white-rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer">
-                            <span class="mt-2 text-base leading-normal">
-                                Select a file
-                            </span>
-                        <input
-                            type="file"
-                            name="image"
-                            class="hidden">
-                    </label>
-                </div> --}}
 
                 <button
                     type="submit"

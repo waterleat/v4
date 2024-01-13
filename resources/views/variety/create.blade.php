@@ -27,19 +27,18 @@
                 <div>
                 <x-input.label for="name" :value="__('Variety name')" class=""/>
                 <x-input.text id="name" name="name"
-                    autocomplete="off"
-                    placeholder="Variety name..." 
-                    class="bg-white block border w-full h-10 text-2xl outline-none" />
+                    autocomplete="off" placeholder="Variety name..." 
+                    class="bg-white block border w-full h-10 text-2xl outline-none" value="{{ old('name') }}" />
                 </div>
 
                 <div>
                     <x-input.label for="plantType" :value="__('Plant type')" />
-                    <select id="plantType" name="plantType" 
+                    <select id="plantType" name="plant_type_id" 
                         class="bg-white block border w-full h-10 text-xl outline-none
                         px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
-                        <option>--Pick plant type--</option>
+                        <option diabled value="">--Pick plant type--</option>
                         @foreach ( $plantTypes as $plantType )
-                            <option value="{{ $plantType->id }}" >{{ $plantType->name }}</option>
+                            <option value="{{ $plantType->id }}" {{ $plantType->id === old('plantType') ? 'selected' : ''}}>{{ $plantType->name }}</option>
                         @endforeach
                     </select>
 
@@ -49,12 +48,12 @@
                 <x-input.text id="info"  name="info"
                     autocomplete="off"
                     placeholder="Info..." 
-                    class="bg-white block border w-full h-10 text-2xl outline-none" />
+                    class="bg-white block border w-full h-10 text-2xl outline-none" value="{{ old('info') }}" />
 
                 <x-input.label for="description" :value="__('Description')" class=""/>
                 <x-input.textarea id="description" name="description"
                     placeholder="Describe the plant..."
-                    class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
+                    class="p-3 bg-white block border w-full h-60 text-2xl outline-none" value="{{ old('description') }}" />
 
                 <div class="flex pb-8 justify-around">
                     <div class="w-40 my-4">
@@ -62,21 +61,21 @@
                         <x-input.text id="height" name="height"
                             type="number" min="0" step="0.1" max="10"
                             placeholder="Height..."
-                            class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
+                            class="p-3 bg-white block border w-full h-10 text-2xl outline-none" value="{{ old('height') }}" />
                     </div>
                     <div class="w-40 my-4">
                         <x-input.label for="spread" :value="__('Spread (m)')" />
                         <x-input.text id="spread" name="spread"
                             type="number" min="0" step="0.1" max="10"
                             placeholder="Spread..."
-                            class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
+                            class="p-3 bg-white block border w-full h-10 text-2xl outline-none" value="{{ old('spread') }}" />
                     </div>
                     <div class="w-40 my-4">
                         <x-input.label for="days2maturity" :value="__('Days to Maturity')" />
                         <x-input.text id="days2maturity" name="days2maturity"
                             type="number"
                             placeholder="days..." 
-                            class="p-3 bg-white block border w-full h-10 text-2xl outline-none" />
+                            class="p-3 bg-white block border w-full h-10 text-2xl outline-none" value="{{ old('days2maturity') }}" />
                     </div>
                 </div>
 
@@ -85,7 +84,7 @@
                     <div class="w-1/2 px-4">
                         <x-input.label for="sow_direct" :value="__('sow_direct')" />
                         <x-input.text id="sow_direct" name="sow_direct"
-                            type="checkbox"
+                            type="checkbox" value="{{ old('sow_direct') }}"
                             class="p-3 bg-white block border w-10 h-10 text-2xl outline-none" />
                     </div>
                     
@@ -93,7 +92,7 @@
                         <x-input.label for="multisow" :value="__('multisow')" />
                         <x-input.text id="multisow" name="multisow"
                             type="number" placeholder="0"
-                            class="p-3 bg-white block border w-20 h-10 text-2xl outline-none" />
+                            class="p-3 bg-white block border w-20 h-10 text-2xl outline-none" value="{{ old('multisow') }}" />
                     </div>
                 </div>
                     
@@ -103,7 +102,7 @@
                         <x-input.text id="sowing" name="sowing"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
                         autocomplete="off"
-                        placeholder="Common name..." />
+                        placeholder="Common name..." value="{{ old('sowing') }}" />
                     </div>
                     
                     <div class="my-4">
@@ -111,7 +110,7 @@
                         <x-input.text id="harvest" name="harvest"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
                         autocomplete="off"
-                        placeholder="Common name..." />
+                        placeholder="Common name..." value="{{ old('harvest') }}" />
                     </div>
 
                     <div class="my-4">
@@ -119,7 +118,7 @@
                         <x-input.text id="store" name="store"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
                         autocomplete="off"
-                        placeholder="Common name..." />
+                        placeholder="Common name..." value="{{ old('store') }}" />
                     </div>
                 </div>
                     

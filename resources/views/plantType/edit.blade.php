@@ -48,7 +48,7 @@
                             <select id="family_id" name="family_id" 
                             class="bg-white block border w-full h-10 text-xl outline-none
                             px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                                <option>--Pick plant family--</option>
+                                <option disabled>--Pick plant family--</option>
                                 @foreach ( $families as $family )
                                     <option value="{{ $family->id }}" {{ $family->id == old('family_id', $plantType->family_id) ? "selected" : ""}}>
                                         {{ $family->name }}
@@ -63,14 +63,14 @@
                                 type="checkbox" value="1"
                                 class="appearance-none bg-white block border w-10 h-10 text-2xl outline-none
                                 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                                {{ $plantType->perennial ? 'checked' : '' }} 
+                                {{ old('perennial', $plantType->perennial) ? 'checked' : '' }} 
                                 >
                             </div>
 
                             <div class="w-1/2">
                                 <x-input.label for="multisow" :value="__('multisow')" />
-                                <x-input.text id="multisow" name="multisow"
-                                    type="number"
+                                <x-input.text id="multisow" name="multisow" type="number" 
+                                    value="{{ old('multisow', $plantType->multisow) }}"
                                     class=" bg-white block border w-20 h-10 text-2xl outline-none" />
                             </div>
                         </div>
@@ -229,10 +229,6 @@
     
                     </div>
                 </div>
-
-
-
-
 
                 <button
                     type="submit"

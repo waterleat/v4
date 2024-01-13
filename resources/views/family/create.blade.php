@@ -27,21 +27,21 @@
                 <div class="my-4">
                     <x-input.label for="name" :value="__('Name')" />
                     <x-input.text name="name" id="name"
-                        placeholder="Family..."
+                        placeholder="Family..." value="{{ old('name') }}"
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
                 <div class="my-4">
                     <x-input.label for="name" :value="__('Latin Name')" />
                     <x-input.text type="text" name="latin"
-                        placeholder="Latin name..."
+                        placeholder="Latin name..." value="{{ old('latin') }}"
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
                 <div class="my-4">
                     <x-input.label for="description" :value="__('Description')" />
                     <x-input.textarea name="description"
-                        placeholder="Description..."
+                        placeholder="Description..." value="{{ old('description') }}"
                         class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
                 </div>
 

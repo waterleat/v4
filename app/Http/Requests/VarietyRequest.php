@@ -23,15 +23,15 @@ class VarietyRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'plant_type_id' => ['integer'],
+            'plant_type_id' => ['required'],
             'info' => ['required'],
             'description' => ['required'],
             'height' => ['decimal:0,2'],
             'spread' => ['decimal:0,2'],
             'days2maturity' => ['integer'],
             'sow_direct' => ['boolean'],
-            'multi' => ['integer', 'nullable'],
-            'spacing' => ['integer', 'nullable'],
+            'multi' => ['nullable', 'integer'],
+            'spacing' => ['nullable', 'integer'],
             'sowing' => [],
             'harvest' => [],
             'store' => [],

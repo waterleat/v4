@@ -14,7 +14,7 @@ class PlantTypeController extends Controller
      */
     public function index()
     {
-        $plantTypes = PlantType::all();
+        $plantTypes = PlantType::all()->sortBy(['name', 'asc']);
 
         return view('plantType.index', ['plantTypes' => $plantTypes]);
     }
@@ -72,10 +72,14 @@ class PlantTypeController extends Controller
      */
     public function update(PlantTypeRequest $request, PlantType $plantType)
     {
-        $path = $request->file('germ_temp_img')->store('germtemp', 'public');
-
+        // dd($request);
         $data = $request->validated();
-        $data['germ_temp_img'] = $path;
+        if ($request->hasFile('germ_temp_img')) {
+            $path = $request->file('germ_temp_img')->store('germtemp', 'public');
+            $data['germ_temp_img'] = $path;
+        }
+
+
         $plantType->update($data);
 
         return Redirect(route('plantType.index'));

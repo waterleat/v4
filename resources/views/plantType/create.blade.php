@@ -94,7 +94,7 @@
                         <x-input.label for="dates_main_harvest" :value="__('dates_main_harvest')" />
                         <x-input.text id="dates_main_harvest" name="dates_main_harvest"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
-                        autocomplete="off"
+                        autocomplete="off" value="{{ old('dates_main_harvest') }}"
                         placeholder="Common name..." />
                     </div>
                 </div>
