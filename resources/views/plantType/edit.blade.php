@@ -30,18 +30,19 @@
                     <div class="w-1/2 px-4">
                         <div class="my-4">
                             <x-input.label for="name" :value="__('Name')" />
-                            <x-input.text name="name" id="name"
+                            <x-input.text name="name" id="name" placeholder="Common name..."
                             value="{{ old('name', $plantType->name) }}"
                             class="bg-white block border w-full h-10 text-2xl outline-none" />
                         </div>
         
                         <div class="my-4">
                             <x-input.label for="name" :value="__('Latin Name')" />
-                            <x-input.text type="text" name="latin"
+                            <x-input.text type="text" name="latin" placeholder="Latin name..."
                                 value="{{ old('latin', $plantType->latin) }}"
                                 class="bg-white block border w-full h-10 text-2xl outline-none" />
                         </div>
                     </div>
+
                     <div class="w-1/2 px-4">
                         <div class="my-4">
                             <x-input.label for="family_id" :value="__('Family')" />
@@ -66,7 +67,6 @@
                                 {{ old('perennial', $plantType->perennial) ? 'checked' : '' }} 
                                 >
                             </div>
-
                             <div class="w-1/2">
                                 <x-input.label for="multisow" :value="__('multisow')" />
                                 <x-input.text id="multisow" name="multisow" type="number" 
@@ -74,7 +74,6 @@
                                     class=" bg-white block border w-20 h-10 text-2xl outline-none" />
                             </div>
                         </div>
-                        
                     </div>
                 </div>
 
@@ -91,7 +90,7 @@
                         <x-input.text id="dates_best_sow" name="dates_best_sow"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
                         value="{{ old('dates_best_sow', $plantType->dates_best_sow) }}"
-                        />
+                        placeholder="Months.." />
                     </div>
     
                     <div class="w-1/2 px-4">
@@ -99,10 +98,9 @@
                         <x-input.text id="dates_main_harvest" name="dates_main_harvest"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
                         value="{{ old('dates_main_harvest', $plantType->dates_main_harvest) }}"
-                        />
+                        placeholder="Months.." />
                     </div>
                 </div>
-
 
                 <div class="flex my-4">
                     <div class="w-1/2 px-4">
@@ -112,7 +110,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('hardiness_young_plants', $plantType->hardiness_young_plants) }}"
-                            placeholder="Common name..." />
+                            placeholder="Hardiness" />
                         </div>
     
                         <div class="my-4">
@@ -121,7 +119,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('root_depth', $plantType->root_depth) }}"
-                            placeholder="Common name..." />
+                            placeholder="" />
                         </div>
                         
                         <div class="my-4">
@@ -130,7 +128,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('interplant_into', $plantType->interplant_into) }}"
-                            placeholder="Common name..." />
+                            placeholder="plant types..." />
                         </div>
     
                         <div class="my-4">
@@ -139,7 +137,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('interplant_into', $plantType->interplant_into) }}"
-                            placeholder="Common name..." />
+                            placeholder="plant types..." />
                         </div>
     
                         <div class="my-4">
@@ -148,7 +146,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('relay_plant_into', $plantType->relay_plant_into) }}"
-                            placeholder="Common name..." />
+                            placeholder="plant types..." />
                         </div>
     
                         <div class="my-4">
@@ -157,7 +155,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('relay_plant_with', $plantType->relay_plant_with) }}"
-                            placeholder="Common name..." />
+                            placeholder="plant types..." />
                         </div>
                     </div>
     
@@ -168,7 +166,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('mulch', $plantType->mulch) }}"
-                            placeholder="Common name..." />
+                            placeholder="mulch material..." />
                         </div>
         
                         <div class="my-4">
@@ -177,7 +175,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('feeder_type', $plantType->feeder_type) }}"
-                            placeholder="Common name..." />
+                            placeholder="hungry?" />
                         </div>
                         
                         <div class="my-4">
@@ -186,7 +184,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('fertiliser', $plantType->fertiliser) }}"
-                            placeholder="Common name..." />
+                            placeholder="feed with..." />
                         </div>
         
                         <div class="my-4">
@@ -195,7 +193,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('when_to_fertilise', $plantType->when_to_fertilise) }}"
-                            placeholder="Common name..." />
+                            placeholder="when..." />
                         </div>                        
         
                         
@@ -206,7 +204,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('competitor', $plantType->competitor) }}"
-                            placeholder="Common name..." />
+                            placeholder="strength..." />
                         </div>
         
                         <div class="my-4">
@@ -215,7 +213,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('competition_period', $plantType->competition_period) }}"
-                            placeholder="Common name..." />
+                            placeholder="when..." />
                         </div>
         
                         <div class="my-4">
@@ -224,7 +222,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             autocomplete="off"
                             value="{{ old('companions', $plantType->companions) }}"
-                            placeholder="Common name..." />
+                            placeholder="plant type..." />
                         </div>
     
                     </div>

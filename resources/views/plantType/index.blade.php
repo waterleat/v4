@@ -5,12 +5,12 @@
 
     <div class="w-4/5 mx-auto p-4 sm:p-6 lg:p-8">
 
-        {{-- <div class="py-6 sm:py-10">
+        <div class="py-6 sm:py-10">
             <a class="primary-btn inline text-base sm:text-xl bg-green-500 py-4 px-4 shadow-xl rounded-full transition-all hover:bg-green-400"
             href="{{ route('plantType.create') }}">
                 New PlantType
             </a>
-        </div> --}}
+        </div>
 
         @if (session()->has('message'))
             <div>

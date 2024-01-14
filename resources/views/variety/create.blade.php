@@ -36,7 +36,7 @@
                     <select id="plantType" name="plant_type_id" 
                         class="bg-white block border w-full h-10 text-xl outline-none
                         px-3 pt-1 border-green-400 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
-                        <option diabled value="">--Pick plant type--</option>
+                        <option diabled selected value="">--Pick plant type--</option>
                         @foreach ( $plantTypes as $plantType )
                             <option value="{{ $plantType->id }}" {{ $plantType->id === old('plantType') ? 'selected' : ''}}>{{ $plantType->name }}</option>
                         @endforeach
@@ -59,14 +59,14 @@
                     <div class="w-40 my-4">
                         <x-input.label for="height" :value="__('Height (m)')" />
                         <x-input.text id="height" name="height"
-                            type="number" min="0" step="0.1" max="10"
+                            type="number" min="0" step="0.05" max="10"
                             placeholder="Height..."
                             class="p-3 bg-white block border w-full h-10 text-2xl outline-none" value="{{ old('height') }}" />
                     </div>
                     <div class="w-40 my-4">
                         <x-input.label for="spread" :value="__('Spread (m)')" />
                         <x-input.text id="spread" name="spread"
-                            type="number" min="0" step="0.1" max="10"
+                            type="number" min="0" step="0.05" max="10"
                             placeholder="Spread..."
                             class="p-3 bg-white block border w-full h-10 text-2xl outline-none" value="{{ old('spread') }}" />
                     </div>
@@ -91,7 +91,7 @@
                     <div class="w-1/2 px-4">
                         <x-input.label for="multisow" :value="__('multisow')" />
                         <x-input.text id="multisow" name="multisow"
-                            type="number" placeholder="0"
+                            type="number" placeholder="number"
                             class="p-3 bg-white block border w-20 h-10 text-2xl outline-none" value="{{ old('multisow') }}" />
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                         <x-input.text id="sowing" name="sowing"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
                         autocomplete="off"
-                        placeholder="Common name..." value="{{ old('sowing') }}" />
+                        placeholder="months..." value="{{ old('sowing') }}" />
                     </div>
                     
                     <div class="my-4">
@@ -110,7 +110,7 @@
                         <x-input.text id="harvest" name="harvest"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
                         autocomplete="off"
-                        placeholder="Common name..." value="{{ old('harvest') }}" />
+                        placeholder="months..." value="{{ old('harvest') }}" />
                     </div>
 
                     <div class="my-4">
@@ -118,7 +118,7 @@
                         <x-input.text id="store" name="store"
                         class="bg-white block border w-full h-10 text-2xl outline-none"
                         autocomplete="off"
-                        placeholder="Common name..." value="{{ old('store') }}" />
+                        placeholder="months..." value="{{ old('store') }}" />
                     </div>
                 </div>
                     

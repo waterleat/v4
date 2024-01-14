@@ -31,6 +31,7 @@
                     <x-input.label for="name" :value="__('Variety')" />
                     <x-input.text type="text" name="name" id="name"
                         value="{{ old('name', $variety->name) }}"
+                        placeholder="Variety name..."
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
@@ -54,6 +55,7 @@
                     <x-input.label for="info" :value="__('Info')" />
                     <x-input.text type="text" name="info" id="info"
                         value="{{ old('info', $variety->info) }}"
+                        placeholder="Info..." 
                         class="bg-white block border w-full h-10 text-2xl outline-none" />
                 </div>
 
@@ -61,7 +63,7 @@
                 <div class="my-4">
                     <x-input.label for="description" :value="__('Description')" />
                     <x-input.textarea name="description" id="description"
-                        placeholder=""
+                        placeholder="Describe the plant..."
                         value="{{ old('description', $variety->description) }}"
                         class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
                 </div>
@@ -130,7 +132,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             value="{{ old('sowing', $variety->sowing) }}"
                             autocomplete="off"
-                            placeholder="Common name..." />
+                            placeholder="months..." />
                         </div>
 
                         <div class="my-4">
@@ -139,7 +141,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             value="{{ old('harvest', $variety->harvest) }}"
                             autocomplete="off"
-                            placeholder="Common name..." />
+                            placeholder="months..." />
                         </div>
 
                         <div class="my-4">
@@ -148,7 +150,7 @@
                             class="bg-white block border w-full h-10 text-2xl outline-none"
                             value="{{ old('store', $variety->store) }}"
                             autocomplete="off"
-                            placeholder="Common name..." />
+                            placeholder="months..." />
                         </div>
                     </div>
                 </div>
