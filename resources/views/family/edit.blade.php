@@ -3,7 +3,7 @@
         Edit Family {{ $family->name }}
     </x-slot:title>
     
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="max-w-2xl mx-auto p-4 sm:p-6 ">
 
         <div class="m-auto pt-20">
             @if ($errors->any())
@@ -44,7 +44,7 @@
                     <x-input.label for="description" :value="__('Description')" />
                     <x-input.textarea name="description"
                         placeholder=""
-                        :value="{{ old('description', $family->description) }}"
+                        value="{{ old('description', $family->description) }}"
                         class="p-3 bg-white block border w-full h-60 text-2xl outline-none" />
                 </div>
 

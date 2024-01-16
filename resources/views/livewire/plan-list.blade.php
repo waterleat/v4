@@ -44,18 +44,18 @@
 
             ctx.beginPath()
             ctx.rect(ps, 0, pe-ps, ht);
-            ctx.fillStyle = 'green';
+            ctx.fillStyle = 'olivedrab';
             ctx.fill();
             ctx.closePath()
             
             ctx.beginPath()
             ctx.rect(hs, 0, he-hs, ht);
-            ctx.fillStyle = 'purple';
+            ctx.fillStyle = 'darkorchid';
             ctx.fill();
             ctx.closePath()
 
             ctx.font = "32px Arial";
-            ctx.fillStyle = 'gray';
+            ctx.fillStyle = 'darkgray';
             ctx.fillText(txt, 6, 26);
 
             ctx.beginPath()

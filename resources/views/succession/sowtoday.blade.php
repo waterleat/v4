@@ -88,7 +88,7 @@
             
             context.beginPath()
             context.rect(ss, 0, se-ss, ht);
-            context.fillStyle = 'green';
+            context.fillStyle = 'olivedrab';
             context.fill();
             context.closePath()
 
@@ -101,30 +101,30 @@
             if (he-hs<0) {
                 context.beginPath()
                 context.rect(hs, 0, 365-hs, ht);
-                context.fillStyle = 'purple';
+                context.fillStyle = 'darkorchid';
                 context.fill();
                 context.closePath()
                 context.beginPath()
                 context.rect(0, 0, he, ht);
-                context.fillStyle = 'purple';
+                context.fillStyle = 'darkorchid';
                 context.fill();
                 context.closePath()
             }else{
                 context.beginPath()
                 context.rect(hs, 0, he-hs, ht);
-                context.fillStyle = 'purple';
+                context.fillStyle = 'darkorchid';
                 context.fill();
                 context.closePath()
             }
 
             context.font = "32px Arial";
-            context.fillStyle = 'gray';
+            context.fillStyle = 'darkgray';
             context.fillText("J F M A M J J A S O N D", 6, 
             26);
 
             context.beginPath()
             context.rect(yd, 0, 1, ht);
-            context.fillStyle = 'red';
+            context.fillStyle = 'blue';
             context.fill();
             context.closePath()
               

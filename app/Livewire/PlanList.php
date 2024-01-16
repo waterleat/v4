@@ -5,6 +5,8 @@ namespace App\Livewire;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\Plan;
+use App\Models\PlanStatus;
+use App\Models\PlantType;
 use App\Models\Variety;
 use Carbon\Carbon;
 use Livewire\Attributes\Rule;
@@ -71,9 +73,10 @@ class PlanList extends Component
             [
                 'today' => $today,
                 'doy' => Carbon::createMidnightDate($today->year, 1, 1)->diffInDays($today, false),
-                'varieties' => Variety::all(),
+                // 'varieties' => Variety::pluck('id', 'name'),
                 'locations' => Location::all(),
-                'sorted' => Plan::all()->sortBy([
+                // 'plan_statuses' => PlanStatus::all(),
+                'sorted' => Plan::with('planStatus')->with('succession.plantType')->get()->sortBy([
                     ['plan_status_id', 'desc'],
                     ['harvest_end', 'asc'],
                     ['sow_start', 'asc'],

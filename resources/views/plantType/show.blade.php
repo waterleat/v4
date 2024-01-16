@@ -57,7 +57,7 @@
             <h3 class="text-2xl">Successions</h3>
 
             <table class="w-full py-2">
-                <thead>
+                {{-- <thead>
                     <tr>
                         <th></th>
                         <th class="w-10"></th>
@@ -68,49 +68,48 @@
                         <th>Varieties</th>
                         <th>Add to</th>
                     </tr>
-                </thead>
+                </thead> --}}
                 <tbody>
                     @forelse ( $plantType->successions as $succession )
-                        <tr>
-                            <td rowspan="2" class=" border-b border-red-600 hover:text-gray-700 hover:bg-green-300 transition-all">
-                                <a href="{{ route('succession.show', $succession) }}" >
-                                    {{ $successionTypes->find($succession->succession_type_id)->name }}</a></td>
-                            <td rowspan="2" class="">
-                                @if ( $succession->cd )
-                                    CD
-                                @endif
-                            </td>
-                            <td class="bg-orange-400 px-2">{{ $succession->sow }}</td>
-                            <td class="bg-green-400 px-2">{{ $succession->plant }}</td>
-                            <td class="bg-blue-400 px-2">{{ $succession->first_harvest }}</td>
-                            <td class="bg-red-400 px-2">{{ $succession->last_harvest }}</td>
-                            <td rowspan="2" class="">{{ $succession->varieties_recommended }}</td>
-                            <td rowspan="2">
-                                <div class="items-center">
-                                    <livewire:create-plan :sid="$succession->id" />
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">
-                                <div id="suc-{{ $loop->iteration }}" class="year flex"
-                                    data-el="<?= "canvas-".$loop->iteration  ?>"
-                                    data-ss="{{ $succession->sow_start }}"
-                                    data-se="{{ $succession->sow_end }}"
-                                    data-ps="{{ $succession->plant_start }}"
-                                    data-pe="{{ $succession->plant_end }}"
-                                    data-hs="{{ $succession->harvest_start }}"
-                                    data-he="{{ $succession->harvest_end }}"
-                                    data-yd="{{ getdate()['yday'] }}">
-                                </div>
-                                <div id="plan-{{ $loop->iteration }}" class="w-full h-8">
-                                    <canvas id="canvas-{{ $loop->iteration }}" width="365" height="30" 
-                                        class="w-full h-full border border-gray-300">
-                                        Your browser does not support the HTML canvas tag.
-                                    </canvas>
-                                </div>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td  class="mb-4 border-b border-red-600 hover:text-gray-700 hover:bg-green-300 transition-all">
+                            <a href="{{ route('succession.show', $succession) }}" >
+                                {{ $successionTypes->find($succession->succession_type_id)->name }}</a></td>
+                        <td  class="">
+                            @if ( $succession->cd )
+                                CD
+                            @endif
+                        </td>
+                        <td >
+                            <div id="suc-{{ $loop->iteration }}" class="year flex"
+                                data-el="<?= "canvas-".$loop->iteration  ?>"
+                                data-ss="{{ $succession->sow_start }}"
+                                data-se="{{ $succession->sow_end }}"
+                                data-ps="{{ $succession->plant_start }}"
+                                data-pe="{{ $succession->plant_end }}"
+                                data-hs="{{ $succession->harvest_start }}"
+                                data-he="{{ $succession->harvest_end }}"
+                                data-yd="{{ getdate()['yday'] }}">
+                            </div>
+                            <div id="plan-{{ $loop->iteration }}" class="w-full h-8">
+                                <canvas id="canvas-{{ $loop->iteration }}" width="365" height="30" 
+                                    class="w-full h-full border border-gray-300">
+                                    Your browser does not support the HTML canvas tag.
+                                </canvas>
+                            </div>
+                        </td>
+                        <td  class="">
+                            {{ $succession->varieties_recommended }}
+                        </td>
+                        <td >
+                            <div class="items-center">
+                                <livewire:create-plan :sid="$succession->id" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><td><div class="h-4"></div></td></tr>
+
+
                     @empty
                         No successions found
                     @endforelse
@@ -260,37 +259,37 @@
 
             context.beginPath()
             context.rect(ps, 0, pe-ps, ht);
-            context.fillStyle = 'green';
+            context.fillStyle = 'olivedrab';
             context.fill();
             context.closePath()
             
             if (he-hs<0) {
                 context.beginPath()
                 context.rect(hs, 0, 365-hs, ht);
-                context.fillStyle = 'purple';
+                context.fillStyle = 'darkorchid';
                 context.fill();
                 context.closePath()
                 context.beginPath()
                 context.rect(0, 0, he, ht);
-                context.fillStyle = 'purple';
+                context.fillStyle = 'darkorchid';
                 context.fill();
                 context.closePath()
             }else{
                 context.beginPath()
                 context.rect(hs, 0, he-hs, ht);
-                context.fillStyle = 'purple';
+                context.fillStyle = 'darkorchid';
                 context.fill();
                 context.closePath()
             }
 
             context.font = "32px Arial";
-            context.fillStyle = 'gray';
+            context.fillStyle = 'darkgray';
             context.fillText("J F M A M J J A S O N D", 6, 
             26);
 
             context.beginPath()
             context.rect(yd, 0, 1, ht);
-            context.fillStyle = 'red';
+            context.fillStyle = 'blue';
             context.fill();
             context.closePath()
               

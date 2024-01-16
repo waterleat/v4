@@ -28,13 +28,13 @@ Route::get('/', function () {
 
 Route::get('/test2', function () {
     return view('test2', [
-        'plan' => Plan::find(9),
-        'varieties' => Variety::all(),
-        'today' => Carbon::now(),
-        'sorted' => Plan::all()->sortBy([
-            ['sow_start', 'asc'],
-            ['harvest_end', 'asc'],
-        ]),
+        // 'plan' => Plan::find(9),
+        // 'varieties' => Variety::all(),
+        // 'today' => Carbon::now(),
+        // 'sorted' => Plan::all()->sortBy([
+        //     ['sow_start', 'asc'],
+        //     ['harvest_end', 'asc'],
+        // ]),
     ]);
 });
 
