@@ -25,13 +25,18 @@
 
         <div class="flex flex-wrap justify-between">
             @foreach ( $plantTypes as $plantType )
-            <x-layout.index-cards class="w-72 px-4">
+            <x-layout.index-cards class="w-80 pl-4 pt-0">
                 <div class="text-gray-900 py-1 w-full mr-8 hover:text-gray-700 hover:bg-green-100 transition-all">
                     <a href="{{ route('plantType.show', ['plantType'=>$plantType]) }}">
-                        <h2 class="text-2xl font-bold">{{ $plantType->name }} </h2>
+                        <div class="flex justify-between">
+                            <h2 class="text-2xl pt-2 font-bold">{{ $plantType->name }} </h2>
+                            <img src="{{ asset('storage/'.$plantType->plant_type_img) }}" alt="" class="w-10">
+                        </div >
                         <p> {{ $plantType->latin }} </p>
                     </a>
-                </div >
+                    {{-- <div class="">
+                    </div> --}}
+                </div>
 
                 <div class="flex items-center">
                     <a href="{{ route('plantType.edit', $plantType) }}">

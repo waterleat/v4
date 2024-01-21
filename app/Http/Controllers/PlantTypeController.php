@@ -6,6 +6,8 @@ use App\Http\Requests\PlantTypeRequest;
 use App\Models\Family;
 use App\Models\PlantType;
 use App\Models\SuccessionType;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class PlantTypeController extends Controller
 {
@@ -34,8 +36,20 @@ class PlantTypeController extends Controller
      */
     public function store(PlantTypeRequest $request)
     {
-        PlantType::create($request->validated());
+        $validated = $request->validated();
+        // dd($validated);
+        if ($request->hasFile('germ_temp_img')) {
+            // put image in the public storage
+            $filePath = Storage::disk('public')->put('germtemp', request()->file('germ_temp_img'));
+            $validated['germ_temp_img'] = $filePath;
+        }
+        if ($request->hasFile('plant_type_img')) {
+            // put image in the public storage
+            $filePath = Storage::disk('public')->put('planttype', request()->file('plant_type_img'));
+            $validated['plant_type_img'] = $filePath;
+        }
 
+        PlantType::create($validated);
         return Redirect(route('plantType.index'));
     }
 
@@ -73,14 +87,26 @@ class PlantTypeController extends Controller
     public function update(PlantTypeRequest $request, PlantType $plantType)
     {
         // dd($request);
-        $data = $request->validated();
+        $validated = $request->validated();
+
         if ($request->hasFile('germ_temp_img')) {
-            $path = $request->file('germ_temp_img')->store('germtemp', 'public');
-            $data['germ_temp_img'] = $path;
+            // delete old copy
+            if ($plantType->germ_temp_img) {
+                Storage::disk('public')->delete($plantType->germ_temp_img);
+            }
+            $filePath = Storage::disk('public')->put('germtemp', request()->file('germ_temp_img'), 'public');
+            $validated['germ_temp_img'] = $filePath;
+        }
+        if ($request->hasFile('plant_type_img')) {
+            // delete old copy
+            if ($plantType->plant_type_img) {
+                Storage::disk('public')->delete($plantType->plant_type_img);
+            }
+            $filePath = Storage::disk('public')->put('planttype', request()->file('plant_type_img'), 'public');
+            $validated['plant_type_img'] = $filePath;
         }
 
-
-        $plantType->update($data);
+        $plantType->update($validated);
 
         return Redirect(route('plantType.index'));
     }
@@ -90,6 +116,13 @@ class PlantTypeController extends Controller
      */
     public function destroy(PlantType $plantType)
     {
+        if ($plantType->germ_temp_img) {
+            Storage::disk('public')->delete($plantType->germ_temp_img);
+        }
+        if ($plantType->plant_type_img) {
+            Storage::disk('public')->delete($plantType->plant_type_img);
+        }
+        
         $plantType->delete();
 
         return redirect(route('plantType.index'))->with('message', 'PlantType has been deleted');

@@ -77,11 +77,19 @@
                     </div>
                 </div>
 
-                <div class="my-4 pl-4">
-                    <x-input.label for="germ_temp_img" :value="__('Germination temperature image')" />
-                    <input type="file" name="germ_temp_img" id="germ_temp_img"
-                        class="pl-4 text-xl outline-none"
-                        value="{{ old('germ_temp_img', $plantType->germ_temp_img) }}">
+                <div class="my-4 flex">
+                    <div class="w-1/2 px-4">
+                        <x-input.label for="germ_temp_img" :value="__('Germination temperature image')" />
+                        <input type="file" name="germ_temp_img" id="germ_temp_img"
+                            class="pl-4 text-xl outline-none"
+                            value="{{ old('germ_temp_img', $plantType->germ_temp_img) }}">
+                    </div>
+                    <div class="w-1/2 px-4">
+                        <x-input.label for="plant_type_img" :value="__('Plant type image')" />
+                        <input type="file" name="plant_type_img" id="plant_type_img"
+                            class="pl-4 text-xl outline-none"
+                            value="{{ old('plant_type_img', $plantType->plant_type_img) }}">
+                    </div>
                 </div>
 
                 <div class="my-4 flex">

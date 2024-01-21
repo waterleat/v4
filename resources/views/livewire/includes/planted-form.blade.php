@@ -1,4 +1,4 @@
-<section class="bg-lime-200 dark:bg-gray-800">
+<section class="bg-green-200 dark:bg-gray-800">
     <div class="px-4 py-2 mx-auto ">
         <h2 class=" text-2xl tracking-tight font-bold text-center text-gray-900 dark:text-white">Planting Seedlings</h2>
         <form action="" class="flex justify-between">

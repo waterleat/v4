@@ -5,51 +5,56 @@
 
     <div class=" mx-10 pb-20">
         <div class="flex">
-            <h2 class="w-3/5 text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ">
-                {{ $plantType->name }}
-            </h2>
-            <div class="w-2/5 pt-10">
-                <div class="flex mb-2">
-                    <h3 class="text-2xl w-32">Latin:</h3>
-                    <p class="my-auto">{{ $plantType->latin }}</p>
-                </div>
+            <div class="w-28 pt-3 pl-3">
+                <img src="{{ asset('storage/'.$plantType->plant_type_img) }}" alt="img">
+            </div>
+            <div class="flex w-full">
+                <h2 class="w-3/5 text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ">
+                    {{ $plantType->name }}
+                </h2>
+                <div class="w-2/5 pt-10">
+                    <div class="flex mb-2">
+                        <h3 class="text-2xl w-32">Latin:</h3>
+                        <p class="my-auto">{{ $plantType->latin }}</p>
+                    </div>
 
-                <div class="flex mb-2">
-                    <h3 class="text-2xl w-32">Family:</h3>
-                    <p class="my-auto"> 
-                        @if ($plantType->family_id)
-                            <x-button.small href="{{ route('family.show', ['family'=>$plantType->family_id]) }}">
-                                {{ $family->name }}
-                            </x-button.small>
-                        @else
-                        Not known
-                        @endif
-                    </p>
-                </div>
+                    <div class="flex mb-2">
+                        <h3 class="text-2xl w-32">Family:</h3>
+                        <p class="my-auto"> 
+                            @if ($plantType->family_id)
+                                <x-button.small href="{{ route('family.show', ['family'=>$plantType->family_id]) }}">
+                                    {{ $family->name }}
+                                </x-button.small>
+                            @else
+                            Not known
+                            @endif
+                        </p>
+                    </div>
 
-                <div class="flex mb-2">
-                    <h3 class="text-2xl w-32">Varieties:</h3>
-                    <ul class="my-auto">
-                        @forelse ( $plantType->varieties as $variety )
-                        <li class="mb-2">
-                            <x-button.small href="{{ route('variety.show', ['variety'=>$variety]) }}">
-                                {{ $variety['name'] }}
-                            </x-button.small>
-                        </li>
-                        @empty
-                            No varieties found
-                        @endforelse
-                    </ul>
+                    <div class="flex mb-2">
+                        <h3 class="text-2xl w-32">Varieties:</h3>
+                        <ul class="my-auto">
+                            @forelse ( $plantType->varieties as $variety )
+                            <li class="mb-2">
+                                <x-button.small href="{{ route('variety.show', ['variety'=>$variety]) }}">
+                                    {{ $variety['name'] }}
+                                </x-button.small>
+                            </li>
+                            @empty
+                                No varieties found
+                            @endforelse
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="my-4">
+        {{-- <div class="my-4">
             <x-button.small href="{{ route('plan.addPlantType', $plantType->id) }}">
                 Add to planning list
             </x-button.small>
             </a>
-        </div>
+        </div> --}}
 
 
         
@@ -139,7 +144,7 @@
                     <tbody>
                         <tr>
                             <td><h4 class="text-lg w-36">Germination</h4></td>
-                            <td><img src="{{ asset('storage/germtemp/'.$plantType->germ_temp_img) }}" alt="temp"></td>
+                            <td><img src="{{ asset('storage/germtemp/'.$plantType->germ_temp_img) }}" alt="temp" class="pr-8"></td>
                         </tr>
                         <tr>
                             <td><h4 class="text-lg w-36">Multisow</h4></td>

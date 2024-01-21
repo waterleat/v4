@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('relay_plant_into')->nullable();
             $table->string('relay_plant_with')->nullable();
             $table->string('germ_temp_img')->nullable();
+            $table->string('plant_type_img')->nullable();
             $table->timestamps();
         });
     }

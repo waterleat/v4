@@ -74,12 +74,21 @@
                     </div>
                 </div>
 
-                <div class="my-4 pl-4">
-                    <x-input.label for="germ_temp_img" :value="__('Germination temperature image')" />
-                    <input type="file" name="germ_temp_img" id="germ_temp_img"
-                        class="pl-4 text-xl outline-none"
-                        value="{{ old('germ_temp_img') }}" >
+                <div class="my-4 flex">
+                    <div class="w-1/2 px-4">
+                        <x-input.label for="germ_temp_img" :value="__('Germination temperature image')" />
+                        <input type="file" name="germ_temp_img" id="germ_temp_img"
+                            class="pl-4 text-xl outline-none"
+                            value="{{ old('germ_temp_img') }}" >
+                    </div>
+                        <div class="w-1/2 px-4">
+                            <x-input.label for="plant_type_img" :value="__('Plant type image')" />
+                            <input type="file" name="plant_type_img" id="plant_type_img"
+                                class="pl-4 text-xl outline-none"
+                                value="{{ old('plant_type_img') }}" >
+                        </div>
                 </div>
+
                 <div class="my-4 flex">
                     <div class="w-1/2 px-4">
                         <x-input.label for="dates_best_sow" :value="__('dates_best_sow')" />
@@ -88,7 +97,6 @@
                         autocomplete="off" placeholder="Months.." 
                         value="{{ old('dates_best_sow') }}" />
                     </div>
-    
                     <div class="w-1/2 px-4">
                         <x-input.label for="dates_main_harvest" :value="__('dates_main_harvest')" />
                         <x-input.text id="dates_main_harvest" name="dates_main_harvest"

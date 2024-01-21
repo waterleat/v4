@@ -43,6 +43,7 @@ class PlantTypeRequest extends FormRequest
             'relay_plant_into' => [],
             'relay_plant_with' => [],
             'germ_temp_img' => ['nullable', 'mimes:jpg,png,jpeg', 'max:1024'],
+            'plant_type_img' => ['nullable', 'mimes:jpg,png,jpeg', 'max:1024'],
         ];
     }
 
