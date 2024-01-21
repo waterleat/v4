@@ -37,14 +37,14 @@ class VarietySeeder extends Seeder
             [
                 'name' => 'Steak Sandwich', 'plant_type_id' => 15, 'info' => 'good for slicing, good flavour ',
                 'description' => 'desc',
-                'days2maturity' => 99, 'height' => 9.9, 'spread' => 9.9,
+                'days2maturity' => 70, 'height' => 9.9, 'spread' => 9.9,
                 'sow_direct' => false, 'multi' => 1, 'spacing' => 18,
                 'sowing' => 'Mar-late, Apr', 'harvest' => 'Jul, Aug, Sep, Oct', 'store' => '',
             ],
             [
                 'name' => 'Sungold', 'plant_type_id' => 15, 'info' => 'early heavy cropper, sweet, thin skins',
-                'description' => 'desc',
-                'days2maturity' => 99, 'height' => 9.9, 'spread' => 9.9,
+                'description' => "Exceptionally sweet, bright tangerine-orange cherry tomatoes leave everyone begging for more. Vigorous plants start yielding early and bear right through the season. Tendency to split precludes shipping, making these an exclusively fresh-market treat. The taste can't be beat. 15-20 gm. fruits. Indeterminate.",
+                'days2maturity' => 57, 'height' => 9.9, 'spread' => 9.9,
                 'sow_direct' => false, 'multi' => 1, 'spacing' => 18,
                 'sowing' => 'Mar-late, Apr', 'harvest' => 'Jul, Aug, Sep, Oct', 'store' => '',
             ],

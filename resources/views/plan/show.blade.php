@@ -63,7 +63,7 @@
                             <tr>
                                 <td><h4 class="text-lg w-36">Germination</h4></td>
                                 <td class=""><img width="216" alt="temp graph"
-                                    src="{{ asset('storage/germtemp/'.$plan->succession->plantType->germ_temp_img) }}"></td>
+                                    src="{{ asset('storage/'.$plan->succession->plantType->germ_temp_img) }}"></td>
                             </tr>
                             <tr>
                                 <td><h4 class="text-lg w-36">Multisow</h4></td>
