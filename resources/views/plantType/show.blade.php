@@ -6,7 +6,7 @@
     <div class=" mx-10 pb-20">
         <div class="flex">
             <div class="w-28 pt-3 pl-3">
-                <img src="{{ asset('storage/'.$plantType->plant_type_img) }}" alt="img">
+                <img src="{{ asset('storage/'.$plantType->plant_type_img) }}" alt="plant icon">
             </div>
             <div class="flex w-full">
                 <h2 class="w-3/5 text-left sm:text-center text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 py-10 ">
@@ -49,31 +49,10 @@
             </div>
         </div>
         
-        {{-- <div class="my-4">
-            <x-button.small href="{{ route('plan.addPlantType', $plantType->id) }}">
-                Add to planning list
-            </x-button.small>
-            </a>
-        </div> --}}
-
-
-        
         <div>
             <h3 class="text-2xl">Successions</h3>
 
             <table class="w-full py-2">
-                {{-- <thead>
-                    <tr>
-                        <th></th>
-                        <th class="w-10"></th>
-                        <th>Sow</th>
-                        <th>Plant</th>
-                        <th>First Harvest</th>
-                        <th>Last Harvest</th>
-                        <th>Varieties</th>
-                        <th>Add to</th>
-                    </tr>
-                </thead> --}}
                 <tbody>
                     @forelse ( $plantType->successions as $succession )
                     <tr>
@@ -103,13 +82,13 @@
                                 </canvas>
                             </div>
                         </td>
-                        <td  class="">
-                            {{ $succession->varieties_recommended }}
-                        </td>
                         <td >
-                            <div class="items-center">
+                            <div class="w-24 ml-4 items-center">
                                 <livewire:create-plan :sid="$succession->id" />
                             </div>
+                        </td>
+                        <td  class="max-w-xl">
+                            {{ $succession->varieties_recommended }}
                         </td>
                     </tr>
                     <tr><td><div class="h-4"></div></td></tr>
@@ -119,18 +98,19 @@
                         No successions found
                     @endforelse
                     <tr class="h-4"></tr>
-                    <tr>
-                        <td class="text-xl ">Best dates</td>
-                        <td></td>
-                        <td class="font-semibold">Sowing</td>
-                        <td>{{ $plantType->dates_best_sow }}</td>
-                        <td class="font-semibold">Harvest</td>
-                        <td>{{ $plantType->dates_main_harvest }}</td>
-                        <td></td>
-                    </tr>
                 </tbody>
             </table>
-
+            
+            <div>
+                <div class="text-xl ">Best dates</div>
+                <div class="flex px-8">
+                    <div class="w-20 font-semibold">Sowing</div>
+                    <div class="mr-4">{{ $plantType->dates_best_sow }}</div>
+                    <div class="w-20 font-semibold">Harvest</div>
+                    <div class="mr-4">{{ $plantType->dates_main_harvest }}</div>
+                    <div></div>
+                </div>
+            </div>
 
 
         </div>
@@ -144,7 +124,11 @@
                     <tbody>
                         <tr>
                             <td><h4 class="text-lg w-36">Germination</h4></td>
-                            <td><img src="{{ asset('storage/germtemp/'.$plantType->germ_temp_img) }}" alt="temp" class="pr-8"></td>
+                            <td>
+                                @if ($plantType->germ_temp_img)
+                                <img src="{{ asset('storage/'.$plantType->germ_temp_img) }}" alt="germination temperature graph" class="pr-8">
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <td><h4 class="text-lg w-36">Multisow</h4></td>

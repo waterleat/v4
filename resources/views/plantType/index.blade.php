@@ -30,7 +30,7 @@
                     <a href="{{ route('plantType.show', ['plantType'=>$plantType]) }}">
                         <div class="flex justify-between">
                             <h2 class="text-2xl pt-2 font-bold">{{ $plantType->name }} </h2>
-                            <img src="{{ asset('storage/'.$plantType->plant_type_img) }}" alt="" class="w-10">
+                            <img src="{{ asset('storage/'.$plantType->plant_type_img) }}" alt="plant icon" class="w-10">
                         </div >
                         <p> {{ $plantType->latin }} </p>
                     </a>
